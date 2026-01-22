@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -19,11 +21,16 @@
   },
   "homepage": "https://github.com/adityabastyas/koda-b6-react#readme",
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@vitejs/plugin-react": "^5.1.2",
+    "eslint": "^9.39.2",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^17.0.0",
     "vite": "^7.3.1"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
+    "moment": "^2.30.1",
     "tailwindcss": "^4.1.18"
   }
 }
