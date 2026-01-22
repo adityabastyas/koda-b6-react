@@ -15,7 +15,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/adityabastyas/koda-b6-react/issues"
   },
@@ -31,6 +31,8 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "moment": "^2.30.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "tailwindcss": "^4.1.18"
   }
 }
