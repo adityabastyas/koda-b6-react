@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import Heading from "./components/Heading";
 import Footer from "./components/Footer";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       {/* <Login /> */}
       {/* <ForgotPassword /> */}
       {/* <Heading /> */}
-      <Footer />
+      {/* <Footer /> */}
+      <Home />
     </div>
   );
 }
