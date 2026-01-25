@@ -65,6 +65,70 @@ function Home() {
             />
           </section>
         </section>
+
+        <section className='flex w-full'>
+          <section className='w-1/2 pt-14 pr-16 pl-32'>
+            <article>
+              <h2 className='text-[#0b132a] text-5xl font-medium font-[Plus_Jakarta_Sans] mb-6'>
+                We Provide <span className='text-[#8e6447]'>Good Coffee</span>
+                and <span className='text-[#8e6447]'>Healthy Meals</span>
+              </h2>
+
+              <p className='text-[#4f5665] text-base font-normal font-[Plus_Jakarta_Sans]'>
+                You can explore the menu that we provide with fun and have their
+                own taste and make your day better.
+              </p>
+
+              <section className='mt-6'>
+                <ul className='flex flex-col gap-6'>
+                  <li className='flex items-center text-[#4f5665] text-[14px] font-normal font-[Rubik]'>
+                    <img
+                      src='src/assets/img/icon/check-icon.svg'
+                      alt='check icon'
+                      className='mr-3'
+                    />
+                    High quality beans
+                  </li>
+
+                  <li className='flex items-center text-[#4f5665] text-sm font-normal font-[Rubik]'>
+                    <img
+                      src='src/assets/img/icon/check-icon.svg'
+                      alt='check icon'
+                      className='mr-3'
+                    />
+                    Healthy meals, you can request the ingredients
+                  </li>
+
+                  <li className='flex items-center text-[#4f5665] text-sm font-normal font-[Rubik]'>
+                    <img
+                      src='src/assets/img/icon/check-icon.svg'
+                      alt='check icon'
+                      className='mr-3'
+                    />
+                    Chat with our staff to get better experience for ordering
+                  </li>
+
+                  <li className='flex items-center text-[#4f5665] text-sm font-normal font-[Rubik]'>
+                    <img
+                      src='src/assets/img/icon/check-icon.svg'
+                      alt='check icon'
+                      className='mr-3'
+                    />
+                    Free member card with a minimum purchase of IDR 200.000.
+                  </li>
+                </ul>
+              </section>
+            </article>
+          </section>
+
+          <section className='w-1/2 flex justify-center items-start'>
+            <img
+              src='src/assets/img/barista-man.png'
+              alt='Professional barista Coffee Shop'
+              className='max-w-full h-auto'
+            />
+          </section>
+        </section>
       </main>
     </div>
   );
