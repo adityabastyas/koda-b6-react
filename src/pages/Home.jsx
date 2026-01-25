@@ -143,7 +143,15 @@ function Home() {
             yours too!
           </p>
 
-          <CartMenu />
+          <CartMenu
+            image='src/assets/img/image-27.png'
+            title='Hazelnut Latte'
+            description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
+            rating={5}
+            oldPrice='IDR 20.000'
+            price='IDR 10.000'
+            showFlashSale={true}
+          />
         </section>
       </main>
     </div>

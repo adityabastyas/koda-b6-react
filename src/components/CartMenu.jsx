@@ -24,15 +24,15 @@ function CartMenu(props) {
         </h4>
       )}
 
-      <header>
+      <header className='relative z-10'>
         <img
           src={image}
           alt={title}
-          className='w-[377px] h-[360px] object-cover'
+          className='w-[377px] h-[360px] object-cover '
         />
       </header>
 
-      <div className='bg-white w-[345px] px-2.5 pt-2.5 pb-6 ml-4 mt-5 relative z-10'>
+      <div className='bg-white w-[345px] px-2.5 pt-2.5 pb-6 ml-4 -mt-15 relative z-10'>
         <h3 className='text-[22px] font-medium text-[#0b132a] font-[Plus_Jakarta_Sans]'>
           {title}
         </h3>
