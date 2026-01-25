@@ -8,7 +8,7 @@ function Login() {
       <div className='hidden sm:block w-[40%] '>
         <img
           src={baristaWomen}
-          alt='cooffe bg image'
+          alt='barista woman background image'
           className='object-cover w-full h-full '
         />
       </div>
