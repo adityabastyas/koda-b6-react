@@ -26,7 +26,6 @@ export default [
       indent: ["error", 2],
       quotes: ["error", "double"],
       "no-var": "error",
-      "no-unused-vars": ["warn"],
       eqeqeq: "warn",
       curly: ["error", "all"],
     },
