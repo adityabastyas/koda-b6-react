@@ -1,4 +1,5 @@
 import React from "react";
+import CartMenu from "../components/CartMenu";
 
 function Home() {
   return (
@@ -128,6 +129,21 @@ function Home() {
               className='max-w-full h-auto'
             />
           </section>
+        </section>
+
+        <section className='w-full text-center pt-20 mb-20'>
+          <h2 className='text-[#0b132a] font-[Plus_Jakarta_Sans] font-medium text-5xl'>
+            Here is People’s <span className='text-[#8e6447]'>Favorite</span>
+          </h2>
+
+          <div className='w-16 h-1.5 bg-[#ff8906] mx-auto my-6'></div>
+
+          <p className='text-[#4f5665] font-[Plus_Jakarta_Sans] font-normal text-base mb-[60px]'>
+            Let’s choose and have a bit taste of poeple’s favorite. It might be
+            yours too!
+          </p>
+
+          <CartMenu />
         </section>
       </main>
     </div>
