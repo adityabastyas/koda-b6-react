@@ -68,14 +68,20 @@ function CartMenu(props) {
           </span>
         </div>
 
-        <footer className='flex items-center mt-3'>
-          <Button>Buy</Button>
+        <footer className='flex items-center gap-2 mt-3'>
+          <div className='flex-3'>
+            <Button>Buy</Button>
+          </div>
 
-          <a href='#'>
+          <a
+            href='#'
+            className='flex-1 flex items-center justify-center
+              border border-[#ff8906] rounded-md py-4'
+          >
             <img
               src='src/assets/img/icon/ShoppingCart.svg'
               alt='icon-cart-shopping'
-              className='border border-[#ff8906] rounded-md px-4 py-1.5'
+              className='w-6 h-6'
             />
           </a>
         </footer>
