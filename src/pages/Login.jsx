@@ -47,15 +47,19 @@ function Login() {
             </span>
           </div>
 
-          <Button>Login</Button>
+          <Link to='/'>
+            <Button>Login</Button>
+          </Link>
         </form>
 
         <footer className='text-center my-6 text-base text-[#4f5665]'>
           <p>
             Not Have An Account?
-            <a className='decoration-none text-[#ff8906]' href=''>
-              Register
-            </a>
+            <Link to='/signup'>
+              <span className='decoration-none text-[#ff8906]' href=''>
+                Register
+              </span>
+            </Link>
           </p>
         </footer>
 

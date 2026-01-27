@@ -5,7 +5,7 @@ import testimonialMan from "../assets/img/testimonial-man.png";
 
 function Home() {
   return (
-    <div>
+    <>
       <main>
         <section className='flex'>
           <section className='w-1/2 h-[1024px] bg-gradient-to-b from-[#777c82] to-[#0b0909] pt-72 pr-20 pl-32 overflow-hidden'>
@@ -286,7 +286,7 @@ function Home() {
           </div>
         </section>
       </main>
-    </div>
+    </>
   );
 }
 

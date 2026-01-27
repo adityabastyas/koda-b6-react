@@ -56,16 +56,16 @@ function Register() {
             src='src\assets\img\icon\Password.svg'
             alt='icon password'
           />
-          <Button>
-            <Link to='/login'>Register</Link>
-          </Button>
+          <Link to='/signup'>
+            <Button>Register</Button>
+          </Link>
         </form>
 
         <footer className='text-center my-6 text-base text-[#4f5665]'>
           <p>
             Have An Account?
             <span className='decoration-none text-[#ff8906]'>
-              <Link to='/login'>Login</Link>
+              <Link to='/signin'>Login</Link>
             </span>
           </p>
         </footer>

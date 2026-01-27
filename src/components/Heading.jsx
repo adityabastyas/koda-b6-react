@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Heading() {
   return (
@@ -7,7 +8,6 @@ function Heading() {
         <div className='flex items-center'>
           <img
             src='src/assets/img/icon/glass.svg'
-            //
             alt='Coffee Shop logo icon'
           />
           <span className='font-[Sacramento,cursive] text-white text-xl font-normal ml-3.5'>
@@ -18,20 +18,18 @@ function Heading() {
         <nav className=''>
           <ul className='flex items-center gap-14'>
             <li>
-              <a
-                href='#'
-                className='font-[Plus_Jakarta_Sans] text-sm font-medium text-white border-b border-[#ff8906] pb-1'
-              >
-                Home
-              </a>
+              <Link to='/'>
+                <span className='font-[Plus_Jakarta_Sans] text-sm font-medium text-white border-b border-[#ff8906] pb-1'>
+                  Home
+                </span>
+              </Link>
             </li>
             <li>
-              <a
-                href='./pages/products.html'
-                className='font-[Plus_Jakarta_Sans] text-sm font-medium text-white'
-              >
-                Product
-              </a>
+              <Link>
+                <span className='font-[Plus_Jakarta_Sans] text-sm font-medium text-white'>
+                  Product
+                </span>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -52,20 +50,18 @@ function Heading() {
               </a>
             </li>
             <li className='mx-5'>
-              <a
-                href='./pages/login.html'
-                className='font-[Plus_Jakarta_Sans] text-sm font-medium text-white border border-white rounded-sm py-3 px-3'
-              >
-                Signin
-              </a>
+              <Link to='/signin'>
+                <span className='font-[Plus_Jakarta_Sans] text-sm font-medium text-white border border-white rounded-sm py-3 px-3'>
+                  Signin
+                </span>
+              </Link>
             </li>
             <li>
-              <a
-                href='./pages/register.html'
-                className='font-[Plus_Jakarta_Sans] text-sm font-medium bg-[#ff8906] text-[#0b132a] rounded-sm py-3 px-3'
-              >
-                Sign up
-              </a>
+              <Link to='/signup'>
+                <span className='font-[Plus_Jakarta_Sans] text-sm font-medium bg-[#ff8906] text-[#0b132a] rounded-sm py-3 px-3'>
+                  Sign up
+                </span>
+              </Link>
             </li>
           </ul>
         </nav>
