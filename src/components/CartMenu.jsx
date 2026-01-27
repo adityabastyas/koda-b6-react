@@ -17,7 +17,7 @@ function CartMenu(props) {
   const stars = [1, 2, 3, 4, 5];
 
   return (
-    <article className='relative flex flex-col'>
+    <article className='relative items-center flex flex-col'>
       {showFlashSale && (
         <h4 className='absolute top-3.5 left-3.5 bg-[#d00000] text-white text-lg font-bold font-[Plus_Jakarta_Sans] p-2.5 rounded-3xl z-10'>
           FLASH SALE!
@@ -25,14 +25,10 @@ function CartMenu(props) {
       )}
 
       <header className='relative z-10'>
-        <img
-          src={image}
-          alt={title}
-          className='w-[377px] h-[360px] object-cover '
-        />
+        <img src={image} alt={title} className='w-full h-full object-cover ' />
       </header>
 
-      <div className='bg-white w-[345px] px-2.5 pt-2.5 pb-6 ml-4 -mt-15 relative z-10'>
+      <div className='bg-white  px-2.5 pt-2.5 pb-6 mx-4 -mt-15 relative z-10'>
         <h3 className='text-[22px] font-medium text-[#0b132a] font-[Plus_Jakarta_Sans]'>
           {title}
         </h3>

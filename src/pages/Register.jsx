@@ -1,6 +1,7 @@
 import Input from "../components/Input";
 import backgroundCoffe from "../assets/img/Rectangle 289.png";
 import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 function Register() {
   return (
@@ -55,15 +56,17 @@ function Register() {
             src='src\assets\img\icon\Password.svg'
             alt='icon password'
           />
-          <Button>Register</Button>
+          <Button>
+            <Link to='/login'>Register</Link>
+          </Button>
         </form>
 
         <footer className='text-center my-6 text-base text-[#4f5665]'>
           <p>
             Have An Account?
-            <a className='decoration-none text-[#ff8906]' href=''>
-              Login
-            </a>
+            <span className='decoration-none text-[#ff8906]'>
+              <Link to='/login'>Login</Link>
+            </span>
           </p>
         </footer>
 

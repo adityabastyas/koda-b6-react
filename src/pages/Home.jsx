@@ -1,5 +1,6 @@
 import React from "react";
 import CartMenu from "../components/CartMenu";
+import locationMap from "../assets/img/location.png";
 
 function Home() {
   return (
@@ -142,16 +143,66 @@ function Home() {
             Let’s choose and have a bit taste of poeple’s favorite. It might be
             yours too!
           </p>
+          <div className='grid grid-cols-4 gap-8 px-32'>
+            <CartMenu
+              image='src/assets/img/image-27.png'
+              title='Hazelnut Latte'
+              description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
+              rating={5}
+              oldPrice='IDR 20.000'
+              price='IDR 10.000'
+              showFlashSale={true}
+            />
+            <CartMenu
+              image='src/assets/img/image-27.png'
+              title='Hazelnut Latte'
+              description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
+              rating={5}
+              oldPrice='IDR 20.000'
+              price='IDR 10.000'
+              showFlashSale={true}
+            />
+            <CartMenu
+              image='src/assets/img/image-27.png'
+              title='Hazelnut Latte'
+              description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
+              rating={5}
+              oldPrice='IDR 20.000'
+              price='IDR 10.000'
+              showFlashSale={true}
+            />
+            <CartMenu
+              image='src/assets/img/image-27.png'
+              title='Hazelnut Latte'
+              description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
+              rating={5}
+              oldPrice='IDR 20.000'
+              price='IDR 10.000'
+              showFlashSale={true}
+            />
+          </div>
+        </section>
 
-          <CartMenu
-            image='src/assets/img/image-27.png'
-            title='Hazelnut Latte'
-            description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-            rating={5}
-            oldPrice='IDR 20.000'
-            price='IDR 10.000'
-            showFlashSale={true}
-          />
+        <section className='text-center bg-[#e8e8e84d] pt-11 pb-24'>
+          <h3 className="text-[#0b132a] font-[500] text-5xl font-['Plus_Jakarta_Sans']">
+            <span className='text-[#8e6447]'>Visit Our Store</span> in the Spot
+            on the Map Below
+          </h3>
+
+          <div className='w-[68px] h-1.5 bg-[#ff8906] my-6 mx-auto'></div>
+
+          <p className="text-[#4f5665] font-[400] text-base mb-[60px] font-['Plus_Jakarta_Sans']">
+            You can explore the menu that we provide with fun and have their own
+            taste and make your day better.
+          </p>
+
+          <div>
+            <img
+              src={locationMap}
+              alt='Map showing Coffee Shop'
+              className='mx-auto'
+            />
+          </div>
         </section>
       </main>
     </div>

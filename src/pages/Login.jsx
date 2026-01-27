@@ -1,6 +1,7 @@
 import Input from "../components/Input";
 import baristaWomen from "../assets/img/barista-woman.png";
 import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -41,7 +42,9 @@ function Login() {
           />
 
           <div className='flex justify-end'>
-            <span className=' text-[#ff8906]'>Forgot Password</span>
+            <span className=' text-[#ff8906]'>
+              <Link to='/forgot-password'>Forgot Password</Link>
+            </span>
           </div>
 
           <Button>Login</Button>
