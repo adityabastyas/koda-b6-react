@@ -25,7 +25,7 @@ function Heading() {
               </Link>
             </li>
             <li>
-              <Link>
+              <Link to='/products'>
                 <span className='font-[Plus_Jakarta_Sans] text-sm font-medium text-white'>
                   Product
                 </span>
