@@ -1,6 +1,7 @@
 import React from "react";
 import CartMenu from "../components/CartMenu";
 import locationMap from "../assets/img/location.png";
+import testimonialMan from "../assets/img/testimonial-man.png";
 
 function Home() {
   return (
@@ -202,6 +203,86 @@ function Home() {
               alt='Map showing Coffee Shop'
               className='mx-auto'
             />
+          </div>
+        </section>
+
+        <section className='w-full h-[600px] bg-gradient-to-br from-[#777c82] to-[#0b0909] px-[100px] py-` mb-[70px]'>
+          <div className='flex items-start'>
+            <figure className='flex'>
+              <img src={testimonialMan} alt='testimonial man' />
+            </figure>
+
+            <article className='w-[490px] ml-5'>
+              <span className="block text-base font-normal text-white font-['Plus_Jakarta_Sans'] mb-6">
+                Testimonial
+              </span>
+
+              <h2 className="text-[48px] font-normal text-white font-['Plus_Jakarta_Sans'] my-6 border-l-[7px] border-[#ff8906] pl-5">
+                Viezh Robert
+              </h2>
+
+              <span className="block text-[#ff8906] text-base font-normal font-['Plus_Jakarta_Sans']">
+                Manager Coffee Shop
+              </span>
+
+              <p className="text-basae font-normal text-white font-['Plus_Jakarta_Sans'] my-6">
+                “Wow... I am very happy to spend my whole day here. the Wi-fi is
+                good, and the coffee and meals tho. I like it here!! Very
+                recommended!
+              </p>
+
+              <div className='flex items-center mb-6'>
+                <img
+                  className='mr-6'
+                  src='src/assets/img/icon/start.svg'
+                  alt='star'
+                />
+                <img
+                  className='mr-6'
+                  src='src/assets/img/icon/start.svg'
+                  alt='star'
+                />
+                <img
+                  className='mr-6'
+                  src='src/assets/img/icon/start.svg'
+                  alt='star'
+                />
+                <img
+                  className='mr-6'
+                  src='src/assets/img/icon/start.svg'
+                  alt='star'
+                />
+                <img
+                  className='mr-6'
+                  src='src/assets/img/icon/start.svg'
+                  alt='star'
+                />
+
+                <span className="text-white text-base font-normal font-['Plus_Jakarta_Sans']">
+                  5.0
+                </span>
+              </div>
+
+              <nav className='flex items-center mb-6'>
+                <img
+                  src='src/assets/img/icon/arrow-left.svg'
+                  alt='arrow-left'
+                  className='bg-white p-3.5 rounded-full mr-2 cursor-pointer'
+                />
+                <img
+                  src='src/assets/img/icon/arrow-right.svg'
+                  alt='arrow-right'
+                  className='bg-[#ff8906] p-3.5 rounded-full cursor-pointer'
+                />
+              </nav>
+
+              <div className='flex gap-2'>
+                <span className='w-6 h-2 bg-[#ff8906] rounded-lg'></span>
+                <span className='w-6 h-2 bg-[#dde0e4] rounded-full'></span>
+                <span className='w-6 h-2 bg-[#dde0e4] rounded-full'></span>
+                <span className='w-6 h-2 bg-[#dde0e4] rounded-full'></span>
+              </div>
+            </article>
           </div>
         </section>
       </main>
