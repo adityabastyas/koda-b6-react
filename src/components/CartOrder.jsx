@@ -10,6 +10,7 @@ function CartOrder({
   dineOption,
   originalPrice,
   discountPrice,
+  isFlashSale = false,
 }) {
   return (
     <>
@@ -18,9 +19,11 @@ function CartOrder({
           <img src={src} alt={alt} className='w-full h-full' />
         </div>
         <div className='flex flex-col gap-[15px] relative w-full mt-[11px]'>
-          <h4 className="text-white font-['Plus_Jakarta_Sans'] text-lg font-bold py-2.5 px-2.5 rounded-3xl bg-[#d00000] w-max">
-            FLASH SALE!
-          </h4>
+          {isFlashSale && (
+            <h4 className="text-white font-['Plus_Jakarta_Sans'] text-lg font-bold py-2.5 px-2.5 rounded-3xl bg-[#d00000] w-max">
+              FLASH SALE!
+            </h4>
+          )}
           <h3 className="text-[22px] font-medium text-[#0b132a] font-['Plus_Jakarta_Sans']">
             {title}
           </h3>
