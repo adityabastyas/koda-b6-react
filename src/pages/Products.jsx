@@ -20,13 +20,97 @@ function Products() {
       </section>
 
       <main>
-        <section className='mt-6 ml-[127px] inline-block'>
+        <section className='w-full py-10'>
+          <header className='flex items-center justify-between mb-6 px-32'>
+            <h2 className='text-5xl font-medium'>
+              Today <span className='text-[#8e6447]'>Promo</span>
+            </h2>
+
+            <nav className='flex items-center gap-2'>
+              <img
+                src='src/assets/img/icon/arrow-left.svg'
+                alt='Previous promo button'
+                className='bg-[#e8e8e8] p-3 rounded-full cursor-pointer'
+              />
+              <img
+                src='src/assets/img/icon/arrow-right.svg'
+                alt='Next promo button'
+                className='bg-[#ff8906] p-3 rounded-full cursor-pointer'
+              />
+            </nav>
+          </header>
+
+          <div className='flex overflow-x-auto gap-6 px-32 pb-2 scroll-smooth snap-x snap-mandatory no-scrollbar'>
+            <article className='snap-start bg-[#88b788] rounded-r-2xl  flex items-start p-3 shrink-0'>
+              <img
+                src='src/assets/img/image 46.svg'
+                alt="Mother's Day special promo"
+              />
+              <div className='ml-2 w-[195px]'>
+                <h3 className='text-sm font-bold'>HAPPY MOTHER’S DAY!</h3>
+                <p className='text-sm'>
+                  Get one of our favorite menu for free!
+                </p>
+                <a className='text-white text-sm cursor-pointer'>Klaim Kupon</a>
+              </div>
+            </article>
+
+            <article className='snap-start bg-[#88b788] rounded-2xl flex items-start p-3 shrink-0'>
+              <img
+                src='src/assets/img/image 46.svg'
+                alt="Mother's Day special promo"
+              />
+              <div className='ml-2 w-[195px]'>
+                <h3 className='text-sm font-bold'>HAPPY MOTHER’S DAY!</h3>
+                <p className='text-sm'>
+                  Get one of our favorite menu for free!
+                </p>
+                <a className='text-white text-sm cursor-pointer'>Klaim Kupon</a>
+              </div>
+            </article>
+
+            <article className='snap-start bg-[#88b788] rounded-2xl flex items-start p-3 shrink-0'>
+              <img
+                src='src/assets/img/image 46.svg'
+                alt="Mother's Day special promo"
+              />
+              <div className='ml-2 w-[195px]'>
+                <h3 className='text-sm font-bold'>HAPPY MOTHER’S DAY!</h3>
+                <p className='text-sm'>
+                  Get one of our favorite menu for free!
+                </p>
+                <a className='text-white text-sm cursor-pointer'>Klaim Kupon</a>
+              </div>
+            </article>
+
+            <article className='snap-start bg-[#f5c361] rounded-l-2xl  flex items-start p-3 shrink-0'>
+              <img
+                src='src/assets/img/image 43.svg'
+                alt='Man Day special free'
+              />
+              <div className='ml-2 w-[195px]'>
+                <h3 className='text-sm font-bold'>
+                  Get a cup of coffee for free on sunday morning
+                </h3>
+                <p className='text-sm'>Only at 7 to 9 AM</p>
+              </div>
+            </article>
+          </div>
+
+          <img
+            className='mt-6 ml-32'
+            src='src/assets/img/icon/Group-1300.svg'
+            alt='Promo carousel indicator dots'
+          />
+        </section>
+
+        <section className='mt-6 mx-[127px] '>
           <h2 className="mb-[25px] font-['Plus_Jakarta_Sans'] text-5xl font-medium text-[#0b0909]">
             Our <span className='text-[#8e6447]'>Product</span>
           </h2>
 
           <section className='grid grid-cols-3'>
-            <form className='w-[350px] col-span-1  rounded-2xl bg-[#0b0909] p-6 text-white'>
+            <form className=' col-span-1  rounded-2xl bg-[#0b0909] p-6 text-white'>
               <header className='flex items-center justify-between'>
                 <h4 className='text-[22px] font-semibold'>Filter</h4>
                 <button
@@ -154,30 +238,35 @@ function Products() {
 
               <button
                 type='submit'
-                className='mt-2 w-full rounded bg-[#ff8906] py-3 text-[14px] font-medium text-[#0b0909]'
+                className='mt-2 w-full rounded bg-[#ff8906] py-3 text-sm font-medium text-[#0b0909]'
               >
                 Apply Filter
               </button>
             </form>
-            <section className='col-span-2'>
-              <CartMenu
-                image='src/assets/img/image-27.png'
-                title='Hazelnut Latte'
-                description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-                rating={5}
-                oldPrice='IDR 20.000'
-                price='IDR 10.000'
-                showFlashSale={true}
-              />
-              <CartMenu
-                image='src/assets/img/image-27.png'
-                title='Hazelnut Latte'
-                description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-                rating={5}
-                oldPrice='IDR 20.000'
-                price='IDR 10.000'
-                showFlashSale={true}
-              />
+            <section className='col-span-2  grid grid-cols-2 gap-4'>
+              <div>
+                <CartMenu
+                  image='src/assets/img/image-27.png'
+                  title='Hazelnut Latte'
+                  description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
+                  rating={5}
+                  oldPrice='IDR 20.000'
+                  price='IDR 10.000'
+                  showFlashSale={true}
+                />
+              </div>
+
+              <div>
+                <CartMenu
+                  image='src/assets/img/image-27.png'
+                  title='Hazelnut Latte'
+                  description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
+                  rating={5}
+                  oldPrice='IDR 20.000'
+                  price='IDR 10.000'
+                  showFlashSale={true}
+                />
+              </div>
             </section>
           </section>
         </section>
