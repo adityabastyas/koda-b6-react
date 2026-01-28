@@ -7,6 +7,7 @@ import AppLayout from "./components/AppLayout";
 import Products from "./pages/Products";
 import DetailProduct from "./pages/DetailProduct";
 import CheckoutProduct from "./pages/CheckoutProduct";
+import HistoryOrder from "./pages/HistoryOrder";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/checkout-product",
         element: <CheckoutProduct />,
+      },
+      {
+        path: "/history-order",
+        element: <HistoryOrder />,
       },
     ],
   },
