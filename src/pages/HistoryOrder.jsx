@@ -1,5 +1,7 @@
 import React from "react";
 
+import CartHistory from "../components/CartHistory";
+
 function HistoryOrder() {
   return (
     <>
@@ -82,6 +84,32 @@ function HistoryOrder() {
             </div>
           </section>
         </section>
+
+        <CartHistory
+          src='src/assets/img/image-31.png'
+          alt='Hazelnut Latte'
+          noOrder='#12354-09893'
+          date='23 January 2023'
+          total='Idr 40.000'
+          status='On Progress'
+        />
+
+        <CartHistory
+          src='src/assets/img/image-31.png'
+          alt='Vanilla Latte'
+          noOrder='#98765-43210'
+          date='25 January 2023'
+          total='Idr 55.000'
+          status='Finish Order'
+        />
+        <CartHistory
+          src='src/assets/img/image-31.png'
+          alt='Vanilla Latte'
+          noOrder='#98765-43210'
+          date='25 January 2023'
+          total='Idr 55.000'
+          status='Sending Goods'
+        />
       </main>
     </>
   );
