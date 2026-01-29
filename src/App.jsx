@@ -11,6 +11,7 @@ import HistoryOrder from "./pages/HistoryOrder";
 import DetailOrder from "./pages/DetailOrder";
 import Profile from "./pages/Profile";
 import NavbarAdmind from "./components/NavbarAdmind";
+import AdmindDashboard from "./admind/AdmindDashboard";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,12 @@ const router = createBrowserRouter([
   {
     path: "/admind-dashboard",
     element: <NavbarAdmind />,
+    children: [
+      {
+        index: true,
+        element: <AdmindDashboard />,
+      },
+    ],
   },
 ]);
 

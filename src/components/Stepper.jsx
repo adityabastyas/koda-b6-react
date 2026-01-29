@@ -7,7 +7,7 @@ function Stepper() {
 
   const klikNext = () => {
     if (step < jumlahStep) {
-      setStep++;
+      setStep(step + 1);
     }
   };
   return (

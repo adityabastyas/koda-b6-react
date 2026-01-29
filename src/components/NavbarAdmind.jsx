@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function NavbarAdmind() {
   return (
@@ -18,13 +19,21 @@ function NavbarAdmind() {
         <div></div>
       </header>
       <section className='grid grid-cols-[256px_1fr] min-h-screen'>
-        <div className=' bg-white border-r'>
+        <div className='pl-10 pt-6 pr-3 bg-white border-r'>
           <nav>
             <ul>
-              <li className='flex items-center gap-3 px-3 py-2 text-gray-600'>
-                <img src='src/assets/img/icon/dashboard.svg' alt='' />
+              <li>
+                <Link
+                  to='/admind-dashboard'
+                  className='flex items-center gap-3 px-3 py-2  bg-[#FF8906] text-black rounded-lg'
+                >
+                  <img
+                    src='src/assets/img/icon/dashboard.svg'
+                    alt='icon dashboard'
+                  />
 
-                <span>Dashboard</span>
+                  <span>Dashboard</span>
+                </Link>
               </li>
               <li
                 href='./admind-product.html'
@@ -36,7 +45,7 @@ function NavbarAdmind() {
               </li>
               <li
                 href='./admind-order.html'
-                className='flex items-center gap-3 px-3 py-2 text-gray-600'
+                className='flex items-center rounded-2xl gap-3 px-3 py-2 text-gray-600'
               >
                 <img src='src/assets/img/icon/bag.svg' alt='' />
 
@@ -44,7 +53,7 @@ function NavbarAdmind() {
               </li>
               <li
                 href='#'
-                className='flex items-center gap-3 px-3 py-2 bg-[#FF8906] text-white'
+                className='flex items-center gap-3 px-3 py-2 text-gray-600'
               >
                 <img src='src/assets/img/icon/usertwo.svg' alt='' />
 
@@ -60,7 +69,9 @@ function NavbarAdmind() {
             </ul>
           </nav>
         </div>
-        <section className=''>hahaha</section>
+        <section className=''>
+          <Outlet />
+        </section>
       </section>
     </>
   );
