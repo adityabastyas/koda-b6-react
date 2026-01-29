@@ -11,6 +11,7 @@ function CartOrder({
   originalPrice,
   discountPrice,
   isFlashSale = false,
+  xIcon = false,
 }) {
   return (
     <>
@@ -39,11 +40,13 @@ function CartOrder({
             </span>
           </div>
           <div className='absolute top-[60px] right-2.5 cursor-pointer w-6 h-6'>
-            <img
-              className='w-6 h-6'
-              src='src/assets/img/icon/XCircle.svg'
-              alt='icon x'
-            />
+            {xIcon && (
+              <img
+                className='w-6 h-6'
+                src='src/assets/img/icon/XCircle.svg'
+                alt='icon x'
+              />
+            )}
           </div>
         </div>
       </article>

@@ -1,5 +1,7 @@
 import React from "react";
 
+import CartOrder from "../components/CartOrder";
+
 function DetailOrder() {
   return (
     <>
@@ -107,7 +109,50 @@ function DetailOrder() {
               </span>
             </div>
           </section>
-          <section className='md:col-span-1'>youuuuurrr</section>
+          <section className='md:col-span-1 grid grid-cols-1 '>
+            <h3 className='text-[22px] font-normal text-[#0b132a] mb-3'>
+              Your Order
+            </h3>
+            <div className=''>
+              <CartOrder
+                src='src/assets/img/image-31.png'
+                alt='Hazelnut Latte coffe'
+                title='Hazelnut Latte'
+                quantity='2pcs'
+                size='Regular'
+                temperature='Ice'
+                dineOption='Dine In'
+                originalPrice='IDR 40.000'
+                discountPrice='IDR 20.000'
+                isFlashSale={true}
+              />
+
+              <CartOrder
+                src='src/assets/img/image-31.png'
+                alt='Hazelnut Latte coffe'
+                title='Hazelnut Latte'
+                quantity='2pcs'
+                size='Regular'
+                temperature='Ice'
+                dineOption='Dine In'
+                originalPrice='IDR 40.000'
+                discountPrice='IDR 20.000'
+                isFlashSale={true}
+              />
+              <CartOrder
+                src='src/assets/img/image-31.png'
+                alt='Hazelnut Latte coffe'
+                title='Hazelnut Latte'
+                quantity='2pcs'
+                size='Regular'
+                temperature='Ice'
+                dineOption='Dine In'
+                originalPrice='IDR 40.000'
+                discountPrice='IDR 20.000'
+                isFlashSale={true}
+              />
+            </div>
+          </section>
         </div>
       </main>
     </>
