@@ -1,6 +1,7 @@
 import React from "react";
 
 import CartHistory from "../components/CartHistory";
+import Stepper from "../components/Stepper";
 
 function HistoryOrder() {
   return (
@@ -13,103 +14,133 @@ function HistoryOrder() {
           </h1>
           <span className='p-2.5 bg-[#e8e8e8] text-[#0b132a]'>2</span>
         </div>
+        <section className='grid grid-cols-1 sm:grid-cols-2'>
+          <section className='grid grid-cols-1 col-span-1'>
+            <section className=' w-full'>
+              <div className='flex flex-col gap-4 mb-9md:flex-row md:items-center md:justify-between'>
+                {/* Calendar Select */}
+                <div className='flex items-center gap-2.5 bg-[#e8e8e899] px-2.5 w-fit order-1 md:order-2'>
+                  <img
+                    src='src/assets/img/icon/Calendar.svg'
+                    alt='Calendar icon'
+                  />
+                  <select className='bg-transparent outline-none text-sm cursor-pointer'>
+                    <option>Januari 2023</option>
+                    <option>Februari 2023</option>
+                    <option>Maret 2023</option>
+                    <option>April 2023</option>
+                    <option>Mei 2023</option>
+                    <option>Juni 2023</option>
+                    <option>Juli 2023</option>
+                    <option>Agustus 2023</option>
+                    <option>September 2023</option>
+                    <option>Oktober 2023</option>
+                    <option>November 2023</option>
+                    <option>Desember 2023</option>
+                  </select>
+                </div>
+                {/* Tabs */}
+                <div className='flex gap-2 bg-[#e8e8e899] p-2 w-full md:w-auto order-2 md:order-1'>
+                  <input
+                    type='radio'
+                    name='tab'
+                    id='tab1'
+                    defaultChecked
+                    className='hidden peer/tab1'
+                  />
+                  <label
+                    htmlFor='tab1'
+                    className='flex-1 md:flex-none px-4 md:px-6 py-3 text-sm md:text-base font-medium cursor-pointer peer-checked/tab1:bg-white '
+                  >
+                    On Progress
+                  </label>
 
-        <section className='flex gap-5'>
-          <section className='detail-history w-full'>
-            <div className='flex gap-10 mb-9'>
-              {/* Tabs */}
-              <div className='flex gap-2 bg-[#e8e8e899] p-2'>
-                <input
-                  type='radio'
-                  name='tab'
-                  id='tab1'
-                  defaultChecked
-                  className='hidden peer/tab1'
-                />
-                <label
-                  htmlFor='tab1'
-                  className='px-6 py-3 text-base font-medium cursor-pointer peer-checked/tab1:bg-white'
-                >
-                  On Progress
-                </label>
+                  <input
+                    type='radio'
+                    name='tab'
+                    id='tab2'
+                    className='hidden peer/tab2'
+                  />
+                  <label
+                    htmlFor='tab2'
+                    className='flex-1 md:flex-none px-4 md:px-6 py-3text-sm md:text-base font-medium cursor-pointer peer-checked/tab2:bg-white'
+                  >
+                    Sending Goods
+                  </label>
 
-                <input
-                  type='radio'
-                  name='tab'
-                  id='tab2'
-                  className='hidden peer/tab2'
-                />
-                <label
-                  htmlFor='tab2'
-                  className='px-6 py-3 text-base font-medium cursor-pointer peer-checked/tab2:bg-white'
-                >
-                  Sending Goods
-                </label>
-
-                <input
-                  type='radio'
-                  name='tab'
-                  id='tab3'
-                  className='hidden peer/tab3'
-                />
-                <label
-                  htmlFor='tab3'
-                  className='px-6 py-3 text-base font-medium cursor-pointer peer-checked/tab3:bg-white'
-                >
-                  Finish Order
-                </label>
+                  <input
+                    type='radio'
+                    name='tab'
+                    id='tab3'
+                    className='hidden peer/tab3'
+                  />
+                  <label
+                    htmlFor='tab3'
+                    className='flex-1 md:flex-none  px-4 md:px-6 py-3text-sm md:text-base font-medium cursor-pointer peer-checked/tab3:bg-white'
+                  >
+                    Finish Order
+                  </label>
+                </div>
               </div>
+            </section>
 
-              {/* Calendar Select */}
-              <div className='flex items-center gap-2.5 bg-[#e8e8e899] px-2.5'>
-                <img
-                  src='src/assets/img/icon/Calendar.svg'
-                  alt='Calendar icon'
-                />
-                <select className='bg-transparent outline-none text-sm cursor-pointer'>
-                  <option>Januari 2023</option>
-                  <option>Februari 2023</option>
-                  <option>Maret 2023</option>
-                  <option>April 2023</option>
-                  <option>Mei 2023</option>
-                  <option>Juni 2023</option>
-                  <option>Juli 2023</option>
-                  <option>Agustus 2023</option>
-                  <option>September 2023</option>
-                  <option>Oktober 2023</option>
-                  <option>November 2023</option>
-                  <option>Desember 2023</option>
-                </select>
+            <section>
+              <CartHistory
+                src='src/assets/img/image-31.png'
+                alt='Hazelnut Latte'
+                noOrder='#12354-09893'
+                date='23 January 2023'
+                total='Idr 40.000'
+                status='On Progress'
+              />
+
+              <CartHistory
+                src='src/assets/img/image-31.png'
+                alt='Vanilla Latte'
+                noOrder='#98765-43210'
+                date='25 January 2023'
+                total='Idr 55.000'
+                status='Finish Order'
+              />
+              <CartHistory
+                src='src/assets/img/image-31.png'
+                alt='Vanilla Latte'
+                noOrder='#98765-43210'
+                date='25 January 2023'
+                total='Idr 55.000'
+                status='Sending Goods'
+              />
+
+              <div>
+                <Stepper />
               </div>
-            </div>
+            </section>
+          </section>
+
+          <section className="col-span-none sm:col-span-1 font-['Plus_Jakarta_Sans'] flex flex-col gap-2 max-h-[230px] bg-[#e8e8e8] p-5 ">
+            <img
+              src='/src/assets/img/icon/message.svg'
+              alt='icon message'
+              className='w-12 h-12'
+            />
+
+            <h3 className='font-bold text-lg text-[#4f5665]'>
+              Send Us Message
+            </h3>
+
+            <p className='text-base font-normal text-[#4f5665]'>
+              if your unable to find answer or find your product quickly, please
+              describe your problem and tell us. we will give you solution.
+            </p>
+
+            <a
+              href=''
+              className='text-sm font-medium text-[#0b132a] bg-[#ff8906]  text-center py-2.5 rounded-md no-underline'
+            >
+              Send Message
+            </a>
           </section>
         </section>
-
-        <CartHistory
-          src='src/assets/img/image-31.png'
-          alt='Hazelnut Latte'
-          noOrder='#12354-09893'
-          date='23 January 2023'
-          total='Idr 40.000'
-          status='On Progress'
-        />
-
-        <CartHistory
-          src='src/assets/img/image-31.png'
-          alt='Vanilla Latte'
-          noOrder='#98765-43210'
-          date='25 January 2023'
-          total='Idr 55.000'
-          status='Finish Order'
-        />
-        <CartHistory
-          src='src/assets/img/image-31.png'
-          alt='Vanilla Latte'
-          noOrder='#98765-43210'
-          date='25 January 2023'
-          total='Idr 55.000'
-          status='Sending Goods'
-        />
       </main>
     </>
   );
