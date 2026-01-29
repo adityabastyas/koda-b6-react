@@ -10,6 +10,7 @@ import CheckoutProduct from "./pages/CheckoutProduct";
 import HistoryOrder from "./pages/HistoryOrder";
 import DetailOrder from "./pages/DetailOrder";
 import Profile from "./pages/Profile";
+import NavbarAdmind from "./components/NavbarAdmind";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: "/forgot-password",
     element: <ForgotPassword />,
+  },
+  {
+    path: "/admind-dashboard",
+    element: <NavbarAdmind />,
   },
 ]);
 
