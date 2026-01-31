@@ -1,8 +1,8 @@
 function Button(props) {
-  const { children, onClick, className } = props;
+  const { children, className, ...rest } = props;
   return (
     <button
-      onClick={onClick}
+      {...rest}
       className={`bg-[#FF8906] cursor-pointer rounded-md py-4 w-full ${className}`}
     >
       {children}

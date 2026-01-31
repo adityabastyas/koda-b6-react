@@ -1,6 +1,5 @@
 function Input(props) {
-  const { type, name, label, id, value, src, placeholder, alt, onChange } =
-    props;
+  const { type, label, id, src, placeholder, alt, ...rest } = props;
   return (
     <div className='flex flex-col gap-1'>
       <label htmlFor={id} className='text-base font-semibold text-[#0B132A]'>
@@ -11,10 +10,8 @@ function Input(props) {
         <input
           id={id}
           type={type}
-          onChange={onChange}
-          name={name}
-          value={value}
           placeholder={placeholder}
+          {...rest}
           className='outline-none text-xs text-[#4F5665]'
         />
       </div>
