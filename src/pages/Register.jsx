@@ -2,7 +2,6 @@ import Input from "../components/Input";
 import backgroundCoffe from "../assets/img/Rectangle 289.png";
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";

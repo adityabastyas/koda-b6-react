@@ -1,9 +1,49 @@
 import Input from "../components/Input";
 import baristaWomen from "../assets/img/barista-woman.png";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useState } from "react";
+
+const validation = yup.object({
+  email: yup
+    .string()
+    .lowercase()
+    .required("Email wajib diisi")
+    .email("format email tidak valid"),
+
+  password: yup.string().required("password wajib diisi"),
+});
 
 function Login() {
+  const [loginError, setLoginError] = useState("");
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  const { register, handleSubmit, formState } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    resolver: yupResolver(validation),
+  });
+
+  const navigate = useNavigate();
+
+  const formSubmit = (nilai) => {
+    const user = users.find((item) => {
+      return item.email === nilai.email && item.password === nilai.password;
+    });
+
+    if (!user) {
+      setLoginError("email atau password salah");
+      return;
+    }
+
+    navigate("/");
+  };
   return (
     <div className='flex'>
       <div className='hidden sm:block w-[40%] '>
@@ -23,23 +63,43 @@ function Login() {
           <h1 className='text-[#8E6447] font-semibold text-2xl'>Login</h1>
           <p className='my-4'>Fill out the form correctly</p>
         </header>
-        <form className='flex flex-col gap-6'>
-          <Input
-            label='Email'
-            htmlFor='email'
-            id='email'
-            placeholder='Enter Your Email'
-            src='src\assets\img\icon\mail.svg'
-            alt='icon email'
-          />
-          <Input
-            label='Password'
-            htmlFor='password'
-            id='password'
-            placeholder='Enter Your Password'
-            src='src\assets\img\icon\Password.svg'
-            alt='icon password'
-          />
+        <form
+          onSubmit={handleSubmit(formSubmit)}
+          className='flex flex-col gap-6'
+        >
+          <div>
+            <Input
+              label='Email'
+              htmlFor='email'
+              id='email'
+              placeholder='Enter Your Email'
+              src='src\assets\img\icon\mail.svg'
+              alt='icon email'
+              {...register("email")}
+            />
+            {formState.errors.email && (
+              <p className='text-red-700'>{formState.errors.email.message}</p>
+            )}
+          </div>
+
+          <div>
+            <Input
+              label='Password'
+              htmlFor='password'
+              id='password'
+              placeholder='Enter Your Password'
+              src='src\assets\img\icon\Password.svg'
+              alt='icon password'
+              {...register("password")}
+              type='password'
+            />
+            {formState.errors.password && (
+              <p className='text-red-700'>
+                {formState.errors.password.message}
+              </p>
+            )}
+            {loginError && <p className='text-red-700'>{loginError}</p>}
+          </div>
 
           <div className='flex justify-end'>
             <span className=' text-[#ff8906]'>
@@ -47,9 +107,7 @@ function Login() {
             </span>
           </div>
 
-          <Link to='/'>
-            <Button>Login</Button>
-          </Link>
+          <Button type='submit'>Login</Button>
         </form>
 
         <footer className='text-center my-6 text-base text-[#4f5665]'>
