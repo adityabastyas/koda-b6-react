@@ -19,7 +19,7 @@ const validation = yup.object({
 
 function Login() {
   const [loginError, setLoginError] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const users = JSON.parse(localStorage.getItem("users")) || [];
 
   const { register, handleSubmit, formState } = useForm({
@@ -42,7 +42,14 @@ function Login() {
       return;
     }
 
-    navigate("/");
+    setLoginError("");
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+
+      navigate("/");
+    }, 2000);
   };
   return (
     <div className='flex'>
@@ -150,6 +157,13 @@ function Login() {
             <span className='hidden md:inline'>Google</span>
           </a>
         </div>
+        {loading && (
+          <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-10'>
+            <div className='bg-white px-8 py-6 rounded-xl shadow-lg text-center'>
+              <p className='text-lg font-medium'>Loading...</p>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
