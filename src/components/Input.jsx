@@ -12,7 +12,7 @@ function Input(props) {
           type={type}
           placeholder={placeholder}
           {...rest}
-          className='outline-none text-xs text-[#4F5665]'
+          className='outline-none w-full text-xs text-[#4F5665]'
         />
       </div>
     </div>

@@ -23,13 +23,12 @@ const validation = yup.object({
 
   confirmPassword: yup
     .string()
-    .required("confirm password wajib diisi")
-    .oneOf([yup.ref("password")], "password tidak sama"),
+    .trim()
+    .oneOf([yup.ref("password")], "password tidak sama")
+    .required("confirm password wajib diisi"),
 });
 
 function Register() {
-  const [registerHistory, setRegisterHistory] = useState([]);
-
   const { register, handleSubmit, formState } = useForm({
     defaultValues: {
       email: "",
@@ -43,7 +42,11 @@ function Register() {
   const navigate = useNavigate();
 
   const formSubmit = (nilai) => {
-    console.log(nilai);
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    users.push(nilai);
+
+    localStorage.setItem("users", JSON.stringify(users));
     navigate("/signin");
   };
   return (
