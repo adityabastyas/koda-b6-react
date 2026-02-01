@@ -10,6 +10,7 @@ function CartMenu(props) {
     ratingText,
     oldPrice,
     price,
+    onClick,
     showFlashSale = false,
   } = props;
   const safeRating = Math.min(rating, 5);
@@ -66,7 +67,7 @@ function CartMenu(props) {
 
         <footer className='flex items-center gap-2 mt-3'>
           <div className='flex-3'>
-            <Button>Buy</Button>
+            <Button onClick={onClick}>Buy</Button>
           </div>
 
           <a

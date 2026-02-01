@@ -2,9 +2,18 @@ import React from "react";
 import CartMenu from "../components/CartMenu";
 import locationMap from "../assets/img/location.png";
 import { DataContext } from "../components/DataProvider";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const { data, loading } = React.useContext(DataContext);
+
+  const navigate = useNavigate();
+
+  const goToDetail = (item) => {
+    const slug = item.name.split(" ").join("-").toLowerCase();
+
+    navigate(`/detail-product/${item.id}/${slug}`);
+  };
 
   const testimonial = data?.testimonials || [];
 
@@ -196,6 +205,7 @@ function Home() {
                     rating={5}
                     oldPrice={item.price}
                     price={item.discount}
+                    onClick={() => goToDetail(item)}
                     showFlashSale={true}
                   />
                 </div>
