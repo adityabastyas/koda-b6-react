@@ -218,6 +218,82 @@ function AdmindProduct() {
           </div>
         </div>
       </section>
+
+      <section>
+        <div className=''>
+          <div className='rounded w-[540px] p-6'>
+            <div className='flex justify-between items-center mb-4'>
+              <h2 className='text-xl font-semibold'>Add Product</h2>
+              <button>
+                <img src='' alt='' />
+              </button>
+            </div>
+
+            <div>
+              <div>
+                <label className='block text-sm mb-2'>Photo Product</label>
+                <div className='border rounded p-4'>
+                  <div className='w-12 h-12 bg-gray-200 rounded mb-2'></div>
+                  <button className='bg-[#FF8906] text-white px-4 py-1 rounded text-sm'>
+                    Upload
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className='block text-sm mb-2'>Product name</label>
+                <input
+                  type='text'
+                  placeholder='Enter Product Name'
+                  className='w-full border rounded px-3 py-2'
+                />
+              </div>
+
+              <div>
+                <label className='block text-sm mb-2'>Price</label>
+                <input
+                  type='text'
+                  placeholder='Enter Product Price'
+                  className='w-full border rounded px-3 py-2'
+                />
+              </div>
+
+              <div>
+                <label className='block text-sm mb-2'>Description</label>
+                <textarea
+                  placeholder='Enter Product Description'
+                  className='w-full border rounded px-3 py-2 h-20'
+                ></textarea>
+              </div>
+
+              <div>
+                <label className='block text-sm mb-2'>Product Size</label>
+                <div className='flex gap-2'>
+                  <button className='border rounded px-4 py-2'>R</button>
+                  <button className='border rounded px-4 py-2'>L</button>
+                  <button className='border rounded px-4 py-2'>XL</button>
+                  <button className='border rounded px-4 py-2'>250 gr</button>
+                  <button className='border rounded px-4 py-2'>500 gr</button>
+                </div>
+              </div>
+
+              <div>
+                <label className='block text-sm mb-2'>Stock</label>
+                <select className='w-full border rounded px-3 py-2'>
+                  <option value='' disabled selected>
+                    Enter Product Stock
+                  </option>
+                  <option value=''></option>
+                </select>
+              </div>
+
+              <button className='w-full bg-[#FF8906] text-white py-2 rounded'>
+                Save Product
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
