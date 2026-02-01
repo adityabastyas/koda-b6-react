@@ -228,6 +228,133 @@ function AdmindOrder() {
           </div>
         </div>
       </section>
+
+      <section>
+        <div className='rounded w-[540px] p-6'>
+          <div className='flex justify-between items-center mb-4'>
+            <h2 className='text-xl font-semibold'>Order #12354-09893</h2>
+            <button>
+              <img src='' alt='' />
+            </button>
+          </div>
+
+          <div>
+            <div>
+              <label className='block text-sm mb-2'>Order Information</label>
+              <div className='border-b rounded p-4 flex justify-between items-center'>
+                <div className='flex gap-2'>
+                  <img src='../images/icon/Profile.svg' alt='' />
+                  <span className='text-[#4F5665]'>Full Name</span>
+                </div>
+                <span className='font-semibold'>Ghaluh Wizard Anggoro</span>
+              </div>
+              <div className='border-b rounded p-4 flex justify-between items-center'>
+                <div className='flex gap-2'>
+                  <img src='../images/icon/Location.svg' alt='' />
+                  <span className='text-[#4F5665]'>Address</span>
+                </div>
+                <span className='font-semibold'>Griya bandung indah</span>
+              </div>
+              <div className='border-b rounded p-4 flex justify-between items-center'>
+                <div className='flex gap-2'>
+                  <img src='../images/icon/PhoneCall.svg' alt='' />
+                  <span className='text-[#4F5665]'>Phone</span>
+                </div>
+                <span className='font-semibold'>082116304338</span>
+              </div>
+              <div className='border-b rounded p-4 flex justify-between items-center'>
+                <div className='flex gap-2'>
+                  <img src='../images/icon/u_postcard.svg' alt='' />
+                  <span className='text-[#4F5665]'>Payment Method</span>
+                </div>
+                <span className='font-semibold'>Cash</span>
+              </div>
+              <div className='border-b rounded p-4 flex justify-between items-center'>
+                <div className='flex gap-2'>
+                  <img src='../images/icon/truck.svg' alt='' />
+                  <span className='text-[#4F5665]'>Shipping</span>
+                </div>
+                <span className='font-semibold'>Dine In</span>
+              </div>
+              <div className='border-b rounded p-4 flex justify-between items-center'>
+                <div className='flex gap-2'>
+                  <img src='../images/icon/process.svg' alt='' />
+                  <span className='text-[#4F5665]'>Status</span>
+                </div>
+                <select name='' id='' className='bg-[#F1F1F1] rounded-md p-2'>
+                  <option value='' selected>
+                    On progress
+                  </option>
+                  <option value=''>Done</option>
+                </select>
+              </div>
+
+              <div className='rounded p-4 flex justify-between items-center'>
+                <div className='flex gap-2'>
+                  <span className='text-[#4F5665]'>Transaksi</span>
+                </div>
+                <span className='text-[#FF8906]'>Idr 40.000</span>
+              </div>
+            </div>
+
+            <div className='grid gap-5'>
+              <span className='block text-2xl mb-2'>Your Order</span>
+              <article className='grid grid-cols-4 gap-7 bg-[#E8E8E84D] p-2'>
+                <div className='col-span-1'>
+                  <img src='../images/image 31.png' alt='' />
+                </div>
+                <div className='col-span-3 grid gap-1'>
+                  <h3 className='title-menu-title font-semibold'>
+                    Hazelnut Latte
+                  </h3>
+                  <div>
+                    <span>2pcs |</span> <span>Regular</span>
+                    <span>| Ice |</span>
+                    <span>Dine In</span>
+                  </div>
+
+                  <div className='flex gap-3 items-center'>
+                    <span className='text-[#D00000] line-through text-[12px] font-medium'>
+                      IDR 40.000
+                    </span>
+                    <span className='font-medium text-[14px] text-[#FF8906]'>
+                      IDR 20.000
+                    </span>
+                  </div>
+                </div>
+              </article>
+              <article className='grid grid-cols-4 gap-7 bg-[#E8E8E84D] p-2'>
+                <div className='col-span-1'>
+                  <img src='../images/image 31.png' alt='' />
+                </div>
+                <div className='col-span-3 grid gap-1'>
+                  <h3 className='title-menu-title font-semibold'>
+                    Hazelnut Latte
+                  </h3>
+                  <div>
+                    <span>2pcs |</span> <span>Regular</span>{" "}
+                    <span>| Ice |</span>
+                    <span>Dine In</span>
+                  </div>
+
+                  <div className='flex gap-3 items-center'>
+                    <span className='text-[#D00000] line-through text-[12px] font-medium'>
+                      IDR 40.000
+                    </span>
+                    <span className='font-medium text-[14px] text-[#FF8906]'>
+                      IDR 20.000
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <button className='w-full bg-[#FF8906] mt-5 text-white py-2 rounded'>
+              Update
+            </button>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
