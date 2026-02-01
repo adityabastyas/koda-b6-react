@@ -1,8 +1,12 @@
 import React from "react";
 import Button from "../components/Button";
 import CartMenu from "../components/CartMenu";
+import { useParams } from "react-router-dom";
 
 function DetailProduct() {
+  const { id, slug } = useParams();
+
+  const product = JSON.parse(localStorage.getItem("product"));
   return (
     <>
       <section className='flex flex-col px-32 md:flex-row w-full px-5 md:gap-5'>
