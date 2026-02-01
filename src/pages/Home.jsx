@@ -1,7 +1,6 @@
 import React from "react";
 import CartMenu from "../components/CartMenu";
 import locationMap from "../assets/img/location.png";
-import testimonialMan from "../assets/img/testimonial-man.png";
 import { DataContext } from "../components/DataProvider";
 
 function Home() {
