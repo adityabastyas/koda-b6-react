@@ -2,34 +2,47 @@ import React from "react";
 import Button from "../components/Button";
 import CartMenu from "../components/CartMenu";
 import { useParams } from "react-router-dom";
+import { DataContext } from "../components/DataProvider";
 
 function DetailProduct() {
-  const { id, slug } = useParams();
+  const { id } = useParams();
+  const { data, loading } = React.useContext(DataContext);
 
-  const product = JSON.parse(localStorage.getItem("product"));
+  const productFromStorage = JSON.parse(localStorage.getItem("product"));
+
+  const productFromContext = data?.products?.find(
+    (item) => item.id === Number(id)
+  );
+
+  const item = productFromContext || productFromStorage;
+
+  if (loading || !item) {
+    return <p>Loading product...</p>;
+  }
+
   return (
     <>
       <section className='flex flex-col px-32 md:flex-row w-full px-5 md:gap-5'>
         {/* Image Gallery */}
         <div className='flex flex-col gap-[15px] md:w-1/2'>
           <img
-            src='src/assets/img/image-31.png'
+            src={item.image.imageSatu}
             alt='Main product image coffe'
             className='w-full h-auto block'
           />
           <div className='flex w-full gap-3'>
             <img
-              src='src/assets/img/image-31.png'
+              src={item.image.imageDua}
               alt='Thumbnail 1 product coffe'
               className='flex-1 min-w-0'
             />
             <img
-              src='src/assets/img/image-31.png'
+              src={item.image.imageTiga}
               alt='Thumbnail 2 product coffe'
               className='flex-1 min-w-0'
             />
             <img
-              src='src/assets/img/image-31.png'
+              src={item.image.imageEmpat}
               alt='Thumbnail 3 product coffe'
               className='flex-1 min-w-0'
             />
@@ -47,16 +60,16 @@ function DetailProduct() {
 
           {/* Title */}
           <h3 className="text-[22px] font-medium text-[#0b132a] font-['Plus_Jakarta_Sans']">
-            Hazelnut Latte
+            {item.name}
           </h3>
 
           {/* Price */}
           <div className='flex gap-2.5'>
             <span className="text-[#d00000] text-xs font-medium font-['Plus_Jakarta_Sans'] line-through">
-              IDR 20.000
+              {item.price}
             </span>
             <span className="font-medium text-[22px] text-[#ff8906] font-['Plus_Jakarta_Sans']">
-              IDR 10.000
+              {item.discount}
             </span>
           </div>
 
@@ -64,27 +77,27 @@ function DetailProduct() {
           <div className='flex items-center gap-2.5'>
             <img
               className='mr-2.5'
-              src='src/assets/img/icon/start.svg'
+              src='./img/icon/start.svg'
               alt='star icon'
             />
             <img
               className='mr-2.5'
-              src='src/assets/img/icon/start.svg'
+              src='./img/icon/start.svg'
               alt='star icon'
             />
             <img
               className='mr-2.5'
-              src='src/assets/img/icon/start.svg'
+              src='./img/icon/start.svg'
               alt='star icon'
             />
             <img
               className='mr-2.5'
-              src='src/assets/img/icon/start.svg'
+              src='./img/icon/start.svg'
               alt='star icon'
             />
             <img
               className='mr-2.5'
-              src='src/assets/img/icon/start.svg'
+              src='./img/icon/start.svg'
               alt='star icon'
             />
             <span className="text-[#4f5665] text-base font-normal font-['Plus_Jakarta_Sans']">
