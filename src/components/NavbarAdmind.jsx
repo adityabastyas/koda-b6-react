@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 function NavbarAdmind() {
   return (
     <>
-      <header classNameName='flex justify-between items-center px-14'>
-        <div classNameName='flex items-center'>
+      <header className='flex justify-between items-center px-14'>
+        <div className='flex items-center'>
           <img
             src='src/assets/img/icon/Frame.svg'
             alt='Coffee Shop logo icon'
-            classNameName='align-middle'
           />
-          <span classNameName="  font-['Sacramento'] text-[#8E6447] text-xl font-normal ">
+          <span className="  font-['Sacramento'] text-[#8E6447] text-xl font-normal ">
             Coffee Shop
           </span>
         </div>
@@ -24,7 +23,7 @@ function NavbarAdmind() {
             <ul>
               <li>
                 <Link
-                  to='/admind-dashboard'
+                  to='dashboard'
                   className='flex items-center gap-3 px-3 py-2  bg-[#FF8906] text-black rounded-lg'
                 >
                   <img
@@ -36,7 +35,10 @@ function NavbarAdmind() {
                 </Link>
               </li>
               <li>
-                <Link className='flex items-center gap-3 px-3 py-2 text-gray-600 rounded'>
+                <Link
+                  to='product'
+                  className='flex items-center gap-3 px-3 py-2 text-gray-600 rounded'
+                >
                   <img
                     src='src/assets/img/icon/product.svg'
                     alt='icon product'

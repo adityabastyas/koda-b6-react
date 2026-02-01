@@ -61,7 +61,7 @@ const router = createBrowserRouter([
     element: <ForgotPassword />,
   },
   {
-    path: "/admind-dashboard",
+    path: "/admind",
     element: <NavbarAdmind />,
     children: [
       {
@@ -69,7 +69,11 @@ const router = createBrowserRouter([
         element: <AdmindDashboard />,
       },
       {
-        path: "/admind-product",
+        path: "dashboard",
+        element: <AdmindDashboard />,
+      },
+      {
+        path: "product",
         element: <AdmindProduct />,
       },
     ],
