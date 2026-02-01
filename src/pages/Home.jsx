@@ -2,8 +2,11 @@ import React from "react";
 import CartMenu from "../components/CartMenu";
 import locationMap from "../assets/img/location.png";
 import testimonialMan from "../assets/img/testimonial-man.png";
+import { DataContext } from "../components/DataProvider";
 
 function Home() {
+  const { data, loading } = React.useContext(DataContext);
+
   return (
     <>
       <main>
@@ -145,42 +148,28 @@ function Home() {
             yours too!
           </p>
           <div className='grid grid-cols-4 gap-8 px-32'>
-            <CartMenu
-              image='src/assets/img/image-27.png'
-              title='Hazelnut Latte'
-              description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-              rating={5}
-              oldPrice='IDR 20.000'
-              price='IDR 10.000'
-              showFlashSale={true}
-            />
-            <CartMenu
-              image='src/assets/img/image-27.png'
-              title='Hazelnut Latte'
-              description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-              rating={5}
-              oldPrice='IDR 20.000'
-              price='IDR 10.000'
-              showFlashSale={true}
-            />
-            <CartMenu
-              image='src/assets/img/image-27.png'
-              title='Hazelnut Latte'
-              description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-              rating={5}
-              oldPrice='IDR 20.000'
-              price='IDR 10.000'
-              showFlashSale={true}
-            />
-            <CartMenu
-              image='src/assets/img/image-27.png'
-              title='Hazelnut Latte'
-              description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-              rating={5}
-              oldPrice='IDR 20.000'
-              price='IDR 10.000'
-              showFlashSale={true}
-            />
+            {loading && (
+              <p lassName='text-center text-5xl mt-20'>Mengambil Data...</p>
+            )}
+
+            {!loading && data?.products?.length === 0 && (
+              <p lassName='text-center text-5xl mt-20'>Produk kosong</p>
+            )}
+            {data?.products?.map((item) => {
+              return (
+                <div key={item.id}>
+                  <CartMenu
+                    image={item.image.imageSatu}
+                    title={item.name}
+                    description={item.description}
+                    rating={5}
+                    oldPrice={item.price}
+                    price={item.discount}
+                    showFlashSale={true}
+                  />
+                </div>
+              );
+            })}
           </div>
         </section>
 

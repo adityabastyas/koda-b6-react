@@ -1,12 +1,12 @@
 import React from "react";
 
-export const ProductContext = React.createContext();
+export const DataContext = React.createContext();
 
-function ProductProvider({ children }) {
+function DataProvider({ children }) {
   const url =
     "https://raw.githubusercontent.com/adityabastyas/koda-b6-react/refs/heads/main/public/data.json";
 
-  const [products, setProducts] = React.useState([]);
+  const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
   const fetchData = async () => {
@@ -17,12 +17,14 @@ function ProductProvider({ children }) {
         throw new Error("Gagal mengambil data");
       }
 
-      const data = await res.json();
+      const datajson = await res.json();
 
-      setProducts(data);
+      setTimeout(() => {
+        setData(datajson);
+        setLoading(false);
+      }, 1000);
     } catch (error) {
       console.log("error", error);
-    } finally {
       setLoading(false);
     }
   };
@@ -33,11 +35,11 @@ function ProductProvider({ children }) {
 
   return (
     <>
-      <ProductContext.Provider value={{ products, loading }}>
+      <DataContext.Provider value={{ data, loading, fetchData }}>
         {children}
-      </ProductContext.Provider>
+      </DataContext.Provider>
     </>
   );
 }
 
-export default ProductProvider;
+export default DataProvider;
