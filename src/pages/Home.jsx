@@ -7,6 +7,38 @@ import { DataContext } from "../components/DataProvider";
 function Home() {
   const { data, loading } = React.useContext(DataContext);
 
+  const testimonial = data?.testimonial || [];
+
+  const ref = React.useRef(0);
+
+  const [testi, setTesti] = React.useState(null);
+
+  React.useEffect(() => {
+    if (testimonial.length > 0) {
+      setTesti(testimonial[0]);
+    }
+  }, [testimonial]);
+
+  const next = () => {
+    ref.testi++;
+
+    if (ref.testi >= testimonial.length) {
+      ref.testi = 0;
+    }
+
+    setTesti(testimonial[ref.testi]);
+  };
+
+  const prev = () => {
+    ref.testi--;
+
+    if (ref.testi < 0) {
+      ref.testi = testimonial.length - 1;
+    }
+
+    setTesti(testimonial[ref.testi]);
+  };
+
   return (
     <>
       <main>
@@ -155,7 +187,7 @@ function Home() {
             {!loading && data?.products?.length === 0 && (
               <p lassName='text-center text-5xl mt-20'>Produk kosong</p>
             )}
-            {data?.products?.map((item) => {
+            {data?.products?.slice(0, 4)?.map((item) => {
               return (
                 <div key={item.id}>
                   <CartMenu
@@ -195,10 +227,12 @@ function Home() {
           </div>
         </section>
 
-        <section className='w-full h-[600px] bg-gradient-to-br from-[#777c82] to-[#0b0909] px-[100px] py-` mb-[70px]'>
+        <section className='w-full h-[600px] bg-gradient-to-br from-[#777c82] to-[#0b0909] px-[100px] py-[40px] mb-[70px]'>
           <div className='flex items-start'>
             <figure className='flex'>
-              <img src={testimonialMan} alt='testimonial man' />
+              <div>
+                <img src={testi.img} alt={testi.name} />
+              </div>
             </figure>
 
             <article className='w-[490px] ml-5'>
@@ -207,17 +241,15 @@ function Home() {
               </span>
 
               <h2 className="text-[48px] font-normal text-white font-['Plus_Jakarta_Sans'] my-6 border-l-[7px] border-[#ff8906] pl-5">
-                Viezh Robert
+                {testi.name}
               </h2>
 
               <span className="block text-[#ff8906] text-base font-normal font-['Plus_Jakarta_Sans']">
-                Manager Coffee Shop
+                {testi.role}
               </span>
 
               <p className="text-basae font-normal text-white font-['Plus_Jakarta_Sans'] my-6">
-                “Wow... I am very happy to spend my whole day here. the Wi-fi is
-                good, and the coffee and meals tho. I like it here!! Very
-                recommended!
+                {testi.text}
               </p>
 
               <div className='flex items-center mb-6'>
@@ -248,21 +280,25 @@ function Home() {
                 />
 
                 <span className="text-white text-base font-normal font-['Plus_Jakarta_Sans']">
-                  5.0
+                  {testi.rating}
                 </span>
               </div>
 
               <nav className='flex items-center mb-6'>
-                <img
-                  src='src/assets/img/icon/arrow-left.svg'
-                  alt='arrow-left'
-                  className='bg-white p-3.5 rounded-full mr-2 cursor-pointer'
-                />
-                <img
-                  src='src/assets/img/icon/arrow-right.svg'
-                  alt='arrow-right'
-                  className='bg-[#ff8906] p-3.5 rounded-full cursor-pointer'
-                />
+                <button onClick={prev}>
+                  <img
+                    src='src/assets/img/icon/arrow-left.svg'
+                    alt='arrow-left'
+                    className='bg-white p-3.5 rounded-full mr-2 cursor-pointer'
+                  />
+                </button>
+                <button onClick={next}>
+                  <img
+                    src='src/assets/img/icon/arrow-right.svg'
+                    alt='arrow-right'
+                    className='bg-[#ff8906] p-3.5 rounded-full cursor-pointer'
+                  />
+                </button>
               </nav>
 
               <div className='flex gap-2'>
