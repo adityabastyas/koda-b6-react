@@ -47,13 +47,15 @@ function NavbarAdmind() {
                   <span>Product</span>
                 </Link>
               </li>
-              <li
-                href='./admind-order.html'
-                className='flex items-center rounded-2xl gap-3 px-3 py-2 text-gray-600'
-              >
-                <img src='src/assets/img/icon/bag.svg' alt='' />
+              <li>
+                <Link
+                  to='order'
+                  className='flex items-center rounded-2xl gap-3 px-3 py-2 text-gray-600'
+                >
+                  <img src='src/assets/img/icon/bag.svg' alt='icon bag' />
 
-                <span>Order</span>
+                  <span>Order</span>
+                </Link>
               </li>
               <li
                 href='#'
