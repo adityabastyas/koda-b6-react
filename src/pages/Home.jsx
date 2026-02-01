@@ -10,6 +10,8 @@ function Home() {
   const navigate = useNavigate();
 
   const goToDetail = (item) => {
+    localStorage.setItem("product", JSON.stringify(item));
+
     const slug = item.name.split(" ").join("-").toLowerCase();
 
     navigate(`/detail-product/${item.id}/${slug}`);
