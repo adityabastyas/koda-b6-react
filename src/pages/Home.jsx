@@ -7,7 +7,7 @@ import { DataContext } from "../components/DataProvider";
 function Home() {
   const { data, loading } = React.useContext(DataContext);
 
-  const testimonial = data?.testimonial || [];
+  const testimonial = data?.testimonials || [];
 
   const ref = React.useRef(0);
 
@@ -20,23 +20,23 @@ function Home() {
   }, [testimonial]);
 
   const next = () => {
-    ref.testi++;
+    ref.current++;
 
-    if (ref.testi >= testimonial.length) {
-      ref.testi = 0;
+    if (ref.current >= testimonial.length) {
+      ref.current = 0;
     }
 
-    setTesti(testimonial[ref.testi]);
+    setTesti(testimonial[ref.current]);
   };
 
   const prev = () => {
-    ref.testi--;
+    ref.current--;
 
-    if (ref.testi < 0) {
-      ref.testi = testimonial.length - 1;
+    if (ref.current < 0) {
+      ref.current = testimonial.length - 1;
     }
 
-    setTesti(testimonial[ref.testi]);
+    setTesti(testimonial[ref.current]);
   };
 
   return (
@@ -227,89 +227,93 @@ function Home() {
           </div>
         </section>
 
-        <section className='w-full h-[600px] bg-gradient-to-br from-[#777c82] to-[#0b0909] px-[100px] py-[40px] mb-[70px]'>
-          <div className='flex items-start'>
-            <figure className='flex'>
-              <div>
-                <img src={testi.img} alt={testi.name} />
-              </div>
-            </figure>
-
-            <article className='w-[490px] ml-5'>
-              <span className="block text-base font-normal text-white font-['Plus_Jakarta_Sans'] mb-6">
-                Testimonial
-              </span>
-
-              <h2 className="text-[48px] font-normal text-white font-['Plus_Jakarta_Sans'] my-6 border-l-[7px] border-[#ff8906] pl-5">
-                {testi.name}
-              </h2>
-
-              <span className="block text-[#ff8906] text-base font-normal font-['Plus_Jakarta_Sans']">
-                {testi.role}
-              </span>
-
-              <p className="text-basae font-normal text-white font-['Plus_Jakarta_Sans'] my-6">
-                {testi.text}
-              </p>
-
-              <div className='flex items-center mb-6'>
+        {testi && (
+          <section className='w-full h-[600px] bg-gradient-to-br from-[#777c82] to-[#0b0909] px-[100px] py-[40px] mb-[70px]'>
+            <div className='flex justify-center items-center'>
+              <figure className='w-[500px] h-[400px] flex items-center justify-center'>
                 <img
-                  className='mr-6'
-                  src='src/assets/img/icon/start.svg'
-                  alt='star'
+                  src={testi.img}
+                  alt={testi.name}
+                  className='w-full h-full object-cover'
                 />
-                <img
-                  className='mr-6'
-                  src='src/assets/img/icon/start.svg'
-                  alt='star'
-                />
-                <img
-                  className='mr-6'
-                  src='src/assets/img/icon/start.svg'
-                  alt='star'
-                />
-                <img
-                  className='mr-6'
-                  src='src/assets/img/icon/start.svg'
-                  alt='star'
-                />
-                <img
-                  className='mr-6'
-                  src='src/assets/img/icon/start.svg'
-                  alt='star'
-                />
+              </figure>
 
-                <span className="text-white text-base font-normal font-['Plus_Jakarta_Sans']">
-                  {testi.rating}
+              <article className='w-[490px] ml-5'>
+                <span className="block text-base font-normal text-white font-['Plus_Jakarta_Sans'] mb-6">
+                  Testimonial
                 </span>
-              </div>
 
-              <nav className='flex items-center mb-6'>
-                <button onClick={prev}>
-                  <img
-                    src='src/assets/img/icon/arrow-left.svg'
-                    alt='arrow-left'
-                    className='bg-white p-3.5 rounded-full mr-2 cursor-pointer'
-                  />
-                </button>
-                <button onClick={next}>
-                  <img
-                    src='src/assets/img/icon/arrow-right.svg'
-                    alt='arrow-right'
-                    className='bg-[#ff8906] p-3.5 rounded-full cursor-pointer'
-                  />
-                </button>
-              </nav>
+                <h2 className="text-[48px] font-normal text-white font-['Plus_Jakarta_Sans'] my-6 border-l-[7px] border-[#ff8906] pl-5">
+                  {testi.name}
+                </h2>
 
-              <div className='flex gap-2'>
-                <span className='w-6 h-2 bg-[#ff8906] rounded-lg'></span>
-                <span className='w-6 h-2 bg-[#dde0e4] rounded-full'></span>
-                <span className='w-6 h-2 bg-[#dde0e4] rounded-full'></span>
-                <span className='w-6 h-2 bg-[#dde0e4] rounded-full'></span>
-              </div>
-            </article>
-          </div>
-        </section>
+                <span className="block text-[#ff8906] text-base font-normal font-['Plus_Jakarta_Sans']">
+                  {testi.role}
+                </span>
+
+                <p className="text-basae font-normal text-white font-['Plus_Jakarta_Sans'] my-6">
+                  {testi.text}
+                </p>
+
+                <div className='flex items-center mb-6'>
+                  <img
+                    className='mr-6'
+                    src='src/assets/img/icon/start.svg'
+                    alt='star'
+                  />
+                  <img
+                    className='mr-6'
+                    src='src/assets/img/icon/start.svg'
+                    alt='star'
+                  />
+                  <img
+                    className='mr-6'
+                    src='src/assets/img/icon/start.svg'
+                    alt='star'
+                  />
+                  <img
+                    className='mr-6'
+                    src='src/assets/img/icon/start.svg'
+                    alt='star'
+                  />
+                  <img
+                    className='mr-6'
+                    src='src/assets/img/icon/start.svg'
+                    alt='star'
+                  />
+
+                  <span className="text-white text-base font-normal font-['Plus_Jakarta_Sans']">
+                    {testi.rating}
+                  </span>
+                </div>
+
+                <nav className='flex items-center mb-6'>
+                  <button onClick={prev}>
+                    <img
+                      src='src/assets/img/icon/arrow-left.svg'
+                      alt='arrow-left'
+                      className='bg-white p-3.5 rounded-full mr-2 cursor-pointer'
+                    />
+                  </button>
+                  <button onClick={next}>
+                    <img
+                      src='src/assets/img/icon/arrow-right.svg'
+                      alt='arrow-right'
+                      className='bg-[#ff8906] p-3.5 rounded-full cursor-pointer'
+                    />
+                  </button>
+                </nav>
+
+                <div className='flex gap-2'>
+                  <span className='w-6 h-2 bg-[#ff8906] rounded-lg'></span>
+                  <span className='w-6 h-2 bg-[#dde0e4] rounded-full'></span>
+                  <span className='w-6 h-2 bg-[#dde0e4] rounded-full'></span>
+                  <span className='w-6 h-2 bg-[#dde0e4] rounded-full'></span>
+                </div>
+              </article>
+            </div>
+          </section>
+        )}
       </main>
     </>
   );
