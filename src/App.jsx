@@ -14,6 +14,7 @@ import NavbarAdmind from "./components/NavbarAdmind";
 import AdmindDashboard from "./admind/AdmindDashboard";
 import AdmindProduct from "./admind/AdmindProduct";
 import AdmindOrder from "./admind/AdmindOrder";
+import AdmindUser from "./admind/AdmindUser";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
       {
         path: "order",
         element: <AdmindOrder />,
+      },
+      {
+        path: "user",
+        element: <AdmindUser />,
       },
     ],
   },

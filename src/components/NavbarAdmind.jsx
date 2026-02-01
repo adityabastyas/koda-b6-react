@@ -57,13 +57,15 @@ function NavbarAdmind() {
                   <span>Order</span>
                 </Link>
               </li>
-              <li
-                href='#'
-                className='flex items-center gap-3 px-3 py-2 text-gray-600'
-              >
-                <img src='src/assets/img/icon/usertwo.svg' alt='' />
+              <li>
+                <Link
+                  to='user'
+                  className='flex items-center gap-3 px-3 py-2 text-gray-600'
+                >
+                  <img src='src/assets/img/icon/usertwo.svg' alt='icon user' />
 
-                <span>User</span>
+                  <span>User</span>
+                </Link>
               </li>
               <li
                 href='#'
