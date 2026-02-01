@@ -35,13 +35,15 @@ function NavbarAdmind() {
                   <span>Dashboard</span>
                 </Link>
               </li>
-              <li
-                href='./admind-product.html'
-                className='flex items-center gap-3 px-3 py-2 text-gray-600 rounded'
-              >
-                <img src='src/assets/img/icon/product.svg' alt='' />
+              <li>
+                <Link className='flex items-center gap-3 px-3 py-2 text-gray-600 rounded'>
+                  <img
+                    src='src/assets/img/icon/product.svg'
+                    alt='icon product'
+                  />
 
-                <span>Product</span>
+                  <span>Product</span>
+                </Link>
               </li>
               <li
                 href='./admind-order.html'

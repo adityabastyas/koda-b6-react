@@ -12,6 +12,7 @@ import DetailOrder from "./pages/DetailOrder";
 import Profile from "./pages/Profile";
 import NavbarAdmind from "./components/NavbarAdmind";
 import AdmindDashboard from "./admind/AdmindDashboard";
+import AdmindProduct from "./admind/AdmindProduct";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <AdmindDashboard />,
+      },
+      {
+        path: "/admind-product",
+        element: <AdmindProduct />,
       },
     ],
   },
