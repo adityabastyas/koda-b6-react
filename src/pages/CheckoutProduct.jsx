@@ -1,8 +1,13 @@
 import React from "react";
 import CartOrder from "../components/CartOrder";
 import Input from "../components/Input";
+import { DataContext } from "../components/DataProvider";
 
 function CheckoutProduct() {
+  const detail = JSON.parse(localStorage.getItem("detail"));
+
+  const { data } = React.useContext(DataContext);
+  const product = data?.products?.find((item) => item.id === detail.productId);
   return (
     <>
       <div>
@@ -19,15 +24,15 @@ function CheckoutProduct() {
             </div>
             {/* {card menu} */}
             <CartOrder
-              src='src/assets/img/image-31.png'
-              alt='Hazelnut Latte coffe'
-              title='Hazelnut Latte'
-              quantity='2pcs'
-              size='Regular'
-              temperature='Ice'
+              src={product.image.imageSatu}
+              alt={product.name}
+              title={product.name}
+              quantity={detail.quantity}
+              size={detail.size}
+              temperature={detail.temperature}
               dineOption='Dine In'
-              originalPrice='IDR 40.000'
-              discountPrice='IDR 20.000'
+              originalPrice={product.price}
+              discountPrice={product.discount}
               isFlashSale={true}
             />
 
