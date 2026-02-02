@@ -191,11 +191,11 @@ function Home() {
           </p>
           <div className='grid grid-cols-4 gap-8 px-32'>
             {loading && (
-              <p lassName='text-center text-5xl mt-20'>Mengambil Data...</p>
+              <p className='text-center text-5xl mt-20'>Mengambil Data...</p>
             )}
 
             {!loading && data?.products?.length === 0 && (
-              <p lassName='text-center text-5xl mt-20'>Produk kosong</p>
+              <p className='text-center text-5xl mt-20'>Produk kosong</p>
             )}
             {data?.products?.slice(0, 4)?.map((item) => {
               return (
