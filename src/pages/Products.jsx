@@ -20,6 +20,13 @@ function Products() {
     navigate(`/detail-product/${item.id}/${slug}`);
   };
 
+  const [search, setSearch] = React.useState("");
+  const [applied, setApplied] = React.useState("");
+
+  const filteredProducts = data?.products?.filter((item) =>
+    item.name.toLowerCase().includes(applied.toLowerCase())
+  );
+
   return (
     <>
       <section>
@@ -118,7 +125,11 @@ function Products() {
               <header className='flex items-center justify-between'>
                 <h4 className='text-[22px] font-semibold'>Filter</h4>
                 <button
-                  type='reset'
+                  type='button'
+                  onClick={() => {
+                    setSearch("");
+                    setApplied("");
+                  }}
                   className='bg-transparent cursor-pointer text-lg font-bold text-white'
                 >
                   Reset Filter
@@ -130,6 +141,8 @@ function Products() {
                 <input
                   type='text'
                   placeholder='Search Your Product'
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                   className='mt-2 mb-4 w-full border-4 bg-amber-50 border-[#dedede] px-5 text-black outline-none'
                 />
               </section>
@@ -241,7 +254,8 @@ function Products() {
               </section>
 
               <button
-                type='submit'
+                type='button'
+                onClick={() => setApplied(search)}
                 className='mt-2 w-full rounded bg-[#ff8906] py-3 text-sm font-medium text-[#0b0909]'
               >
                 Apply Filter
@@ -252,10 +266,10 @@ function Products() {
                 <p className='text-center text-5xl mt-20'>Mengambil Data...</p>
               )}
 
-              {!loading && data?.products?.length === 0 && (
+              {!loading && filteredProducts?.length === 0 && (
                 <p className='text-center text-5xl mt-20'>Produk kosong</p>
               )}
-              {data?.products?.slice(0, 6)?.map((item) => {
+              {filteredProducts?.slice(0, 6)?.map((item) => {
                 return (
                   <div key={item.id}>
                     <CartMenu
