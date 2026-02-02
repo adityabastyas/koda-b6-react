@@ -7,10 +7,12 @@ import { useNavigate } from "react-router-dom";
 function CheckoutProduct() {
   const checkout = JSON.parse(localStorage.getItem("checkout")) || [];
 
+  const [checkoutState, setCheckoutState] = React.useState(checkout);
+
   const { data } = React.useContext(DataContext);
 
   let totalOrder = 0;
-  checkout.forEach((item) => {
+  checkoutState.forEach((item) => {
     const product = data?.products?.find((i) => i.id === item.productId);
 
     if (!product) {
@@ -25,6 +27,17 @@ function CheckoutProduct() {
   const handleCheckout = () => {
     navigate("/history-order");
   };
+
+  const handleRemove = (indexRemove) => {
+    const updatedCart = checkoutState.filter((item, currentIndex) => {
+      return currentIndex !== indexRemove;
+    });
+
+    localStorage.setItem("checkout", JSON.stringify(updatedCart));
+
+    setCheckoutState(updatedCart);
+  };
+
   return (
     <>
       <div>
@@ -41,7 +54,7 @@ function CheckoutProduct() {
             </div>
             {/* {card menu} */}
 
-            {checkout.map((item, index) => {
+            {checkoutState.map((item, index) => {
               const product = data?.products?.find(
                 (i) => i.id === item.productId
               );
@@ -63,6 +76,7 @@ function CheckoutProduct() {
                     discountPrice={product.discount}
                     isFlashSale={true}
                     xIcon={true}
+                    onRemove={() => handleRemove(index)}
                   />
                 </div>
               );
@@ -160,7 +174,7 @@ function CheckoutProduct() {
               {/* Checkout */}
               <button
                 onClick={handleCheckout}
-                className='text-center text-sm font-normal bg-[#ff8906] py-2.5 rounded-md text-[#0b132a]'
+                className='text-center text-sm font-normal bg-[#ff8906] py-2.5 rounded-md text-[#0b132a] cursor-pointer'
               >
                 Checkout
               </button>
