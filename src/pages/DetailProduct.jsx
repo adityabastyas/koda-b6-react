@@ -6,6 +6,20 @@ import { DataContext } from "../components/DataProvider";
 
 function DetailProduct() {
   const [count, setCount] = React.useState(1);
+  const [size, setSize] = React.useState("Regular");
+
+  React.useEffect(() => {
+    localStorage.setItem("detail", JSON.stringify({ size: "Regular" }));
+  }, []);
+
+  const handleSelectZise = (value) => {
+    setSize(value);
+
+    const detail = JSON.parse(localStorage.getItem("detail")) || {};
+
+    localStorage.setItem("detail", JSON.stringify({ ...detail, size: value }));
+  };
+
   const { id } = useParams();
   const { data } = React.useContext(DataContext);
 
@@ -151,15 +165,15 @@ function DetailProduct() {
             Choose Size
           </h4>
           <div className="flex gap-[31px] text-[#0b0909] font-['Plus_Jakarta_Sans'] font-normal text-xs">
-            <span className='py-2.5 px-5 border border-[#ebb1b1] cursor-pointer text-[#4f5665]'>
-              Regular
-            </span>
-            <span className='py-2.5 px-5 border border-[#ebb1b1] cursor-pointer text-[#4f5665]'>
-              Medium
-            </span>
-            <span className='py-2.5 px-5 border border-[#ebb1b1] cursor-pointer text-[#4f5665]'>
-              Large
-            </span>
+            {["Regular", "Medium", "Large"].map((item) => (
+              <span
+                key={item}
+                onClick={() => handleSelectZise(item)}
+                className={`py-2.5 px-5 cursor-pointer ${size === item ? "bg-[#ff8906] text-white border-[#ff8906]" : "border-[#ebb1b1] text-[#4f5665] hover:bg-[#ff8906]"}`}
+              >
+                {item}
+              </span>
+            ))}
           </div>
 
           {/* Temperature Selection */}
