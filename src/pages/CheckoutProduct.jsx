@@ -38,6 +38,8 @@ function CheckoutProduct() {
     setCheckoutState(updatedCart);
   };
 
+  const [deliveryOption, setDeliveryOption] = React.useState("Dine In");
+
   return (
     <>
       <div>
@@ -71,7 +73,7 @@ function CheckoutProduct() {
                     quantity={`${item.quantity} pcs`}
                     size={item.size}
                     temperature={item.temperature}
-                    dineOption='Dine In'
+                    dineOption={deliveryOption}
                     originalPrice={product.price}
                     discountPrice={product.discount}
                     isFlashSale={true}
@@ -119,15 +121,19 @@ function CheckoutProduct() {
                 </label>
 
                 <div className='flex justify-between '>
-                  <button className='px-2.5 border rounded cursor-pointer'>
-                    Dine in
-                  </button>
-                  <button className='px-2.5 border rounded cursor-pointer'>
-                    Door Delivery
-                  </button>
-                  <button className='px-2.5 border rounded cursor-pointer'>
-                    Pick Up
-                  </button>
+                  {["Dine In", "Door Delivery", "Pick Up"].map((item) => (
+                    <button
+                      type='button'
+                      className={`cursor-pointer ${
+                        deliveryOption === item
+                          ? "bg-[#ff8906] text-black"
+                          : "bg-white text-[#0b132a]"
+                      }`}
+                      onClick={() => setDeliveryOption(item)}
+                    >
+                      {item}
+                    </button>
+                  ))}
                 </div>
               </form>
             </section>
