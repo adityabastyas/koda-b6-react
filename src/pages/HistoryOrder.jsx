@@ -2,6 +2,7 @@ import React from "react";
 
 import CartHistory from "../components/CartHistory";
 import Stepper from "../components/Stepper";
+import { Link } from "react-router-dom";
 
 function HistoryOrder() {
   return (
@@ -85,14 +86,16 @@ function HistoryOrder() {
             </section>
 
             <section>
-              <CartHistory
-                src='src/assets/img/image-31.png'
-                alt='Hazelnut Latte'
-                noOrder='#12354-09893'
-                date='23 January 2023'
-                total='Idr 40.000'
-                status='On Progress'
-              />
+              <Link to='/detail-order'>
+                <CartHistory
+                  src='src/assets/img/image-31.png'
+                  alt='Hazelnut Latte'
+                  noOrder='#12354-09893'
+                  date='23 January 2023'
+                  total='Idr 40.000'
+                  status='On Progress'
+                />
+              </Link>
 
               <CartHistory
                 src='src/assets/img/image-31.png'

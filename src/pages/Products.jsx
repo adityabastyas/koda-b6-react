@@ -2,6 +2,8 @@ import React from "react";
 
 import coffeTree from "../assets/img/Rectangle299.png";
 import CartMenu from "../components/CartMenu.jsx";
+import image43 from "../assets/img/image43.svg";
+import image46 from "../assets/img/image46.svg";
 
 function Products() {
   return (
@@ -42,10 +44,7 @@ function Products() {
 
           <div className='flex overflow-x-auto gap-6 px-32 pb-2 scroll-smooth snap-x snap-mandatory no-scrollbar'>
             <article className='snap-start bg-[#88b788] rounded-r-2xl  flex items-start p-3 shrink-0'>
-              <img
-                src='src/assets/img/image 46.svg'
-                alt="Mother's Day special promo"
-              />
+              <img src={image46} alt="Mother's Day special promo" />
               <div className='ml-2 w-[195px]'>
                 <h3 className='text-sm font-bold'>HAPPY MOTHER’S DAY!</h3>
                 <p className='text-sm'>
@@ -56,10 +55,7 @@ function Products() {
             </article>
 
             <article className='snap-start bg-[#88b788] rounded-2xl flex items-start p-3 shrink-0'>
-              <img
-                src='src/assets/img/image 46.svg'
-                alt="Mother's Day special promo"
-              />
+              <img src={image46} alt="Mother's Day special promo" />
               <div className='ml-2 w-[195px]'>
                 <h3 className='text-sm font-bold'>HAPPY MOTHER’S DAY!</h3>
                 <p className='text-sm'>
@@ -70,10 +66,7 @@ function Products() {
             </article>
 
             <article className='snap-start bg-[#88b788] rounded-2xl flex items-start p-3 shrink-0'>
-              <img
-                src='src/assets/img/image 46.svg'
-                alt="Mother's Day special promo"
-              />
+              <img src={image46} alt="Mother's Day special promo" />
               <div className='ml-2 w-[195px]'>
                 <h3 className='text-sm font-bold'>HAPPY MOTHER’S DAY!</h3>
                 <p className='text-sm'>
@@ -84,10 +77,7 @@ function Products() {
             </article>
 
             <article className='snap-start bg-[#f5c361] rounded-l-2xl  flex items-start p-3 shrink-0'>
-              <img
-                src='src/assets/img/image 43.svg'
-                alt='Man Day special free'
-              />
+              <img src={image43} alt='Man Day special free' />
               <div className='ml-2 w-[195px]'>
                 <h3 className='text-sm font-bold'>
                   Get a cup of coffee for free on sunday morning
