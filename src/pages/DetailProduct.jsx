@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../components/Button";
 import CartMenu from "../components/CartMenu";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { DataContext } from "../components/DataProvider";
 
 function DetailProduct() {
@@ -9,12 +9,43 @@ function DetailProduct() {
   const [size, setSize] = React.useState("Regular");
   const [temperature, setTemperature] = React.useState("Ice");
 
+  const { id } = useParams();
+  const { data } = React.useContext(DataContext);
+
+  const productFromStorage = JSON.parse(localStorage.getItem("product"));
+
+  const productFromContext = data?.products?.find(
+    (item) => item.id === Number(id)
+  );
+
+  const item = productFromContext || productFromStorage;
+
   React.useEffect(() => {
+    if (!item) {
+      return;
+    }
+
+    const detail = {
+      productId: item.id,
+      size,
+      temperature,
+      quantity: count,
+    };
+
+    localStorage.setItem("detail", JSON.stringify(detail));
+  }, [item]);
+
+  React.useEffect(() => {
+    const detail = JSON.parse(localStorage.getItem("detail")) || {};
+
     localStorage.setItem(
       "detail",
-      JSON.stringify({ size: "Regular", temperature: "Ice" })
+      JSON.stringify({
+        ...detail,
+        quantity: count,
+      })
     );
-  }, []);
+  }, [count]);
 
   const handleSelectZise = (value) => {
     setSize(value);
@@ -35,17 +66,11 @@ function DetailProduct() {
     );
   };
 
-  const { id } = useParams();
-  const { data } = React.useContext(DataContext);
+  const navigate = useNavigate();
 
-  const productFromStorage = JSON.parse(localStorage.getItem("product"));
-
-  const productFromContext = data?.products?.find(
-    (item) => item.id === Number(id)
-  );
-
-  const item = productFromContext || productFromStorage;
-
+  const handleBuy = () => {
+    navigate("/checkout-product");
+  };
   return (
     <>
       <section className='flex flex-col px-32 md:flex-row w-full px-5 md:gap-5'>
@@ -209,7 +234,7 @@ function DetailProduct() {
 
           {/* Action Buttons */}
           <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
-            <Button>Buy</Button>
+            <Button onClick={handleBuy}>Buy</Button>
             <Button className='border bg-white border-[#ff8906] rounded-md py-4 flex gap-4 justify-center'>
               <img
                 src='src/assets/img/icon/ShoppingCart.svg'
