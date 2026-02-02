@@ -15,7 +15,6 @@ import AdmindDashboard from "./admind/AdmindDashboard";
 import AdmindProduct from "./admind/AdmindProduct";
 import AdmindOrder from "./admind/AdmindOrder";
 import AdmindUser from "./admind/AdmindUser";
-import ProductProvider from "./components/DataProvider";
 import DataProvider from "./components/DataProvider";
 
 const router = createBrowserRouter([
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: "/detail-product",
+        path: "/detail-product/:id/:slug",
         element: <DetailProduct />,
       },
       {

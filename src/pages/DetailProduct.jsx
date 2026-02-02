@@ -5,8 +5,9 @@ import { useParams } from "react-router-dom";
 import { DataContext } from "../components/DataProvider";
 
 function DetailProduct() {
+  const [count, setCount] = React.useState(1);
   const { id } = useParams();
-  const { data, loading } = React.useContext(DataContext);
+  const { data } = React.useContext(DataContext);
 
   const productFromStorage = JSON.parse(localStorage.getItem("product"));
 
@@ -15,10 +16,6 @@ function DetailProduct() {
   );
 
   const item = productFromContext || productFromStorage;
-
-  if (loading || !item) {
-    return <p>Loading product...</p>;
-  }
 
   return (
     <>
@@ -126,11 +123,25 @@ function DetailProduct() {
 
           {/* Quantity Selector */}
           <div className="flex gap-5 text-sm font-bold text-[#0b132a] font-['Plus_Jakarta_Sans'] items-center">
-            <button className='border border-[#ff8906] rounded px-2.5 py-1.5 cursor-pointer text-xl'>
+            <button
+              onClick={() => {
+                if (count > 1) {
+                  setCount(count - 1);
+                }
+              }}
+              className='border border-[#ff8906] rounded px-2.5 py-1.5 cursor-pointer text-xl'
+            >
               -
             </button>
-            <span>1</span>
-            <button className='bg-[#ff8906] rounded border-none px-2.5 py-1.5 cursor-pointer text-xl'>
+            <span>{count}</span>
+            <button
+              onClick={() => {
+                if (count < 20) {
+                  setCount(count + 1);
+                }
+              }}
+              className='bg-[#ff8906] rounded border-none px-2.5 py-1.5 cursor-pointer text-xl'
+            >
               +
             </button>
           </div>
