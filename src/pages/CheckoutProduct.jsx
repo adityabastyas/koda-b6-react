@@ -40,6 +40,19 @@ function CheckoutProduct() {
 
   const [deliveryOption, setDeliveryOption] = React.useState("Dine In");
 
+  let deliveryCost = 0;
+  if (deliveryOption === "Dine In") {
+    deliveryCost = 0;
+  } else if (deliveryOption === "Door Delivery") {
+    deliveryCost = 10000;
+  } else if (deliveryOption === "Pick Up") {
+    deliveryCost = 5000;
+  }
+
+  const tax = Math.floor((totalOrder + deliveryCost) * 0.1);
+
+  const subTotal = totalOrder + deliveryCost + tax;
+
   return (
     <>
       <div>
@@ -147,7 +160,7 @@ function CheckoutProduct() {
               <div className='flex justify-between'>
                 <span className='text-sm font-bold text-[#4f5665]'>Order</span>
                 <span className='text-sm font-bold text-[#0b132a]'>
-                  Idr. 40.000
+                  Idr. {totalOrder.toLocaleString()}
                 </span>
               </div>
 
@@ -156,14 +169,16 @@ function CheckoutProduct() {
                 <span className='text-sm font-bold text-[#4f5665]'>
                   Delivery
                 </span>
-                <span className='text-sm font-bold text-[#0b132a]'>Idr. 0</span>
+                <span className='text-sm font-bold text-[#0b132a]'>
+                  Idr. {deliveryCost.toLocaleString()}
+                </span>
               </div>
 
               {/* Tax */}
               <div className='flex justify-between'>
                 <span className='text-sm font-bold text-[#4f5665]'>Tax</span>
                 <span className='text-sm font-bold text-[#0b132a]'>
-                  Idr. 4000
+                  Idr. {tax.toLocaleString()}
                 </span>
               </div>
 
@@ -173,7 +188,7 @@ function CheckoutProduct() {
                   Sub Total
                 </span>
                 <span className='text-sm font-bold text-[#0b132a]'>
-                  Idr. 44.000
+                  Idr. {subTotal.toLocaleString()}
                 </span>
               </div>
 
