@@ -69,6 +69,14 @@ function DetailProduct() {
   const navigate = useNavigate();
 
   const handleBuy = () => {
+    const detail = JSON.parse(localStorage.getItem("detail"));
+
+    const checkout = JSON.parse(localStorage.getItem("checkout")) || [];
+
+    checkout.push(detail);
+
+    localStorage.setItem("checkout", JSON.stringify(checkout));
+
     navigate("/checkout-product");
   };
   return (

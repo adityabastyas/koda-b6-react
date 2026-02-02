@@ -2,12 +2,29 @@ import React from "react";
 import CartOrder from "../components/CartOrder";
 import Input from "../components/Input";
 import { DataContext } from "../components/DataProvider";
+import { useNavigate } from "react-router-dom";
 
 function CheckoutProduct() {
-  const detail = JSON.parse(localStorage.getItem("detail"));
+  const checkout = JSON.parse(localStorage.getItem("checkout")) || [];
 
   const { data } = React.useContext(DataContext);
-  const product = data?.products?.find((item) => item.id === detail.productId);
+
+  let totalOrder = 0;
+  checkout.forEach((item) => {
+    const product = data?.products?.find((i) => i.id === item.productId);
+
+    if (!product) {
+      return;
+    }
+
+    totalOrder += product.discount * item.quantity;
+  });
+
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate("/history-order");
+  };
   return (
     <>
       <div>
@@ -23,18 +40,33 @@ function CheckoutProduct() {
               </span>
             </div>
             {/* {card menu} */}
-            <CartOrder
-              src={product.image.imageSatu}
-              alt={product.name}
-              title={product.name}
-              quantity={detail.quantity}
-              size={detail.size}
-              temperature={detail.temperature}
-              dineOption='Dine In'
-              originalPrice={product.price}
-              discountPrice={product.discount}
-              isFlashSale={true}
-            />
+
+            {checkout.map((item, index) => {
+              const product = data?.products?.find(
+                (i) => i.id === item.productId
+              );
+              if (!product) {
+                return null;
+              }
+
+              return (
+                <div key={index}>
+                  <CartOrder
+                    src={product.image.imageSatu}
+                    alt={product.name}
+                    title={product.name}
+                    quantity={`${item.quantity} pcs`}
+                    size={item.size}
+                    temperature={item.temperature}
+                    dineOption='Dine In'
+                    originalPrice={product.price}
+                    discountPrice={product.discount}
+                    isFlashSale={true}
+                    xIcon={true}
+                  />
+                </div>
+              );
+            })}
 
             <section className='mt-8 px-5'>
               <h2 className='text-lg font-semibold mb-4 text-[#0b132a]'>
@@ -126,12 +158,12 @@ function CheckoutProduct() {
               </div>
 
               {/* Checkout */}
-              <a
-                href='./history.html'
+              <button
+                onClick={handleCheckout}
                 className='text-center text-sm font-normal bg-[#ff8906] py-2.5 rounded-md text-[#0b132a]'
               >
                 Checkout
-              </a>
+              </button>
 
               {/* We Accept */}
               <span className='text-sm font-normal'>We Accept</span>
