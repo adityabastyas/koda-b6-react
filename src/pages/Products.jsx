@@ -4,8 +4,22 @@ import coffeTree from "../assets/img/Rectangle299.png";
 import CartMenu from "../components/CartMenu.jsx";
 import image43 from "../assets/img/image43.svg";
 import image46 from "../assets/img/image46.svg";
+import { DataContext } from "../components/DataProvider.jsx";
+import { useNavigate } from "react-router-dom";
 
 function Products() {
+  const { data, loading } = React.useContext(DataContext);
+
+  const navigate = useNavigate();
+
+  const goToDetail = (item) => {
+    localStorage.setItem("product", JSON.stringify(item));
+
+    const slug = item.name.split(" ").join("-").toLowerCase();
+
+    navigate(`/detail-product/${item.id}/${slug}`);
+  };
+
   return (
     <>
       <section>
@@ -234,29 +248,29 @@ function Products() {
               </button>
             </form>
             <section className='col-span-2  grid grid-cols-2 gap-4'>
-              <div>
-                <CartMenu
-                  image='src/assets/img/image-27.png'
-                  title='Hazelnut Latte'
-                  description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-                  rating={5}
-                  oldPrice='IDR 20.000'
-                  price='IDR 10.000'
-                  showFlashSale={true}
-                />
-              </div>
+              {loading && (
+                <p className='text-center text-5xl mt-20'>Mengambil Data...</p>
+              )}
 
-              <div>
-                <CartMenu
-                  image='src/assets/img/image-27.png'
-                  title='Hazelnut Latte'
-                  description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-                  rating={5}
-                  oldPrice='IDR 20.000'
-                  price='IDR 10.000'
-                  showFlashSale={true}
-                />
-              </div>
+              {!loading && data?.products?.length === 0 && (
+                <p className='text-center text-5xl mt-20'>Produk kosong</p>
+              )}
+              {data?.products?.slice(0, 6)?.map((item) => {
+                return (
+                  <div key={item.id}>
+                    <CartMenu
+                      image={item.image.imageSatu}
+                      title={item.name}
+                      description={item.description}
+                      rating={5}
+                      oldPrice={item.price}
+                      price={item.discount}
+                      onClick={() => goToDetail(item)}
+                      showFlashSale={true}
+                    />
+                  </div>
+                );
+              })}
             </section>
           </section>
         </section>
