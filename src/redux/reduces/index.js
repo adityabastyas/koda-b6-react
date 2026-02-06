@@ -1,6 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import authReducer from "./authReducer";
 
-const store = (combineReducers = {
-  authReducer,
+const reducer = combineReducers({
+  auth: authReducer,
 });
+
+export default reducer;
