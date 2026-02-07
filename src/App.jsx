@@ -16,6 +16,9 @@ import AdmindProduct from "./admind/AdmindProduct";
 import AdmindOrder from "./admind/AdmindOrder";
 import AdmindUser from "./admind/AdmindUser";
 import DataProvider from "./components/DataProvider";
+import { Provider } from "react-redux";
+import { store, persistore } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const router = createBrowserRouter([
   {
@@ -94,9 +97,13 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <DataProvider>
-        <RouterProvider router={router} />
-      </DataProvider>
+      <Provider store={store}>
+        <PersistGate persistor={persistore}>
+          <DataProvider>
+            <RouterProvider router={router} />
+          </DataProvider>
+        </PersistGate>
+      </Provider>
     </>
   );
 }

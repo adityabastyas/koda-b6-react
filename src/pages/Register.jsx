@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../redux/reduces/authReducer";
 
 const validation = yup.object({
   fullName: yup.string().required("full name wajib diisi"),
@@ -40,12 +42,11 @@ function Register() {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   const formSubmit = (nilai) => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    dispatch(registerUser(nilai));
 
-    users.push(nilai);
-
-    localStorage.setItem("users", JSON.stringify(users));
     navigate("/signin");
   };
   return (
