@@ -3,8 +3,35 @@ import React from "react";
 import PotoProfile from "../assets/img/poto.jpg";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { updateProfile } from "../redux/reduces/authReducer";
 
 function Profile() {
+  const dispatch = useDispatch();
+  const {currentUser}= useSelector((state) => state.auth);
+
+  const {register, handleSubmit,reset} = useForm();  
+
+  React.useEffect(()=> {
+    if(currentUser) {
+      reset(
+        {
+          fullName:currentUser.fullName,
+          email: currentUser.email,
+          phone: currentUser.phone,
+          address: currentUser.address,
+        }
+
+      );
+    }
+  }, [currentUser,reset]);
+
+  const onSubmit = (formInput) => {
+    dispatch(updateProfile(formInput));
+  };
+
+
   return (
     <>
       <main className="px-5 pt-9 pb-8 md:pt-[78px]  m:pb-[50px] sm:px-24 md:px-32 font-['Plus_Jakarta_Sans']">
@@ -34,33 +61,34 @@ function Profile() {
             </span>
           </section>
           <section>
-            <form className='border border-[#e8e8e8] flex flex-col gap-6 px-12 pt-6 pb-10'>
+            <form onSubmit={handleSubmit(onSubmit)} className='border border-[#e8e8e8] flex flex-col gap-6 px-12 pt-6 pb-10'>
               <Input
                 htmlFor='fullName'
                 label='Full Name'
                 id='fullName'
-                placeholder='Aditya Bastyas Mulya'
                 src='./src/assets/img/icon/Profile.svg'
                 alt='icon profile'
                 type='text'
+                {...register("fullName")}
               />
               <Input
                 label='Email'
                 htmlFor='email'
                 id='email'
-                placeholder='adityabastyas@gmail.com'
                 src='src\assets\img\icon\mail.svg'
                 alt='icon email'
                 type='email'
+                {...register("email")}
               />
               <Input
                 label='Phone'
                 htmlFor='phone'
                 id='phone'
-                placeholder='0822-4921-4556'
                 src='src\assets\img\icon\PhoneCall.svg'
                 alt='icon phone'
                 type='number'
+                {...register("phone")}
+
               />
               <Input
                 label='Password'
@@ -69,16 +97,15 @@ function Profile() {
                 src='src\assets\img\icon\Password.svg'
                 alt='icon password'
                 type='password'
-                value='nananininananini'
               />
               <Input
                 label='Address'
                 htmlFor='address'
                 id='address'
-                placeholder='Tokyo Japan'
                 src='src\assets\img\icon\location.svg'
                 alt='icon address'
                 type='text'
+                {...register("address")}
               />
               <Button>Submit</Button>
             </form>

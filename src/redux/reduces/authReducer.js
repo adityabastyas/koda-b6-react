@@ -21,12 +21,14 @@ const authSlice = createSlice({
       state.isLogin = false;
       state.currentUser = null;
     },
-    updateProfile: (state,action => {
+
+    updateProfile: (state,action) => {
       state.currentUser = {
         ...state.currentUser,
         ...action.payload
       };
-    })
+    }
+    
   },
 });
 
