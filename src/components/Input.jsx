@@ -5,7 +5,7 @@ function Input(props) {
       <label htmlFor={id} className='text-base font-semibold text-[#0B132A]'>
         {label}
       </label>
-      <div className='border flex rounded py-4 px-3 gap-2 bg-[#FCFDFE] border-[#DEDEDE] rounded-lg focus-within:border-black'>
+      <div className='border flex  py-4 px-3 gap-2 bg-[#FCFDFE] border-[#DEDEDE] rounded-lg focus-within:border-black'>
         <img src={src} alt={alt} />
         <input
           id={id}

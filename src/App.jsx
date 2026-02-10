@@ -19,6 +19,7 @@ import DataProvider from "./components/DataProvider";
 import { Provider } from "react-redux";
 import { store, persistore } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
+import AuthLayout from "./components/AuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -54,18 +55,26 @@ const router = createBrowserRouter([
       },
     ],
   },
+
   {
-    path: "/signup",
-    element: <Register />,
+    element: <AuthLayout/>,
+    children:[
+      {
+        path: "/signup",
+        element: <Register />,
+      },
+      {
+        path: "/signin",
+        element: <Login />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword />,
+      },
+    ]
+
   },
-  {
-    path: "/signin",
-    element: <Login />,
-  },
-  {
-    path: "/forgot-password",
-    element: <ForgotPassword />,
-  },
+  
   {
     path: "/admind",
     element: <NavbarAdmind />,
