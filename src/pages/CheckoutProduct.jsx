@@ -2,13 +2,33 @@ import React from "react";
 import CartOrder from "../components/CartOrder";
 import Input from "../components/Input";
 import { DataContext } from "../components/DataProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ModalLoading from "../components/ModalLoading";
 import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 
 function CheckoutProduct() {
-  const {isLogin} = useSelector((state) => state.auth);
+  const {isLogin , currentUser} = useSelector((state) => state.auth);
   const [show,setShow] = React.useState(false);
+
+
+  const {register,reset} = useForm();
+
+  React.useEffect(() => {
+    if (isLogin && currentUser) {
+      reset({
+        email: currentUser.email || "",
+        fullName: currentUser.fullName || "",
+        address: currentUser.address || "",
+      });
+    } else {
+      reset({
+        email: "",
+        fullName: "",
+        address: "",
+      });
+    }
+  }, [isLogin, currentUser, reset]);
 
 
   const checkout = JSON.parse(localStorage.getItem("checkout")) || [];
@@ -16,6 +36,10 @@ function CheckoutProduct() {
   const [checkoutState, setCheckoutState] = React.useState(checkout);
 
   const { data } = React.useContext(DataContext);
+
+
+
+
 
   let totalOrder = 0;
   checkoutState.forEach((item) => {
@@ -65,7 +89,7 @@ function CheckoutProduct() {
     deliveryCost = 5000;
   }
 
-  const tax = Math.floor((totalOrder + deliveryCost) * 0.1);
+  const tax = Math.ceil((totalOrder + deliveryCost) * 0.1);
 
   const subTotal = totalOrder + deliveryCost + tax;
 
@@ -80,8 +104,11 @@ function CheckoutProduct() {
           <section className=' px-5 sm:col-span-1 mb-5'>
             <div className='flex justify-between  mb-4'>
               <span className='text-2xl font-medium'>Your Order</span>
-              <span className='bg-[#ff8906] text-sm font-medium px-2.5 rounded-md cursor-pointer text-black'>
+              <span className='bg-[#ff8906] text-sm font-medium px-2.5 rounded-md cursor-pointer text-black flex items-center'>
+                <Link to="/products">
+                
                 + Add Menu
+                </Link>
               </span>
             </div>
             {/* {card menu} */}
@@ -127,6 +154,7 @@ function CheckoutProduct() {
                   placeholder='Enter Your Email'
                   src='src/assets/img/icon/mail.svg'
                   alt='icon email'
+                  {...register("email")}
                 />
                 <Input
                   htmlFor='fullName'
@@ -135,6 +163,7 @@ function CheckoutProduct() {
                   placeholder='Enter Your Full Name'
                   src='./src/assets/img/icon/Profile.svg'
                   alt='icon profile'
+                  {...register("fullName")}
                 />
                 <Input
                   htmlFor='address'
@@ -143,6 +172,7 @@ function CheckoutProduct() {
                   placeholder='Enter Your Address'
                   src='./src/assets/img/icon/location.svg'
                   alt='icon location'
+                  {...register("address")}
                 />
 
                 {/* {delevery} */}
@@ -154,7 +184,7 @@ function CheckoutProduct() {
                   {["Dine In", "Door Delivery", "Pick Up"].map((item) => (
                     <button
                       type='button'
-                      className={`cursor-pointer ${
+                      className={`cursor-pointer p-2 rounded-lg hover:bg-amber-300 border ${
                         deliveryOption === item
                           ? "bg-[#ff8906] text-black"
                           : "bg-white text-[#0b132a]"
