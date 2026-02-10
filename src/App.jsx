@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/detail-product/:id/:slug",
-        element: <DetailProduct />,
+        element: <DetailProduct />
       },
       {
         path: "/checkout-product",
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/history-order",
-        element: <HistoryOrder />,
+        element: <HistoryOrder />
       },
       {
         path: "/detail-order",
