@@ -3,8 +3,14 @@ import CartOrder from "../components/CartOrder";
 import Input from "../components/Input";
 import { DataContext } from "../components/DataProvider";
 import { useNavigate } from "react-router-dom";
+import ModalLoading from "../components/ModalLoading";
+import { useSelector } from "react-redux";
 
 function CheckoutProduct() {
+  const {isLogin} = useSelector((state) => state.auth);
+  const [show,setShow] = React.useState(false);
+
+
   const checkout = JSON.parse(localStorage.getItem("checkout")) || [];
 
   const [checkoutState, setCheckoutState] = React.useState(checkout);
@@ -25,6 +31,16 @@ function CheckoutProduct() {
   const navigate = useNavigate();
 
   const handleCheckout = () => {
+    if(!isLogin){
+      setShow(true);
+
+      setTimeout(() => {
+        setShow(false);
+      },2000);
+
+      return;
+    }
+
     navigate("/history-order");
   };
 
@@ -55,6 +71,7 @@ function CheckoutProduct() {
 
   return (
     <>
+      <ModalLoading isOke={show} text="Silahkan login terlebihdahulu" />
       <div>
         <h1 className='text-5xl py-8 px-5 sm:px-5 md:px-32 font-semibold'>
           Payment Details
