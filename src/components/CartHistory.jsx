@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CartHistory({ src, alt, noOrder, date, total, status }) {
   return (
@@ -71,9 +72,14 @@ function CartHistory({ src, alt, noOrder, date, total, status }) {
         </div>
 
         {/* Link */}
-        <span className='text-sm font-medium text-[#ff8906] underline mt-2'>
-          View Order Detail
-        </span>
+        <Link
+          to="/detail-order"
+          state={{ noOrder, date, total, status }}
+          className="text-sm font-medium text-[#ff8906] underline mt-2"
+        >
+  View Order Detail
+        </Link>
+
       </div>
     </article>
   );

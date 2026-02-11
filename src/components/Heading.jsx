@@ -83,7 +83,8 @@ function Heading() {
               <>
                 <li className='mx-5'>
                   <span className='font-[Plus_Jakarta_Sans] text-sm font-medium text-white'>
-                    {currentUser?.fullName}
+                    <Link to="/profile">
+                      {currentUser?.fullName}</Link> 
                   </span>
                 </li>
                 <li>

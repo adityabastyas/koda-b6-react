@@ -65,6 +65,24 @@ function CheckoutProduct() {
       return;
     }
 
+    let historyOld = JSON.parse(localStorage.getItem("historyOrders")) || [];
+
+    const newOrder = {
+      id: "#" + Date.now(),
+      date: new Date().toLocaleDateString(),
+      items: checkoutState,
+      total: subTotal,
+      status: "On Progress"
+    };
+
+    const updateHistory = [newOrder, ...historyOld];
+
+    window.localStorage.setItem("historyOrders", JSON.stringify(updateHistory));
+
+    window.localStorage.removeItem("checkout");
+    setCheckoutState([]);
+
+
     navigate("/history-order");
   };
 
