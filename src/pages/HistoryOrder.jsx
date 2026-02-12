@@ -3,8 +3,21 @@ import React from "react";
 import CartHistory from "../components/CartHistory";
 import Stepper from "../components/Stepper";
 import { Link } from "react-router-dom";
+import { DataContext } from "../components/DataProvider";
 
 function HistoryOrder() {
+  const [orders, setOrders] = React.useState([]);
+  const {data} = React.useContext(DataContext);
+
+
+  React.useEffect(() => {
+    const history = JSON.parse(localStorage.getItem("historyOrders")) || [];
+    setOrders(history);
+  }, []);
+
+ 
+
+
   return (
     <>
       <main className="font-['Plus_Jakarta_Sans'] px-32 pt-[78px] pb-[86px]">
@@ -13,7 +26,7 @@ function HistoryOrder() {
           <h1 className='text-[#0b132a] font-semibold text-4xl'>
             History Order
           </h1>
-          <span className='p-2.5 bg-[#e8e8e8] text-[#0b132a]'>2</span>
+          <span className='p-2.5 bg-[#e8e8e8] text-[#0b132a]'>{orders.length}</span>
         </div>
         <section className='grid grid-cols-1 sm:grid-cols-2'>
           <section className='grid grid-cols-1 col-span-1'>
@@ -86,33 +99,30 @@ function HistoryOrder() {
             </section>
 
             <section>
-              <Link to='/detail-order'>
-                <CartHistory
-                  src='src/assets/img/image-31.png'
-                  alt='Hazelnut Latte'
-                  noOrder='#12354-09893'
-                  date='23 January 2023'
-                  total='Idr 40.000'
-                  status='On Progress'
-                />
-              </Link>
+              {orders.length === 0 ? (
+                <p className="text-gray-500">Belum ada order</p>
+              ) : (
+                orders.map((item, index) => {
+                  const firstItem = item.items?.[0];
 
-              <CartHistory
-                src='src/assets/img/image-31.png'
-                alt='Vanilla Latte'
-                noOrder='#98765-43210'
-                date='25 January 2023'
-                total='Idr 55.000'
-                status='Finish Order'
-              />
-              <CartHistory
-                src='src/assets/img/image-31.png'
-                alt='Vanilla Latte'
-                noOrder='#98765-43210'
-                date='25 January 2023'
-                total='Idr 55.000'
-                status='Sending Goods'
-              />
+                  const product = data?.products?.find(
+                    (p) => p.id === firstItem?.productId
+                  );
+
+                  return (
+                    <CartHistory
+                      key={index}
+                      src={product?.image?.imageSatu}
+                      alt={product?.name}
+                      noOrder={item.id}
+                      date={item.date}
+                      total={`Idr ${item.total.toLocaleString()}`}
+                      status={item.status}
+                    />
+                  );
+                })
+              )}
+
 
               <div>
                 <Stepper />
