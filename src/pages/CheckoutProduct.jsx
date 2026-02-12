@@ -68,7 +68,7 @@ function CheckoutProduct() {
     let historyOld = JSON.parse(localStorage.getItem("historyOrders")) || [];
 
     const newOrder = {
-      id: "#" + Date.now(),
+      id:  Date.now().toString(),
       date: new Date().toLocaleDateString(),
       items: checkoutState,
       total: subTotal,
@@ -201,6 +201,7 @@ function CheckoutProduct() {
                 <div className='flex justify-between '>
                   {["Dine In", "Door Delivery", "Pick Up"].map((item) => (
                     <button
+                      key={item}
                       type='button'
                       className={`cursor-pointer p-2 rounded-lg hover:bg-amber-300 border ${
                         deliveryOption === item

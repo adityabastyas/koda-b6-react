@@ -102,7 +102,7 @@ function HistoryOrder() {
               {orders.length === 0 ? (
                 <p className="text-gray-500">Belum ada order</p>
               ) : (
-                orders.map((item, index) => {
+                orders.map((item) => {
                   const firstItem = item.items?.[0];
 
                   const product = data?.products?.find(
@@ -111,7 +111,7 @@ function HistoryOrder() {
 
                   return (
                     <CartHistory
-                      key={index}
+                      key={item.id}
                       src={product?.image?.imageSatu}
                       alt={product?.name}
                       noOrder={item.id}

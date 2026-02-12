@@ -73,8 +73,7 @@ function CartHistory({ src, alt, noOrder, date, total, status }) {
 
         {/* Link */}
         <Link
-          to="/detail-order"
-          state={{ noOrder, date, total, status }}
+          to={`/detail-order/${noOrder}`}
           className="text-sm font-medium text-[#ff8906] underline mt-2"
         >
   View Order Detail

@@ -26,31 +26,31 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home />,
       },
       {
-        path: "/products",
+        path: "products",
         element: <Products />,
       },
       {
-        path: "/detail-product/:id/:slug",
+        path: "detail-product/:id/:slug",
         element: <DetailProduct />
       },
       {
-        path: "/checkout-product",
+        path: "checkout-product",
         element: <CheckoutProduct />,
       },
       {
-        path: "/history-order",
+        path: "history-order",
         element: <HistoryOrder />
       },
       {
-        path: "/detail-order",
+        path: "detail-order/:id",
         element: <DetailOrder />,
       },
       {
-        path: "/profile",
+        path: "profile",
         element: <Profile />,
       },
     ],
