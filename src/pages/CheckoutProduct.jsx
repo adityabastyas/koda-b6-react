@@ -12,7 +12,7 @@ function CheckoutProduct() {
   const [show,setShow] = React.useState(false);
 
 
-  const {register,reset} = useForm();
+  const {register,reset, getValues} = useForm();
 
   React.useEffect(() => {
     if (isLogin && currentUser) {
@@ -67,12 +67,20 @@ function CheckoutProduct() {
 
     let historyOld = JSON.parse(localStorage.getItem("historyOrders")) || [];
 
+    const formValues = getValues();
+
     const newOrder = {
       id:  Date.now().toString(),
       date: new Date().toLocaleDateString(),
       items: checkoutState,
       total: subTotal,
-      status: "On Progress"
+      status: "On Progress",
+      fullName: formValues.fullName,
+      email: formValues.email,
+      address: formValues.address,
+      phone: currentUser?.phone || "",
+      deliveryOption: deliveryOption,
+      paymentMethod: "Cash"
     };
 
     const updateHistory = [newOrder, ...historyOld];

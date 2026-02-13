@@ -49,7 +49,7 @@ function DetailOrder() {
                 </span>
               </div>
               <span className='text-base font-bold text-[#0b132a]'>
-                Ghaluh Wizard Anggoro
+                {order.fullName}
               </span>
             </div>
 
@@ -64,7 +64,8 @@ function DetailOrder() {
                 </span>
               </div>
               <span className='text-base font-bold text-[#0b132a]'>
-                Griya bandung indah
+                {order.address}
+
               </span>
 
             </div>
@@ -77,7 +78,8 @@ function DetailOrder() {
                 </span>
               </div>
               <span className='text-base font-bold text-[#0b132a]'>
-                082116304338
+                {order.phone}
+
               </span>
             </div>
 
@@ -91,7 +93,8 @@ function DetailOrder() {
                   Payment Method
                 </span>
               </div>
-              <span className='text-base font-bold text-[#0b132a]'>Cash</span>
+              <span className='text-base font-bold text-[#0b132a]'>{order.paymentMethod}
+              </span>
             </div>
 
             <div className='flex justify-between bg-[#e8e8e8] px-2.5 py-5 border-b border-[#cdcdcd]'>
@@ -102,7 +105,8 @@ function DetailOrder() {
                 </span>
               </div>
               <span className='text-base font-bold text-[#0b132a]'>
-                Dine In
+                {order.deliveryOption}
+
               </span>
             </div>
 
