@@ -3,6 +3,7 @@ import CartMenu from "../components/CartMenu";
 import locationMap from "../assets/img/location.png";
 import { DataContext } from "../components/DataProvider";
 import { useNavigate } from "react-router-dom";
+import CartSuccessModal from "../components/CartSuccessModal";
 
 function Home() {
   const { data, loading } = React.useContext(DataContext);
@@ -47,6 +48,48 @@ function Home() {
     }
 
     setTesti(testimonial[ref.current]);
+  };
+
+
+
+  //cart
+  const [showCart, setShowCart] = React.useState(false);
+  const handleAddToCart = (
+    item,
+    size = "Regular",
+    temperature = "Ice"
+  ) => {
+    const checkout =
+  JSON.parse(localStorage.getItem("checkout")) || [];
+
+    const productId = Number(item.id);
+
+    const productInCart = checkout.find(function (item) {
+      return (
+        item.productId === productId &&
+        item.size === size &&
+        item.temperature === temperature
+      );
+    });
+
+    if (productInCart) {
+      productInCart.quantity = productInCart.quantity + 1;
+    } else {
+      checkout.push({
+        productId: productId, 
+        size: size,
+        temperature: temperature,
+        quantity: 1,
+      });
+    }
+
+    localStorage.setItem("checkout", JSON.stringify(checkout));
+
+    setShowCart(true);
+
+    setTimeout(function () {
+      setShowCart(false);
+    }, 1500);
   };
 
 
@@ -209,6 +252,7 @@ function Home() {
                     oldPrice={item.price}
                     price={item.discount}
                     onClick={() => goToDetail(item)}
+                    onCartClick={() => handleAddToCart(item)}
                     showFlashSale={true}
                   />
                 </div>
@@ -327,6 +371,11 @@ function Home() {
           </section>
         )}
       </main>
+
+      <CartSuccessModal
+        isOpen={showCart}
+        message="Produk berhasil ditambahkan ke keranjang 🛒"
+      />
       
 
     </>
