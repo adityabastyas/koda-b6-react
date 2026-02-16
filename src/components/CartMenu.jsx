@@ -74,7 +74,7 @@ function CartMenu(props) {
           <button
             onClick={onCartClick}
             className='flex-1 flex items-center justify-center
-              border border-[#ff8906] rounded-md py-4'
+              border border-[#ff8906] cursor-pointer rounded-md py-4'
           >
             <img
               src='src/assets/img/icon/ShoppingCart.svg'
