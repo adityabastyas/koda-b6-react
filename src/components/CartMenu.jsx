@@ -11,6 +11,7 @@ function CartMenu(props) {
     oldPrice,
     price,
     onClick,
+    onCartClick,
     showFlashSale = false,
   } = props;
   const safeRating = Math.min(rating, 5);
@@ -70,8 +71,8 @@ function CartMenu(props) {
             <Button onClick={onClick}>Buy</Button>
           </div>
 
-          <a
-            href='#'
+          <button
+            onClick={onCartClick}
             className='flex-1 flex items-center justify-center
               border border-[#ff8906] rounded-md py-4'
           >
@@ -80,7 +81,7 @@ function CartMenu(props) {
               alt='icon-cart-shopping'
               className='w-6 h-6'
             />
-          </a>
+          </button>
         </footer>
       </div>
     </article>
