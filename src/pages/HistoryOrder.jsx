@@ -4,16 +4,27 @@ import CartHistory from "../components/CartHistory";
 import Stepper from "../components/Stepper";
 import { Link } from "react-router-dom";
 import { DataContext } from "../components/DataProvider";
+import { useSelector } from "react-redux";
 
 function HistoryOrder() {
   const [orders, setOrders] = React.useState([]);
   const {data} = React.useContext(DataContext);
 
+  const {currentUser, isLogin} = useSelector((state) => state.auth);
+
 
   React.useEffect(() => {
-    const history = JSON.parse(localStorage.getItem("historyOrders")) || [];
-    setOrders(history);
-  }, []);
+    const history = JSON.parse(localStorage.getItem
+    ("historyOrders")) || [];
+
+    if(!isLogin || !currentUser) {
+      setOrders([]);
+      return;
+    }
+
+    const filterOrder = history.filter((item) => item.email === currentUser.email);
+    setOrders(filterOrder);
+  }, [isLogin, currentUser]);
 
  
 

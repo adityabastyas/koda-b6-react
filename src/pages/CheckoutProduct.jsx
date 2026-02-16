@@ -21,13 +21,7 @@ function CheckoutProduct() {
         fullName: currentUser.fullName || "",
         address: currentUser.address || "",
       });
-    } else {
-      reset({
-        email: "",
-        fullName: "",
-        address: "",
-      });
-    }
+    } 
   }, [isLogin, currentUser, reset]);
 
 
