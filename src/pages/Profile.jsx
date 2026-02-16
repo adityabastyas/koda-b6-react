@@ -41,10 +41,10 @@ function Profile() {
         <div className='container-profile grid gap-5 grid-cols-1 md:grid-cols-[auto_1fr] items-stretch'>
           <section className=' border border-[#e8e8e8] p-6 flex flex-col gap-3 items-center self-start'>
             <h4 className='text-xl font-medium text-[#0b132a]'>
-              Aditya Bastyas Mulya
+              {currentUser?.fullName || "No Name"}
             </h4>
             <span className='font-normal text-xl text-[#4f5665]'>
-              adityabastyas@gmail.com
+              {currentUser?.email || "No Email"}
             </span>
             <div className=' w-[110px] h-[110px] md:w-[170px] md:-[170px]'>
               <img
@@ -57,7 +57,13 @@ function Profile() {
               Upload New Photo
             </button>
             <span className='text-[#4f5665] font-semibold text-base'>
-              Since 20 January 2022
+              Since {currentUser?.createdAt
+                ? new Date(currentUser.createdAt).toLocaleDateString("id-ID", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })
+                : "-"}
             </span>
           </section>
           <section>

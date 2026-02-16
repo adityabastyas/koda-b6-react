@@ -48,7 +48,7 @@ function Register() {
   const dispatch = useDispatch();
 
   const formSubmit = (nilai) => {
-    dispatch(registerUser(nilai));
+    dispatch(registerUser({...nilai, createdAt: Date.now(),}));
 
     setShow(true);
 
