@@ -73,7 +73,19 @@ function DetailProduct() {
 
     const checkout = JSON.parse(localStorage.getItem("checkout")) || [];
 
-    checkout.push(detail);
+    const searchItem = checkout.find((item) => {
+      return (
+        item.productId === detail.productId &&
+        item.size === detail.size &&
+        item.temperature === detail.temperature
+      );
+    });
+
+    if (searchItem) {
+      searchItem.quantity += detail.quantity;
+    } else {
+      checkout.push(detail);
+    }
 
     localStorage.setItem("checkout", JSON.stringify(checkout));
 
