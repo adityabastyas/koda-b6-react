@@ -1,3 +1,6 @@
+import { AiOutlineShoppingCart } from "react-icons/ai"; 
+import { BsFillHandThumbsUpFill } from "react-icons/bs"; 
+import { AiFillStar } from "react-icons/ai"; 
 import React from "react";
 import Button from "../components/Button";
 import CartMenu from "../components/CartMenu";
@@ -146,31 +149,11 @@ function DetailProduct() {
 
           {/* Rating */}
           <div className='flex items-center gap-2.5'>
-            <img
-              className='mr-2.5'
-              src='./img/icon/start.svg'
-              alt='star icon'
-            />
-            <img
-              className='mr-2.5'
-              src='./img/icon/start.svg'
-              alt='star icon'
-            />
-            <img
-              className='mr-2.5'
-              src='./img/icon/start.svg'
-              alt='star icon'
-            />
-            <img
-              className='mr-2.5'
-              src='./img/icon/start.svg'
-              alt='star icon'
-            />
-            <img
-              className='mr-2.5'
-              src='./img/icon/start.svg'
-              alt='star icon'
-            />
+            <AiFillStar className="text-orange-400"/>
+            <AiFillStar className="text-orange-400"/>
+            <AiFillStar className="text-orange-400"/>
+            <AiFillStar className="text-orange-400"/>
+            <AiFillStar className="text-orange-400"/>
             <span className="text-[#4f5665] text-base font-normal font-['Plus_Jakarta_Sans']">
               5.0
             </span>
@@ -181,11 +164,7 @@ function DetailProduct() {
             <span>200+ Review</span>
             <span>|</span>
             <span>Recommendation</span>
-            <img
-              src='src/assets/img/icon/ThumbsUp.svg'
-              alt='like icon'
-              className='cursor-pointer'
-            />
+            <BsFillHandThumbsUpFill className="text-orange-400"/>
           </div>
 
           {/* Description */}
@@ -256,11 +235,7 @@ function DetailProduct() {
           <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
             <Button onClick={handleBuy}>Buy</Button>
             <Button className='border bg-white border-[#ff8906] rounded-md py-4 flex gap-4 justify-center'>
-              <img
-                src='src/assets/img/icon/ShoppingCart.svg'
-                alt='icon cart shopping'
-                className='w-6 h-6'
-              />
+              <AiOutlineShoppingCart className="text-orange-400"/>
               <span className='text-[#ff8906]'>add to cart</span>
             </Button>
           </div>
