@@ -11,7 +11,8 @@
       "name": "Hazelnut Latte",
       "description": "You can explore the menu that we provide with fun and have their own taste and make your day better.",
       "price": "20000",
-      "discount": "10000"
+      "discount": "10000",
+      "stock" : 100  
     },
     {
       "id": 2,
@@ -24,7 +25,8 @@
       "name": "Expresso",
       "description": "You can explore the menu that we provide with fun and have their own taste and make your day better.",
       "price": "40000",
-      "discount": "20000"
+      "discount": "20000",
+      "stock" : 100  
     },
     {
       "id": 3,
@@ -37,7 +39,8 @@
       "name": "Hazelnut Latte",
       "description": "You can explore the menu that we provide with fun and have their own taste and make your day better.",
       "price": "20000",
-      "discount": "10000"
+      "discount": "10000",
+      "stock" : 100
     },
     {
       "id": 4,
@@ -50,7 +53,8 @@
       "name": "Expresso",
       "description": "You can explore the menu that we provide with fun and have their own taste and make your day better.",
       "price": "40000",
-      "discount": "20000"
+      "discount": "20000",
+      "stock" : 100
     },
     {
       "id": 5,
@@ -63,7 +67,8 @@
       "name": "Expresso",
       "description": "You can explore the menu that we provide with fun and have their own taste and make your day better.",
       "price": "20000",
-      "discount": "10000"
+      "discount": "10000",
+      "stock" : 100
     },
     {
       "id": 6,
@@ -76,7 +81,8 @@
       "name": "Expresso",
       "description": "You can explore the menu that we provide with fun and have their own taste and make your day better.",
       "price": "40000",
-      "discount": "20000"
+      "discount": "20000",
+      "stock" : 100
     }
   ],
 
