@@ -68,13 +68,13 @@ function AdmindOrder() {
                 <td className='px-4 py-3'>
                   <div className='action-buttons flex gap-2'>
                     <button className='p-1 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                   </div>
                 </td>
@@ -100,13 +100,13 @@ function AdmindOrder() {
                 <td className='px-4 py-3'>
                   <div className='action-buttons flex gap-2'>
                     <button className='p-1 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                   </div>
                 </td>
@@ -132,13 +132,13 @@ function AdmindOrder() {
                 <td className='px-4 py-3'>
                   <div className='action-buttons flex gap-2'>
                     <button className='p-1 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                   </div>
                 </td>
@@ -164,13 +164,13 @@ function AdmindOrder() {
                 <td className='px-4 py-3'>
                   <div className='action-buttons flex gap-2'>
                     <button className='p-1 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                   </div>
                 </td>
@@ -196,13 +196,13 @@ function AdmindOrder() {
                 <td className='px-4 py-3'>
                   <div className='action-buttons flex gap-2'>
                     <button className='p-1 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2 bg-[#FF8906]'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                   </div>
                 </td>
@@ -234,7 +234,7 @@ function AdmindOrder() {
           <div className='flex justify-between items-center mb-4'>
             <h2 className='text-xl font-semibold'>Order #12354-09893</h2>
             <button>
-              <img src='' alt='' />
+              <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
             </button>
           </div>
 
