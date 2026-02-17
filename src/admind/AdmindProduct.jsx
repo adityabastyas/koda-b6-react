@@ -1,6 +1,56 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 
 function AdmindProduct() {
+
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(()=> {
+
+    if(JSON.parse(localStorage.getItem("fromJson")) != null ) {
+      setData(JSON.parse(localStorage.getItem("fromJson")) || null);
+    }
+  },[]);
+
+  const {register, handleSubmit} = useForm(
+    {defaultValues: {
+      stock: 5
+    }}
+  
+  );
+
+  const addProduct = (inputFrom) => {
+    // console.log(inputFrom);
+    const currentData = data;
+    if(currentData.products != null) {
+
+
+      const product = {
+        "id": currentData.products.length + 1,
+        "image": {
+          "imageSatu": inputFrom.img1,
+          "imageDua": inputFrom.img2,
+          "imageTiga": inputFrom.img3,
+          "imageEmpat": inputFrom.img4
+        },
+        "name": inputFrom.nameProduct,
+        "description": inputFrom.description,
+        "price": inputFrom.price,
+        "discount": inputFrom.discount,
+        "stock" : inputFrom.stock
+      };
+      // console.log(product);
+    
+      currentData.products.push(product);
+      setData(currentData);
+      window.localStorage.setItem("fromJson", JSON.stringify(data)  );
+
+    // console.log(currentData);
+    } 
+
+  };
+
+
   return (
     <>
       <section>
@@ -49,7 +99,7 @@ function AdmindProduct() {
                 </td>
                 <td className='px-4 py-3'>
                   <img
-                    src=''
+                    src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg'
                     alt=''
                     className='w-12 h-12 bg-gray-200 rounded'
                   />
@@ -65,10 +115,10 @@ function AdmindProduct() {
                 <td className='px-4 py-3'>
                   <div className='action-buttons flex gap-2'>
                     <button className='p-2'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                   </div>
                 </td>
@@ -80,7 +130,7 @@ function AdmindProduct() {
                 </td>
                 <td className='px-4 py-3'>
                   <img
-                    src=''
+                    src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg'
                     alt=''
                     className='w-12 h-12 bg-gray-200 rounded'
                   />
@@ -96,10 +146,10 @@ function AdmindProduct() {
                 <td className='px-4 py-3'>
                   <div className='action-buttons'>
                     <button className='p-2'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button className='p-2'>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                   </div>
                 </td>
@@ -111,7 +161,7 @@ function AdmindProduct() {
                 </td>
                 <td className='px-4 py-3'>
                   <img
-                    src=''
+                    src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg'
                     alt=''
                     className='w-12 h-12 bg-gray-200 rounded'
                   />
@@ -127,10 +177,10 @@ function AdmindProduct() {
                 <td className='px-4 py-3'>
                   <div className='action-buttons'>
                     <button>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                   </div>
                 </td>
@@ -142,7 +192,7 @@ function AdmindProduct() {
                 </td>
                 <td className='px-4 py-3'>
                   <img
-                    src=''
+                    src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg'
                     alt=''
                     className='w-12 h-12 bg-gray-200 rounded'
                   />
@@ -158,10 +208,10 @@ function AdmindProduct() {
                 <td className='px-4 py-3'>
                   <div className='action-buttons'>
                     <button>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                   </div>
                 </td>
@@ -173,7 +223,7 @@ function AdmindProduct() {
                 </td>
                 <td className='px-4 py-3'>
                   <img
-                    src=''
+                    src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg'
                     alt=''
                     className='w-12 h-12 bg-gray-200 rounded'
                   />
@@ -189,10 +239,10 @@ function AdmindProduct() {
                 <td className='px-4 py-3'>
                   <div className='action-buttons'>
                     <button>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                     <button>
-                      <img src='' alt='' />
+                      <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
                     </button>
                   </div>
                 </td>
@@ -225,24 +275,39 @@ function AdmindProduct() {
             <div className='flex justify-between items-center mb-4'>
               <h2 className='text-xl font-semibold'>Add Product</h2>
               <button>
-                <img src='' alt='' />
+                <img src='https://images.pexels.com/photos/2128023/pexels-photo-2128023.jpeg' alt='' />
               </button>
             </div>
 
-            <div>
+            <form onSubmit={handleSubmit(addProduct)}>
               <div>
                 <label className='block text-sm mb-2'>Photo Product</label>
                 <div className='border rounded p-4'>
                   <div className='w-12 h-12 bg-gray-200 rounded mb-2'></div>
-                  <button className='bg-[#FF8906] text-white px-4 py-1 rounded text-sm'>
-                    Upload
-                  </button>
+                  <div>
+                    <label htmlFor="img1">Image 1</label>
+                    <input {...register("img1")} type="text" id="img1" />
+                  </div>
+                  <div>
+                    <label htmlFor="img2">Image 2</label>
+                    <input {...register("img2")} type="text" id="img2" />
+                  </div>
+                  <div>
+                    <label htmlFor="img3">Image 3</label>
+                    <input {...register("img3")} type="text" id="img3" />
+                  </div>
+                  <div>
+                    <label htmlFor="img4">Image 4</label>
+                    <input {...register("img4")} type="text" id="img4" />
+                  </div>
+                  
                 </div>
               </div>
 
               <div>
                 <label className='block text-sm mb-2'>Product name</label>
                 <input
+                  {...register("nameProduct")}
                   type='text'
                   placeholder='Enter Product Name'
                   className='w-full border rounded px-3 py-2'
@@ -252,6 +317,7 @@ function AdmindProduct() {
               <div>
                 <label className='block text-sm mb-2'>Price</label>
                 <input
+                  {...register("price")}
                   type='text'
                   placeholder='Enter Product Price'
                   className='w-full border rounded px-3 py-2'
@@ -259,14 +325,25 @@ function AdmindProduct() {
               </div>
 
               <div>
+                <label className='block text-sm mb-2'>Discount</label>
+                <input
+                  {...register("discount")}
+                  type='text'
+                  placeholder='Enter Product Discount'
+                  className='w-full border rounded px-3 py-2'
+                />
+              </div>
+
+              <div>
                 <label className='block text-sm mb-2'>Description</label>
                 <textarea
+                  {...register("description")}
                   placeholder='Enter Product Description'
                   className='w-full border rounded px-3 py-2 h-20'
                 ></textarea>
               </div>
 
-              <div>
+              {/* <div>
                 <label className='block text-sm mb-2'>Product Size</label>
                 <div className='flex gap-2'>
                   <button className='border rounded px-4 py-2'>R</button>
@@ -275,22 +352,27 @@ function AdmindProduct() {
                   <button className='border rounded px-4 py-2'>250 gr</button>
                   <button className='border rounded px-4 py-2'>500 gr</button>
                 </div>
-              </div>
+              </div> */}
 
               <div>
                 <label className='block text-sm mb-2'>Stock</label>
-                <select className='w-full border rounded px-3 py-2'>
-                  <option value='' disabled selected>
+                <select   {...register("stock")}
+                  className='w-full border rounded px-3 py-2'>
+                  <option value='' disabled>
                     Enter Product Stock
                   </option>
-                  <option value=''></option>
+                  <option value='5'>5</option>
+                  <option value='10'>10</option>
+                  <option value='15'>15</option>
+                  <option value='20'>20</option>
+
                 </select>
               </div>
 
               <button className='w-full bg-[#FF8906] text-white py-2 rounded'>
                 Save Product
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </section>
