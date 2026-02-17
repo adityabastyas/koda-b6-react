@@ -12,15 +12,21 @@ function DataProvider({ children }) {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await fetch(url);
-      if (!res.ok) {
-        throw new Error("Gagal mengambil data");
+      if(JSON.parse(localStorage.getItem("fromJson")) == null) {
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error("Gagal mengambil data");
+        }
+        
+        const datajson = await res.json();
+        localStorage.setItem("fromJson", JSON.stringify(datajson));
       }
 
-      const datajson = await res.json();
+      const dataProduct = JSON.parse(localStorage.getItem("fromJson"));
 
+      setData(dataProduct);
+      
       setTimeout(() => {
-        setData(datajson);
         setLoading(false);
       }, 1000);
     } catch (error) {
