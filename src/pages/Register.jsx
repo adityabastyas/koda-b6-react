@@ -55,6 +55,7 @@ function Register() {
     setTimeout(() => {
       setShow(false);
 
+      
       navigate("/signin");
     }, 2000);
   };
