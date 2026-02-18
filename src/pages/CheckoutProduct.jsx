@@ -113,11 +113,6 @@ function CheckoutProduct() {
 
   const subTotal = totalOrder + deliveryCost + tax;
 
-
-
-
-
-
   return (
     <>
       <ModalLoading isOke={show} text="Silahkan login terlebihdahulu" />

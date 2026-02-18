@@ -50,7 +50,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          script: |
+          script: | 
             docker pull ghcr.io/adityabastyas/cofeshopadit:latest
             docker rm -f web-adit
             docker run -d -p 20401:80 --name web-adit --network pman_web ghcr.io/adityabastyas/cofeshopadit:latest 
