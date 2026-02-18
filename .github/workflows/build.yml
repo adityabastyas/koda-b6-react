@@ -52,5 +52,5 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             docker pull ghcr.io/adityabastyas/cofeshopadit:latest
-            docker rm -f cofeshopadit
-            docker run -d -p 20401:80 --name cofeshopadit ghcr.io/adityabastyas/cofeshopadit:latest 
+            docker rm -f web-adit
+            docker run -d -p 20401:80 --name web-adit ghcr.io/adityabastyas/cofeshopadit:latest 
