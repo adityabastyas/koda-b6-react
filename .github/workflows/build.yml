@@ -53,4 +53,4 @@ jobs:
           script: |
             docker pull ghcr.io/adityabastyas/cofeshopadit:latest
             docker rm -f cofeshopadit
-            docker run -d -p 20401:80 --name cofeshopadit ghcr.io/adityabastyas/cofeshopadit:latest
+            docker run -d -p 20401:80 --name cofeshopadit ghcr.io/adityabastyas/cofeshopadit:latest 
