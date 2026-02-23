@@ -1,5 +1,7 @@
 import React from "react";
 import Button from "./Button";
+import starIcon from "../assets/img/icon/start.svg";
+import cartIcon from "../assets/img/icon/ShoppingCart.svg";
 
 function CartMenu(props) {
   const {
@@ -43,7 +45,7 @@ function CartMenu(props) {
           {stars.slice(0, safeRating).map((star) => (
             <img
               key={star}
-              src='src/assets/img/icon/start.svg'
+              src={starIcon}
               alt='icon-star'
               className='mr-2.5'
             />
@@ -77,7 +79,7 @@ function CartMenu(props) {
               border border-[#ff8906] cursor-pointer rounded-md py-4'
           >
             <img
-              src='src/assets/img/icon/ShoppingCart.svg'
+              src={cartIcon}
               alt='icon-cart-shopping'
               className='w-6 h-6'
             />
