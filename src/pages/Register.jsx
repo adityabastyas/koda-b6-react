@@ -9,6 +9,12 @@ import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../redux/reduces/authReducer";
 import ModalLoading from "../components/ModalLoading";
+import iconCoffee from "../assets/img/icon/Frame.svg";
+import iconProfile from "../assets/img/icon/Profile.svg";
+import iconMail from "../assets/img/icon/mail.svg";
+import iconPassword from "../assets/img/icon/Password.svg";
+import iconFacebook from "../assets/img/icon/facebook.svg";
+import iconGoogle from "../assets/img/icon/google.svg";
 
 const validation = yup.object({
   fullName: yup.string().required("full name wajib diisi"),
@@ -74,7 +80,7 @@ function Register() {
         <main className='font-[Plus_Jakarta_Sans,sans-serif] flex-1 py-12 px-5 sm:pr-32 sm:pl-16'>
           <header>
             <div className='flex items-center gap-2 mb-8'>
-              <img src='./src/assets/img/icon/Frame.svg' alt='icon coffie' />
+              <img src={iconCoffee} alt='icon coffie' />
               <span className='font-[Sacramento,cursive]'>Coffee Shop</span>
             </div>
             <h1 className='text-[#8E6447] font-semibold text-2xl'>Register</h1>
@@ -90,7 +96,7 @@ function Register() {
                 label='Full Name'
                 id='fullName'
                 placeholder='Enter Your Full Name'
-                src='./src/assets/img/icon/Profile.svg'
+                src={iconProfile}
                 alt='icon profile'
                 {...register("fullName")}
               />
@@ -107,7 +113,7 @@ function Register() {
                 htmlFor='email'
                 id='email'
                 placeholder='Enter Your Email'
-                src='src\assets\img\icon\mail.svg'
+                src={iconMail}
                 alt='icon email'
                 {...register("email")}
               />
@@ -122,7 +128,7 @@ function Register() {
                 htmlFor='password'
                 id='password'
                 placeholder='Enter Your Password'
-                src='src\assets\img\icon\Password.svg'
+                src={iconPassword}
                 alt='icon password'
                 type='password'
                 {...register("password")}
@@ -140,7 +146,7 @@ function Register() {
                 htmlFor='confirmPassword'
                 id='confirmPassword'
                 placeholder='Enter Your Password Again'
-                src='src\assets\img\icon\Password.svg'
+                src={iconPassword}
                 alt='icon password'
                 type='password'
                 {...register("confirmPassword")}
@@ -177,9 +183,7 @@ function Register() {
               className='flex items-center gap-2 bg-white rounded-2xl px-6 py-4 text-[#4f5665] font-medium text-lg shadow-[0_4px_10px_rgba(0,0,0,0.08)] md:px-28 md:py-5'
             >
               <img
-                src='
-            src\assets\img\icon\facebook.svg
-            '
+                src={iconFacebook}
                 alt='facebook icon'
               />
               <span className='hidden sm:inline'>Facebook</span>
@@ -189,7 +193,7 @@ function Register() {
               target='_blank'
               className='flex items-center gap-2 bg-white rounded-2xl px-6 py-4 text-[#4f5665] font-medium text-lg shadow-[0_4px_10px_rgba(0,0,0,0.08)]  md:px-28 md:py-5'
             >
-              <img src='src/assets/img/icon/google.svg' alt='google icon' />
+              <img src={iconGoogle} alt='google icon' />
               <span className='hidden md:inline'>Google</span>
             </a>
           </div>
