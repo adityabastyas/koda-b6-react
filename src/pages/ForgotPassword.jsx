@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useSelector } from "react-redux";
+import iconCoffee from "../assets/img/icon/Frame.svg";
+import iconMail from "../assets/img/icon/mail.svg";
+
 
 const validation = yup.object({
   email: yup
@@ -63,7 +66,7 @@ function ForgotPassword() {
         <main className='font-[Plus_Jakarta_Sans,sans-serif] flex-1 py-12 px-5 sm:pr-32 sm:pl-16 items-center sm:pt-80'>
           <header>
             <div className='flex items-center gap-2 mb-8'>
-              <img src='./src/assets/img/icon/Frame.svg' alt='icon coffie' />
+              <img src={iconCoffee} alt='icon coffie' />
               <span className='font-[Sacramento,cursive]'>Coffee Shop</span>
             </div>
             <h1 className='text-[#8E6447] font-semibold text-2xl'>
@@ -81,7 +84,7 @@ function ForgotPassword() {
                 htmlFor='email'
                 id='email'
                 placeholder='Enter Your Email'
-                src='src\assets\img\icon\mail.svg'
+                src={iconMail}
                 alt='icon email'
                 {...register("email")}
               />
