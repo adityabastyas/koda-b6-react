@@ -2,6 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../redux/reduces/authReducer";
+import logoGlass from "../assets/img/icon/glass.svg";
+import searchIcon from "../assets/img/icon/search-icon.svg";
+import cartIcon from "../assets/img/icon/cart-icon.svg";
 
 function Heading() {
   const dispatch = useDispatch();
@@ -15,7 +18,7 @@ function Heading() {
       <header className='fixed top-0 w-full z-20 bg-[rgba(11,9,9,0.13)] py-3.5 px-32 flex items-center justify-between'>
         <div className='flex items-center'>
           <img
-            src='src/assets/img/icon/glass.svg'
+            src={logoGlass}
             alt='Coffee Shop logo icon'
           />
           <span className='font-[Sacramento,cursive] text-white text-xl font-normal ml-3.5'>
@@ -47,14 +50,14 @@ function Heading() {
             <li>
               <a href=''>
                 <img
-                  src='src/assets/img/icon/search-icon.svg'
+                  src={searchIcon}
                   alt='search icon'
                 />
               </a>
             </li>
             <li className='ml-5'>
               <a href='./pages/checkout-product.html'>
-                <img src='src/assets/img/icon/cart-icon.svg' alt='cart icon' />
+                <img src={cartIcon} alt='cart icon' />
               </a>
             </li>
 
