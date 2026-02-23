@@ -4,6 +4,12 @@ import locationMap from "../assets/img/location.png";
 import { DataContext } from "../components/DataProvider";
 import { useNavigate } from "react-router-dom";
 import CartSuccessModal from "../components/CartSuccessModal";
+import bgExpresso from "../assets/img/bg-expresso.jpg";
+import checkIcon from "../assets/img/icon/check-icon.svg";
+import baristaMan from "../assets/img/barista-man.png";
+import starIcon from "../assets/img/icon/start.svg";
+import arrowLeft from "../assets/img/icon/arrow-left.svg";
+import arrowRight from "../assets/img/icon/arrow-right.svg";
 
 function Home() {
   const { data, loading } = React.useContext(DataContext);
@@ -151,7 +157,7 @@ function Home() {
 
           <section className='w-1/2 h-[1024px] '>
             <img
-              src='\src\assets\img\bg-expresso.jpg'
+              src={bgExpresso}
               alt='background image expresso'
               className='w-full h-full object-cover'
             />
@@ -175,7 +181,7 @@ function Home() {
                 <ul className='flex flex-col gap-6'>
                   <li className='flex items-center text-[#4f5665] text-[14px] font-normal font-[Rubik]'>
                     <img
-                      src='src/assets/img/icon/check-icon.svg'
+                      src={checkIcon}
                       alt='check icon'
                       className='mr-3'
                     />
@@ -184,7 +190,7 @@ function Home() {
 
                   <li className='flex items-center text-[#4f5665] text-sm font-normal font-[Rubik]'>
                     <img
-                      src='src/assets/img/icon/check-icon.svg'
+                      src={checkIcon}
                       alt='check icon'
                       className='mr-3'
                     />
@@ -193,7 +199,7 @@ function Home() {
 
                   <li className='flex items-center text-[#4f5665] text-sm font-normal font-[Rubik]'>
                     <img
-                      src='src/assets/img/icon/check-icon.svg'
+                      src={checkIcon}
                       alt='check icon'
                       className='mr-3'
                     />
@@ -202,7 +208,7 @@ function Home() {
 
                   <li className='flex items-center text-[#4f5665] text-sm font-normal font-[Rubik]'>
                     <img
-                      src='src/assets/img/icon/check-icon.svg'
+                      src={checkIcon}
                       alt='check icon'
                       className='mr-3'
                     />
@@ -215,7 +221,7 @@ function Home() {
 
           <section className='w-1/2 flex justify-center items-start'>
             <img
-              src='src/assets/img/barista-man.png'
+              src={baristaMan}
               alt='Professional barista Coffee Shop'
               className='max-w-full h-auto'
             />
@@ -314,27 +320,27 @@ function Home() {
                 <div className='flex items-center mb-6'>
                   <img
                     className='mr-6'
-                    src='src/assets/img/icon/start.svg'
+                    src={starIcon}
                     alt='star'
                   />
                   <img
                     className='mr-6'
-                    src='src/assets/img/icon/start.svg'
+                    src={starIcon}
                     alt='star'
                   />
                   <img
                     className='mr-6'
-                    src='src/assets/img/icon/start.svg'
+                    src={starIcon}
                     alt='star'
                   />
                   <img
                     className='mr-6'
-                    src='src/assets/img/icon/start.svg'
+                    src={starIcon}
                     alt='star'
                   />
                   <img
                     className='mr-6'
-                    src='src/assets/img/icon/start.svg'
+                    src={starIcon}
                     alt='star'
                   />
 
@@ -346,14 +352,14 @@ function Home() {
                 <nav className='flex items-center mb-6'>
                   <button onClick={prev}>
                     <img
-                      src='src/assets/img/icon/arrow-left.svg'
+                      src={arrowLeft}
                       alt='arrow-left'
                       className='bg-white p-3.5 rounded-full mr-2 cursor-pointer'
                     />
                   </button>
                   <button onClick={next}>
                     <img
-                      src='src/assets/img/icon/arrow-right.svg'
+                      src={arrowRight}
                       alt='arrow-right'
                       className='bg-[#ff8906] p-3.5 rounded-full cursor-pointer'
                     />
