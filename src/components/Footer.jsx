@@ -1,5 +1,5 @@
 import React from "react";
-import backgroundCoffe from "../assets/img/Rectangle 289.png";
+import iconCoffee from "../assets/img/icon/Frame.svg";
 import iconFacebook from "../assets/img/icon/icon-facebook.svg";
 import iconTwitter from "../assets/img/icon/icon-twitter.svg";
 import iconIg from "../assets/img/icon/icon-ig.svg";
@@ -12,7 +12,7 @@ function Footer() {
           <section className='w-[340px] mr-14'>
             <a href='#' className='flex items-center no-underline'>
               <img
-                src={backgroundCoffe}
+                src={iconCoffee}
                 alt='Coffee Shop brand logo'
               />
               <span className='ml-3.5 text-[#8e6447] text-xl font-normal font-[Sacramento]'>
