@@ -7,6 +7,8 @@ import image46 from "../assets/img/image46.svg";
 import { DataContext } from "../components/DataProvider.jsx";
 import { useNavigate } from "react-router-dom";
 import CartSuccessModal from "../components/CartSuccessModal.jsx";
+import arrowLeft from "../assets/img/icon/arrow-left.svg";
+import arrowRight from "../assets/img/icon/arrow-right.svg";
 
 function Products() {
   const { data, loading } = React.useContext(DataContext);
@@ -92,12 +94,12 @@ function Products() {
 
             <nav className='flex items-center gap-2'>
               <img
-                src='src/assets/img/icon/arrow-left.svg'
+                src={arrowLeft}
                 alt='Previous promo button'
                 className='bg-[#e8e8e8] p-3 rounded-full cursor-pointer'
               />
               <img
-                src='src/assets/img/icon/arrow-right.svg'
+                src={arrowRight}
                 alt='Next promo button'
                 className='bg-[#ff8906] p-3 rounded-full cursor-pointer'
               />
