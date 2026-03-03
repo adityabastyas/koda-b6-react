@@ -13,7 +13,7 @@ function DetailProduct() {
   const [temperature, setTemperature] = React.useState("Ice");
 
   const { id } = useParams();
-  const { data } = React.useContext(DataContext);
+  const { data,loading } = React.useContext(DataContext);
 
   const productFromStorage = JSON.parse(localStorage.getItem("product"));
 
@@ -94,6 +94,9 @@ function DetailProduct() {
 
     navigate("/checkout-product");
   };
+
+
+
   return (
     <>
       <section className='flex flex-col px-32 md:flex-row w-full px-5 md:gap-5'>
@@ -247,33 +250,30 @@ function DetailProduct() {
           Recommendation <span className='text-[#8e6447]'>For You</span>
         </h2>
         <div className='grid grid-cols-2 sm:grid-cols-3'>
-          <CartMenu
-            image='src/assets/img/image-27.png'
-            title='Hazelnut Latte'
-            description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-            rating={5}
-            oldPrice='IDR 20.000'
-            price='IDR 10.000'
-            showFlashSale={true}
-          />
-          <CartMenu
-            image='src/assets/img/image-22.png'
-            title='Hazelnut Latte'
-            description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-            rating={5}
-            oldPrice='IDR 20.000'
-            price='IDR 10.000'
-            showFlashSale={true}
-          />
-          <CartMenu
-            image='src/assets/img/image-31.png'
-            title='Hazelnut Latte'
-            description='You can explore the menu that we provide with fun and have their own taste and make your day better.'
-            rating={5}
-            oldPrice='IDR 20.000'
-            price='IDR 10.000'
-            showFlashSale={true}
-          />
+          {loading && (
+            <p className='text-center text-5xl mt-20'>Mengambil Data...</p>
+          )}
+
+          {!loading && data?.products?.length === 0 && (
+            <p className='text-center text-5xl mt-20'>Produk kosong</p>
+          )}
+          {data?.products?.slice(0, 3)?.map((item) => {
+            return (
+              <div key={item.id}>
+                <CartMenu
+                  image={item.image.imageSatu}
+                  title={item.name}
+                  description={item.description}
+                  rating={5}
+                  oldPrice={item.price}
+                  price={item.discount}
+                  onClick={() => goToDetail(item)}
+                  onCartClick={() => handleAddToCart(item)}
+                  showFlashSale={true}
+                />
+              </div>
+            );
+          })}
         </div>
       </section>
     </>
