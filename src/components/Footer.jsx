@@ -1,4 +1,8 @@
 import React from "react";
+import backgroundCoffe from "../assets/img/Rectangle 289.png";
+import iconFacebook from "../assets/img/icon/icon-facebook.svg";
+import iconTwitter from "../assets/img/icon/icon-twitter.svg";
+import iconIg from "../assets/img/icon/icon-ig.svg";
 
 function Footer() {
   return (
@@ -8,7 +12,7 @@ function Footer() {
           <section className='w-[340px] mr-14'>
             <a href='#' className='flex items-center no-underline'>
               <img
-                src='src/assets/img/icon/Frame.svg'
+                src={backgroundCoffe}
                 alt='Coffee Shop brand logo'
               />
               <span className='ml-3.5 text-[#8e6447] text-xl font-normal font-[Sacramento]'>
@@ -100,20 +104,20 @@ function Footer() {
             <div className='flex items-center'>
               <a href='https://www.facebook.com/'>
                 <img
-                  src='src/assets/img/icon/icon-facebook.svg'
+                  src={iconFacebook}
                   alt='icon facebook'
                 />
               </a>
 
               <a href='https://x.com/' className='mx-5'>
                 <img
-                  src='src/assets/img/icon/icon-twitter.svg'
+                  src={iconTwitter}
                   alt='icon twitter'
                 />
               </a>
 
               <a href='https://www.instagram.com/'>
-                <img src='src/assets/img/icon/icon-ig.svg' alt='icon ig' />
+                <img src={iconIg} alt='icon ig' />
               </a>
             </div>
           </section>
