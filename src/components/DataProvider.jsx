@@ -1,10 +1,11 @@
 import React from "react";
+import http from "../lib/http";
 
 export const DataContext = React.createContext();
 
 function DataProvider({ children }) {
-  const url =
-    "https://raw.githubusercontent.com/adityabastyas/koda-b6-react/refs/heads/main/public/data.json";
+  // const url =
+  //   "https://raw.githubusercontent.com/adityabastyas/koda-b6-react/refs/heads/main/public/data.json";
 
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -12,19 +13,29 @@ function DataProvider({ children }) {
   const fetchData = async () => {
     setLoading(true);
     try {
-      if(JSON.parse(localStorage.getItem("fromJson")) == null) {
-        const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error("Gagal mengambil data");
-        }
+      // if(JSON.parse(localStorage.getItem("fromJson")) == null) {
+      //   const res = await fetch(url);
+      //   if (!res.ok) {
+      //     throw new Error("Gagal mengambil data");
+      //   }
         
-        const datajson = await res.json();
-        localStorage.setItem("fromJson", JSON.stringify(datajson));
-      }
+      //   const datajson = await res.json();
+      //   localStorage.setItem("fromJson", JSON.stringify(datajson));
+      // }
 
-      const dataProduct = JSON.parse(localStorage.getItem("fromJson"));
+      // const dataProduct = JSON.parse(localStorage.getItem("fromJson"));
 
-      setData(dataProduct);
+      // setData(dataProduct);
+
+      
+      const req = await http("/products");
+      const data = await  req.json();
+      console.log(data);
+      setData(data);
+
+      // React.useEffect(()=>{
+      //   getDataUsers();
+      // },[]);
       
       setTimeout(() => {
         setLoading(false);
