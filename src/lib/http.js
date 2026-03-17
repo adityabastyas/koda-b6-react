@@ -1,7 +1,9 @@
 const BASE_URL = import.meta.env.VITE_BASE_URL || "https://adit-backend.camps.fahrul.id";
 
 function http(url,body, opts={}){
-  const headers={};
+  const headers={
+    "Content-Type": "application/json",
+  };
 
   if(opts.token){
     headers.Authorization = "Bearer "+opts.token;
