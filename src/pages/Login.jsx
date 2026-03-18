@@ -2,7 +2,7 @@ import React from "react";
 import Input from "../components/Input";
 import baristaWomen from "../assets/img/barista-woman.png";
 import Button from "../components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { data, Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -66,23 +66,39 @@ function Login() {
 
       const data = await rest.json();
       console.log(data);
+
+      if (!rest.ok){
+        setLoginError(data.message || "Email atau password salah");
+        setLoading(false);
+        return;
+      }
+
+
+
+      // setLoginError("");
+      dispatch(loginUser({
+        user: data.result.user,
+        token: data.result.token
+      }));
+
+      // setLoading(true);
+
+      setTimeout(() => {
+        setLoading(false);
+
+        navigate("/");
+      }, 2000);
       
     } catch (error) {
+      console.log("error", error);
+      setLoginError("Terjadi kesaahan, coba lagi");
+      setLoading(false);
       
     }
 
 
 
-    setLoginError("");
-    // dispatch(loginUser(user));
-
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-
-      navigate("/");
-    }, 2000);
+    
   };
   return (
     <>
