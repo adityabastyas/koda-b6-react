@@ -4,6 +4,7 @@ const initialState = {
   users: [],
   isLogin: false,
   currentUser: null,
+  token:null
 };
 
 const authSlice = createSlice({
@@ -15,11 +16,13 @@ const authSlice = createSlice({
     },
     loginUser: (state, action) => {
       state.isLogin = true;
-      state.currentUser = action.payload;
+      state.currentUser = action.payload.user;
+      state.token = action.payload.token;
     },
     logoutUser: (state) => {
       state.isLogin = false;
       state.currentUser = null;
+      state.token = null;
     },
 
     updateProfile: (state,action) => {
