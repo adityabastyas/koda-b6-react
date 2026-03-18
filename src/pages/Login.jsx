@@ -15,6 +15,7 @@ import iconMail from "../assets/img/icon/mail.svg";
 import iconPassword from "../assets/img/icon/Password.svg";
 import iconFacebook from "../assets/img/icon/facebook.svg";
 import iconGoogle from "../assets/img/icon/google.svg";
+import http from "../lib/http";
 
 const validation = yup.object({
   email: yup
@@ -42,18 +43,38 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const formSubmit = (nilai) => {
-    const user = users.find((item) => {
-      return item.email === nilai.email && item.password === nilai.password;
-    });
+  const formSubmit = async (nilai) => {
+    // const user = users.find((item) => {
+    //   return item.email === nilai.email && item.password === nilai.password;
+    // });
 
-    if (!user) {
-      setLoginError("email atau password salah");
-      return;
+    // if (!user) {
+    //   setLoginError("email atau password salah");
+    //   return;
+    // }
+
+    try {
+      const rest = await http("/auth/login", JSON.stringify({
+        email : nilai.email, password : nilai.password
+
+      }),{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      const data = await rest.json();
+      console.log(data);
+      
+    } catch (error) {
+      
     }
 
+
+
     setLoginError("");
-    dispatch(loginUser(user));
+    // dispatch(loginUser(user));
 
     setLoading(true);
 
@@ -135,7 +156,7 @@ function Login() {
             <p>
               Not Have An Account?
               <Link to='/signup'>
-                <span className='decoration-none text-[#ff8906]' href=''>
+                <span className='decoration-none text-[#ff8906]'>
                   Register
                 </span>
               </Link>

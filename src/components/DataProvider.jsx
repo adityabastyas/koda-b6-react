@@ -28,10 +28,37 @@ function DataProvider({ children }) {
       // setData(dataProduct);
 
       
-      const req = await http("/products");
-      const data = await  req.json();
-      console.log(data);
-      setData(data);
+      const reqProduct  = await http("/products");
+      const reqDiscount = await http("/discounts");
+
+      const jsonProduct  = await reqProduct.json();
+      const jsonDiscount = await reqDiscount.json();
+
+      console.log("produk :", jsonProduct);
+      console.log("diskon :", jsonDiscount);
+
+      const discountMap = {};
+      jsonDiscount.result.forEach((diskon) => {
+        discountMap[diskon.product_id] = diskon;
+      });
+
+      const products = jsonProduct.result.map((item) => {
+        const disc     = discountMap[item.product_id];
+        const potongan = disc ? item.price * disc.discount_rate / 100 : 0;
+
+        return {
+          id          : item.product_id,
+          name        : item.name,
+          description : item.description,
+          price       : item.price,
+          discount    : item.price - potongan,
+          isFlashSale : disc?.flash_sale || false,
+          kategory_id : item.kategory_id,
+          image       : { imageSatu: item.image_url },
+        };
+      });
+
+      setData({ products });
 
       // React.useEffect(()=>{
       //   getDataUsers();
