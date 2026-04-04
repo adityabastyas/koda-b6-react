@@ -15,6 +15,7 @@ import iconMail from "../assets/img/icon/mail.svg";
 import iconPassword from "../assets/img/icon/Password.svg";
 import iconFacebook from "../assets/img/icon/facebook.svg";
 import iconGoogle from "../assets/img/icon/google.svg";
+import http from "../lib/http";
 
 const validation = yup.object({
   fullName: yup.string().required("full name wajib diisi"),
@@ -39,6 +40,9 @@ const validation = yup.object({
 
 function Register() {
   const [show, setShow] = React.useState(false);
+  const [registerError, setRegisterError] = React.useState("");
+
+
   const { register, handleSubmit, formState } = useForm({
     defaultValues: {
       email: "",
@@ -53,17 +57,46 @@ function Register() {
 
   const dispatch = useDispatch();
 
-  const formSubmit = (nilai) => {
-    dispatch(registerUser({...nilai, createdAt: Date.now(),}));
+  const formSubmit = async (nilai) => {
+    try {
 
-    setShow(true);
+      const rest = await http(
+        "/auth/register",JSON.stringify({
+          full_name: nilai.fullName,
+          email: nilai.email,
+          password: nilai.password
+        }),{
+          method: "POST",
+          headers: {"Content-Type": "application/json"}
+        }
+      );
 
-    setTimeout(() => {
-      setShow(false);
+      const data = await rest.json();
+      console.log(data);
 
+      if (!rest.ok){
+        setRegisterError(data.message);
+        return;
+      }
+
+      dispatch(registerUser({
+        fullname: nilai.fullName,
+        email: nilai.email
+      }));
+
+      setShow(true);
+      setTimeout(()=>{
+        setShow(false);
+        navigate("/signin");
+      }, 2000);
       
-      navigate("/signin");
-    }, 2000);
+    } catch (error) {
+      console.log("error", error);
+      setRegisterError("server tidak bisa di akses, coba lgi");
+      
+    }
+
+    
   };
   return (
     <>
