@@ -6,11 +6,17 @@ import Button from "../components/Button";
 import CartMenu from "../components/CartMenu";
 import { useNavigate, useParams } from "react-router-dom";
 import { DataContext } from "../components/DataProvider";
+import http from "../lib/http";
 
 function DetailProduct() {
   const [count, setCount] = React.useState(1);
   const [size, setSize] = React.useState("Regular");
   const [temperature, setTemperature] = React.useState("Ice");
+
+  
+  const [images, setImages] = React.useState([]);
+  const [sizes, setSizes] = React.useState([]);
+  const [variants, setVariants] = React.useState([]);
 
   const { id } = useParams();
   const { data,loading } = React.useContext(DataContext);
@@ -22,6 +28,22 @@ function DetailProduct() {
   );
 
   const item = productFromContext || productFromStorage;
+
+  React.useEffect(() => {
+    if (!id) {return;}
+
+    http(`/product-images/${id}`)
+      .then(res => res.json())
+      .then(res => setImages(res.result || []));
+
+    http(`/product-sizes/${id}`)
+      .then(res => res.json())
+      .then(res => setSizes(res.result || []));
+
+    http(`/product-variant/${id}`)
+      .then(res => res.json())
+      .then(res => setVariants(res.result || []));
+  }, [id]);
 
   React.useEffect(() => {
     if (!item) {
@@ -36,19 +58,8 @@ function DetailProduct() {
     };
 
     localStorage.setItem("detail", JSON.stringify(detail));
-  }, [item]);
+  }, [item, size, temperature, count]);
 
-  React.useEffect(() => {
-    const detail = JSON.parse(localStorage.getItem("detail")) || {};
-
-    localStorage.setItem(
-      "detail",
-      JSON.stringify({
-        ...detail,
-        quantity: count,
-      })
-    );
-  }, [count]);
 
   const handleSelectZise = (value) => {
     setSize(value);
@@ -70,6 +81,10 @@ function DetailProduct() {
   };
 
   const navigate = useNavigate();
+
+  const goToDetail = (product) => { 
+    navigate(`/detail-product/${product.id}`);
+  };
 
   const handleBuy = () => {
     const detail = JSON.parse(localStorage.getItem("detail"));
@@ -95,6 +110,27 @@ function DetailProduct() {
     navigate("/checkout-product");
   };
 
+  const handleAddToCart = (product) => {
+    const checkout = JSON.parse(localStorage.getItem("checkout")) || [];
+
+    const found = checkout.find((i) => i.productId === product.id);
+
+    if (found) {
+      found.quantity += 1;
+    } else {
+      checkout.push({
+        productId: product.id,
+        size: "Regular",
+        temperature: "Ice",
+        quantity: 1,
+      });
+    }
+
+    localStorage.setItem("checkout", JSON.stringify(checkout));
+  };
+
+  if (!item) {return <p>Loading...</p>;}
+
 
 
   return (
@@ -103,26 +139,26 @@ function DetailProduct() {
         {/* Image Gallery */}
         <div className='flex flex-col gap-[15px] md:w-1/2'>
           <img
-            src={item.image.imageSatu}
+            src={images[0]?.path || item.image.imageSatu}
             alt='Main product image coffe'
             className='w-full h-auto block'
           />
           <div className='flex w-full gap-3'>
-            <img
-              src={item.image.imageDua}
-              alt='Thumbnail 1 product coffe'
-              className='flex-1 min-w-0'
-            />
-            <img
-              src={item.image.imageTiga}
-              alt='Thumbnail 2 product coffe'
-              className='flex-1 min-w-0'
-            />
-            <img
-              src={item.image.imageEmpat}
-              alt='Thumbnail 3 product coffe'
-              className='flex-1 min-w-0'
-            />
+            {images.length > 0 ? (
+              images.slice(1,4).map((img) => (
+                <img
+                  key={img.product_images_id}
+                  src={img.path}
+                  className='flex-1 min-w-0'
+                />
+              ))
+            ) : (
+              <>
+                <img src={item.image.imageDua} className='flex-1 min-w-0' />
+                <img src={item.image.imageTiga} className='flex-1 min-w-0' />
+                <img src={item.image.imageEmpat} className='flex-1 min-w-0' />
+              </>
+            )}
           </div>
         </div>
 
@@ -237,7 +273,7 @@ function DetailProduct() {
           {/* Action Buttons */}
           <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
             <Button onClick={handleBuy}>Buy</Button>
-            <Button className='border bg-white border-[#ff8906] rounded-md py-4 flex gap-4 justify-center'>
+            <Button onClick={() => handleAddToCart(item)} className='border bg-white border-[#ff8906] rounded-md py-4 flex gap-4 justify-center'>
               <AiOutlineShoppingCart className="text-orange-400"/>
               <span className='text-[#ff8906]'>add to cart</span>
             </Button>
