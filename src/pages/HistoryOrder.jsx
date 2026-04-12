@@ -12,6 +12,10 @@ function HistoryOrder() {
 
   const {currentUser, isLogin} = useSelector((state) => state.auth);
 
+  const [selectedMonth, setSelectedMonth] = React.useState(
+    new Date().toLocaleDateString("id-ID", { month: "long", year: "numeric" }) 
+  );
+
 
   React.useEffect(() => {
     const history = JSON.parse(localStorage.getItem
@@ -24,7 +28,7 @@ function HistoryOrder() {
 
     const filterOrder = history.filter((item) => item.email === currentUser.email);
     setOrders(filterOrder);
-  }, [isLogin, currentUser]);
+  }, [isLogin, currentUser, selectedMonth]);
 
  
 
@@ -42,26 +46,27 @@ function HistoryOrder() {
         <section className='grid grid-cols-1 sm:grid-cols-2'>
           <section className='grid grid-cols-1 col-span-1'>
             <section className=' w-full'>
-              <div className='flex flex-col gap-4 mb-9md:flex-row md:items-center md:justify-between'>
+              <div className='flex flex-col gap-4 mb-9 md:flex-row md:items-center md:justify-between'>
                 {/* Calendar Select */}
                 <div className='flex items-center gap-2.5 bg-[#e8e8e899] px-2.5 w-fit order-1 md:order-2'>
                   <img
                     src='src/assets/img/icon/Calendar.svg'
                     alt='Calendar icon'
                   />
-                  <select className='bg-transparent outline-none text-sm cursor-pointer'>
-                    <option>Januari 2023</option>
-                    <option>Februari 2023</option>
-                    <option>Maret 2023</option>
-                    <option>April 2023</option>
-                    <option>Mei 2023</option>
-                    <option>Juni 2023</option>
-                    <option>Juli 2023</option>
-                    <option>Agustus 2023</option>
-                    <option>September 2023</option>
-                    <option>Oktober 2023</option>
-                    <option>November 2023</option>
-                    <option>Desember 2023</option>
+                  <select 
+                    className='bg-transparent outline-none text-sm cursor-pointer'
+                    value={selectedMonth}
+                    onChange={(e) => setSelectedMonth(e.target.value)}
+                  >
+                    {Array.from({length: 12}, (_, i) => {
+                      const date = new Date(2026, i, 1);
+                      const monthYear = date.toLocaleDateString("id-ID", { month: "long", year: "numeric" });
+                      return (
+                        <option key={i} value={monthYear}>
+                          {monthYear}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
                 {/* Tabs */}
@@ -88,7 +93,7 @@ function HistoryOrder() {
                   />
                   <label
                     htmlFor='tab2'
-                    className='flex-1 md:flex-none px-4 md:px-6 py-3text-sm md:text-base font-medium cursor-pointer peer-checked/tab2:bg-white'
+                    className='flex-1 md:flex-none px-4 md:px-6 py-3 text-sm md:text-base font-medium cursor-pointer peer-checked/tab2:bg-white'
                   >
                     Sending Goods
                   </label>
