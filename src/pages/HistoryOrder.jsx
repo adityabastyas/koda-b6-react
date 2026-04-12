@@ -5,6 +5,7 @@ import Stepper from "../components/Stepper";
 import { Link } from "react-router-dom";
 import { DataContext } from "../components/DataProvider";
 import { useSelector } from "react-redux";
+import http from "../lib/http";
 
 function HistoryOrder() {
   const [orders, setOrders] = React.useState([]);
@@ -18,16 +19,17 @@ function HistoryOrder() {
 
 
   React.useEffect(() => {
-    const history = JSON.parse(localStorage.getItem
-    ("historyOrders")) || [];
-
-    if(!isLogin || !currentUser) {
+    if (!isLogin || !currentUser) {
       setOrders([]);
       return;
     }
 
-    const filterOrder = history.filter((item) => item.email === currentUser.email);
-    setOrders(filterOrder);
+    http(`/transactions/user/${currentUser.user_id}`)
+      .then(res => res.json())
+      .then(res => {
+        setOrders(res.result || []);
+      })
+      .catch(err => console.log(err));
   }, [isLogin, currentUser, selectedMonth]);
 
  
@@ -119,21 +121,17 @@ function HistoryOrder() {
                 <p className="text-gray-500">Belum ada order</p>
               ) : (
                 orders.map((item) => {
-                  const firstItem = item.items?.[0];
-
-                  const product = data?.products?.find(
-                    (p) => p.id === firstItem?.productId
-                  );
+                  const product = data?.products?.[0];
 
                   return (
                     <CartHistory
-                      key={item.id}
+                      key={item.transaction_id}
                       src={product?.image?.imageSatu}
                       alt={product?.name}
-                      noOrder={item.id}
-                      date={item.date}
+                      noOrder={item.transaction_id}
+                      date={new Date(item.tanggal).toLocaleDateString()}
                       total={`Idr ${item.total.toLocaleString()}`}
-                      status={item.status}
+                      status={"On Progress"}
                     />
                   );
                 })

@@ -3,34 +3,61 @@ import React from "react";
 import CartOrder from "../components/CartOrder";
 import { useParams } from "react-router-dom";
 import { DataContext } from "../components/DataProvider";
+import http from "../lib/http";
+import { useSelector } from "react-redux";
 
 function DetailOrder() {
   const {id} = useParams();
   const {data} = React.useContext(DataContext);
   
-  const history = JSON.parse(localStorage.getItem("historyOrders")) || [];
+  const [order, setOrder] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
 
-  const order = history.find(
-    (item) => item.id === id
-  );
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await http(`/transactions/${id}`);
+        const result = await res.json();
 
+        if (!result.success) {return;}
+
+        const transaction = result.result;
+
+        const resItems = await http(`/transaction-products/${id}`);
+        const resultItems = await resItems.json();
+
+        setOrder({
+          ...transaction,
+          items: resultItems.result || []
+        });
+
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  // if (loading) {return <p className="p-10">Loading...</p>;}
   if (!order) {
     return <p className="p-10">Order tidak ditemukan</p>;
   }
-
-
 
   return (
     <>
       <main className="font-['Plus_Jakarta_Sans'] px-[130px] pt-[78px] pb-[57px]">
         {/* Title */}
         <h1 className='text-[48px] font-bold text-[#0b0909]'>
-          Order {order.id}
+          Order {order.transaction_id}
         </h1>
 
         {/* Date */}
         <span className='block mt-px-2.5 mb-7 text-base font-normal text-[#4f5665]'>
-          {order.date}
+          {new Date(order.tanggal).toLocaleDateString()}
         </span>
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
@@ -49,7 +76,7 @@ function DetailOrder() {
                 </span>
               </div>
               <span className='text-base font-bold text-[#0b132a]'>
-                {order.fullName}
+                {order.fullname}
               </span>
             </div>
 
@@ -78,7 +105,7 @@ function DetailOrder() {
                 </span>
               </div>
               <span className='text-base font-bold text-[#0b132a]'>
-                {order.phone}
+                {order.phone || currentUser?.phone}
 
               </span>
             </div>
@@ -93,7 +120,7 @@ function DetailOrder() {
                   Payment Method
                 </span>
               </div>
-              <span className='text-base font-bold text-[#0b132a]'>{order.paymentMethod}
+              <span className='text-base font-bold text-[#0b132a]'>{order.paymentMethod || "Cash"}
               </span>
             </div>
 
@@ -105,7 +132,7 @@ function DetailOrder() {
                 </span>
               </div>
               <span className='text-base font-bold text-[#0b132a]'>
-                {order.deliveryOption}
+                {order.delivery_type}
 
               </span>
             </div>
@@ -118,7 +145,7 @@ function DetailOrder() {
                 </span>
               </div>
               <span className='text-[12px] font-bold text-[#00a700] bg-[#00a70033] px-2.5 py-1.5 rounded-full'>
-                {order.status}
+                {order.status || "On Progress"}
               </span>
             </div>
 
@@ -139,21 +166,21 @@ function DetailOrder() {
             <div className=''>
               {order.items?.map((item, index) => {
                 const product = data?.products?.find(
-                  (i) => i.id === item.productId
+                  (i) => i.id === item.product_id
                 );
 
                 if (!product) {return null;}
 
                 return (
                   <CartOrder
-                    key={`${item.productId}-${index}`}
-                    src={product.image.imageSatu}
+                    key={`${item.product_id}-${index}`}
+                    src={product.image.imageSatu || product.image_url}
                     alt={product.name}
                     title={product.name}
                     quantity={`${item.quantity} pcs`}
                     size={item.size}
                     temperature={item.temperature}
-                    dineOption={order.deliveryOption || "Dine In"}
+                    dineOption={order.delivery_type || "Dine In"}
                     originalPrice={product.price}
                     discountPrice={product.discount}
                     isFlashSale={true}

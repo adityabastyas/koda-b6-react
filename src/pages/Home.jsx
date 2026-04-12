@@ -14,6 +14,8 @@ import arrowRight from "../assets/img/icon/arrow-right.svg";
 function Home() {
   const { data, loading } = React.useContext(DataContext);
 
+  console.log(data);
+
   const navigate = useNavigate();
 
   const goToDetail = (item) => {
@@ -25,6 +27,7 @@ function Home() {
   };
 
   const testimonial = data?.testimonials || [];
+
 
   const ref = React.useRef(0);
 
@@ -56,17 +59,10 @@ function Home() {
     setTesti(testimonial[ref.current]);
   };
 
-
-
   //cart
   const [showCart, setShowCart] = React.useState(false);
-  const handleAddToCart = (
-    item,
-    size = "Regular",
-    temperature = "Ice"
-  ) => {
-    const checkout =
-  JSON.parse(localStorage.getItem("checkout")) || [];
+  const handleAddToCart = (item, size = "Regular", temperature = "Ice") => {
+    const checkout = JSON.parse(localStorage.getItem("checkout")) || [];
 
     const productId = Number(item.id);
 
@@ -82,7 +78,7 @@ function Home() {
       productInCart.quantity = productInCart.quantity + 1;
     } else {
       checkout.push({
-        productId: productId, 
+        productId: productId,
         size: size,
         temperature: temperature,
         quantity: 1,
@@ -97,7 +93,6 @@ function Home() {
       setShowCart(false);
     }, 1500);
   };
-
 
   return (
     <>
@@ -180,38 +175,22 @@ function Home() {
               <section className='mt-6'>
                 <ul className='flex flex-col gap-6'>
                   <li className='flex items-center text-[#4f5665] text-[14px] font-normal font-[Rubik]'>
-                    <img
-                      src={checkIcon}
-                      alt='check icon'
-                      className='mr-3'
-                    />
+                    <img src={checkIcon} alt='check icon' className='mr-3' />
                     High quality beans
                   </li>
 
                   <li className='flex items-center text-[#4f5665] text-sm font-normal font-[Rubik]'>
-                    <img
-                      src={checkIcon}
-                      alt='check icon'
-                      className='mr-3'
-                    />
+                    <img src={checkIcon} alt='check icon' className='mr-3' />
                     Healthy meals, you can request the ingredients
                   </li>
 
                   <li className='flex items-center text-[#4f5665] text-sm font-normal font-[Rubik]'>
-                    <img
-                      src={checkIcon}
-                      alt='check icon'
-                      className='mr-3'
-                    />
+                    <img src={checkIcon} alt='check icon' className='mr-3' />
                     Chat with our staff to get better experience for ordering
                   </li>
 
                   <li className='flex items-center text-[#4f5665] text-sm font-normal font-[Rubik]'>
-                    <img
-                      src={checkIcon}
-                      alt='check icon'
-                      className='mr-3'
-                    />
+                    <img src={checkIcon} alt='check icon' className='mr-3' />
                     Free member card with a minimum purchase of IDR 200.000.
                   </li>
                 </ul>
@@ -318,31 +297,11 @@ function Home() {
                 </p>
 
                 <div className='flex items-center mb-6'>
-                  <img
-                    className='mr-6'
-                    src={starIcon}
-                    alt='star'
-                  />
-                  <img
-                    className='mr-6'
-                    src={starIcon}
-                    alt='star'
-                  />
-                  <img
-                    className='mr-6'
-                    src={starIcon}
-                    alt='star'
-                  />
-                  <img
-                    className='mr-6'
-                    src={starIcon}
-                    alt='star'
-                  />
-                  <img
-                    className='mr-6'
-                    src={starIcon}
-                    alt='star'
-                  />
+                  <img className='mr-6' src={starIcon} alt='star' />
+                  <img className='mr-6' src={starIcon} alt='star' />
+                  <img className='mr-6' src={starIcon} alt='star' />
+                  <img className='mr-6' src={starIcon} alt='star' />
+                  <img className='mr-6' src={starIcon} alt='star' />
 
                   <span className="text-white text-base font-normal font-['Plus_Jakarta_Sans']">
                     {testi.rating}
@@ -380,10 +339,8 @@ function Home() {
 
       <CartSuccessModal
         isOpen={showCart}
-        message="Produk berhasil ditambahkan ke keranjang 🛒"
+        message='Produk berhasil ditambahkan ke keranjang 🛒'
       />
-      
-
     </>
   );
 }
