@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ModalLoading from "../components/ModalLoading";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import http from "../lib/http";
 
 function CheckoutProduct() {
   const {isLogin , currentUser} = useSelector((state) => state.auth);
@@ -48,7 +49,7 @@ function CheckoutProduct() {
 
   const navigate = useNavigate();
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if(!isLogin){
       setShow(true);
 
@@ -59,33 +60,60 @@ function CheckoutProduct() {
       return;
     }
 
-    let historyOld = JSON.parse(localStorage.getItem("historyOrders")) || [];
+    // let historyOld = JSON.parse(localStorage.getItem("historyOrders")) || [];
 
     const formValues = getValues();
 
     const newOrder = {
-      id:  Date.now().toString(),
-      date: new Date().toLocaleDateString(),
-      items: checkoutState,
+      // id:  Date.now().toString(),
+      // date: new Date().toLocaleDateString(),
+      // items: checkoutState,
       total: subTotal,
-      status: "On Progress",
-      fullName: formValues.fullName,
+      // status: "On Progress",
+      fullname: formValues.fullName,
       email: formValues.email,
       address: formValues.address,
-      phone: currentUser?.phone || "",
-      deliveryOption: deliveryOption,
-      paymentMethod: "Cash"
+      delivery_type: deliveryOption,
+      subtotal: totalOrder,
+      tax: tax
+      // phone: currentUser?.phone || "",
+      // deliveryOption: deliveryOption,
+      // paymentMethod: "Cash"
     };
 
-    const updateHistory = [newOrder, ...historyOld];
+    try {
+      console.log(JSON.stringify(newOrder));
+      const res = await http("/transactions", JSON.stringify(newOrder), {
+        method: "POST",
+      });
 
-    window.localStorage.setItem("historyOrders", JSON.stringify(updateHistory));
+      const result = await res.json();
+      console.log(result);
+      const transactionId = result?.result?.transaction_id;
 
-    window.localStorage.removeItem("checkout");
-    setCheckoutState([]);
+      if (!transactionId) {
+        console.log("gagal create transaction");
+        return;
+      }
 
+      for (const item of checkoutState) {
+        await http(`/transaction-products/${transactionId}`, JSON.stringify({
+          product_id: item.productId,
+          quantity: item.quantity,
+        }), {
+          method: "POST",
+        });
+      }
 
-    navigate("/history-order");
+      localStorage.removeItem("checkout");
+      setCheckoutState([]);
+
+      navigate("/history-order");
+      
+    } catch (error) {
+      console.log(error);
+    }
+
   };
 
   const handleRemove = (indexRemove) => {
