@@ -56,9 +56,9 @@ function Heading() {
               </a>
             </li>
             <li className='ml-5'>
-              <a href='./pages/checkout-product.html'>
+              <Link to="/checkout-product">
                 <img src={cartIcon} alt='cart icon' />
-              </a>
+              </Link>
             </li>
 
 
