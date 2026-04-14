@@ -273,9 +273,12 @@ function Home() {
             <div className='flex justify-center items-center'>
               <figure className='w-[500px] h-[400px] flex items-center justify-center'>
                 <img
-                  src={testi.img}
-                  alt={testi.name}
-                  className='w-full h-full object-cover'
+                  src={
+                    testi.profile_pic
+                      ? `http://localhost:8888/${testi.profile_pic}`
+                      : "https://placehold.co/400"
+                  }
+                  alt={testi.full_name}
                 />
               </figure>
 
@@ -285,23 +288,21 @@ function Home() {
                 </span>
 
                 <h2 className="text-[48px] font-normal text-white font-['Plus_Jakarta_Sans'] my-6 border-l-[7px] border-[#ff8906] pl-5">
-                  {testi.name}
+                  {testi.full_name}
                 </h2>
 
                 <span className="block text-[#ff8906] text-base font-normal font-['Plus_Jakarta_Sans']">
-                  {testi.role}
+                  Customer
                 </span>
 
                 <p className="text-basae font-normal text-white font-['Plus_Jakarta_Sans'] my-6">
-                  {testi.text}
+                  {testi.message}
                 </p>
 
                 <div className='flex items-center mb-6'>
-                  <img className='mr-6' src={starIcon} alt='star' />
-                  <img className='mr-6' src={starIcon} alt='star' />
-                  <img className='mr-6' src={starIcon} alt='star' />
-                  <img className='mr-6' src={starIcon} alt='star' />
-                  <img className='mr-6' src={starIcon} alt='star' />
+                  {[...Array(testi.rating)].map((_, i) => (
+                    <img key={i} className='mr-6' src={starIcon} alt='star' />
+                  ))}
 
                   <span className="text-white text-base font-normal font-['Plus_Jakarta_Sans']">
                     {testi.rating}
