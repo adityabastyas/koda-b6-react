@@ -8,17 +8,65 @@ import {
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
+import http from "../lib/http"; 
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
 function AdmindDashboard() {
+  const [chartData, setChartData] = React.useState({
+    labels: [],
+    data: [],
+  });
+
+  const [transactions, setTransactions] = React.useState([]);
+  const totalOrder = transactions.length;
+
+  React.useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const res = await http("/transactions");
+        const result = await res.json();
+
+        if (!result.success) {return;}
+
+        setTransactions(result.result);
+
+        const grouped = {};
+
+        result.result.forEach((trx) => {
+          const date = new Date(trx.tanggal).toISOString().slice(0, 10);
+
+          if (!grouped[date]) {
+            grouped[date] = 0;
+          }
+
+          grouped[date] += trx.total;
+        });
+
+        const labels = Object.keys(grouped);
+        const data = Object.values(grouped);
+
+        setChartData({ labels, data });
+
+        console.log(result.result);
+        console.log("chartData:", chartData);
+        console.log("grouped:", grouped);
+
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchTransactions();
+  }, []);
+
 
   const dataChart = {
-    labels: ["16 Jan", "17 Jan", "18 Jan", "19 Jan", "20 Jan", "21 Jan", "22 Jan"],
+    labels: chartData.labels || [],
     datasets: [
       {
         label: "Penjualan",
-        data: [100, 120, 90, 150, 130, 170, 200],
+        data: chartData.data || [],
         borderColor: "green",
         backgroundColor: "rgba(0,255,0,0.1)",
         tension: 0.4,
@@ -127,7 +175,7 @@ function AdmindDashboard() {
               <span className='font-semibold text-base'>Order Done</span>
             </div>
             <div className='flex gap-2.5 items-center'>
-              <span className='font-semibold text-2xl'>200</span>
+              <span className='font-semibold text-2xl'>{totalOrder}</span>
               <span className='font-normal text-xs'>+11.01%</span>
               <img src='src/assets/img/icon/up.svg' alt='icon up arrow rise' />
             </div>
