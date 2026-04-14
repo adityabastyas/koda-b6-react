@@ -20,6 +20,7 @@ import { Provider } from "react-redux";
 import { store, persistore } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import AuthLayout from "./components/AuthLayout";
+import ProtectedAdmin from "./components/ProtectedAdmin";
 
 const router = createBrowserRouter([
   {
@@ -77,7 +78,12 @@ const router = createBrowserRouter([
   
   {
     path: "/admind",
-    element: <NavbarAdmind />,
+    element: (
+      <ProtectedAdmin>
+        <NavbarAdmind />
+      </ProtectedAdmin>
+    ),
+    
     children: [
       {
         index: true,
