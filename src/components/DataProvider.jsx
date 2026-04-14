@@ -34,6 +34,11 @@ function DataProvider({ children }) {
       const jsonProduct  = await reqProduct.json();
       const jsonDiscount = await reqDiscount.json();
 
+      const reqReview = await http("/reviews");
+      const jsonReview = await reqReview.json();
+
+      console.log("review :", jsonReview);
+
       console.log("produk :", jsonProduct);
       console.log("diskon :", jsonDiscount);
 
@@ -58,7 +63,7 @@ function DataProvider({ children }) {
         };
       });
 
-      setData({ products });
+      setData({ products, testimonials: jsonReview.result, });
 
       // React.useEffect(()=>{
       //   getDataUsers();
