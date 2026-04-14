@@ -14,6 +14,8 @@ function Profile() {
 
   const {register, handleSubmit,reset} = useForm();  
 
+  const fileRef = React.useRef();
+
   React.useEffect(()=> {
     if(currentUser) {
       reset(
@@ -49,10 +51,39 @@ function Profile() {
       }
 
       dispatch(updateProfile({
-        fullName: formValues.fullName,
-        email: formValues.email,
-        phone: currentUser?.phone,
-        address: formValues.address
+        fullName: formInput.fullName,
+        email: formInput.email,
+        phone: formInput.phone,
+        address: formInput.address
+      }));
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) {return;}
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await http("/users/upload", formData, {
+        method: "POST",
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        alert("upload gagal");
+        return;
+      }
+
+      dispatch(updateProfile({
+        ...currentUser,
+        profilePic: result.result
       }));
 
     } catch (err) {
@@ -78,13 +109,21 @@ function Profile() {
             <div className=' w-[110px] h-[110px] md:w-[170px] md:-[170px]'>
               <img
                 className='rounded-full w-full h-full object-cover'
-                src={PotoProfile}
+                src={currentUser?.profilePic
+                  ? import.meta.env.VITE_BASE_URL + currentUser.profilePic.replace("./", "/")
+                  : PotoProfile}
                 alt='profile image'
               />
             </div>
-            <button className='text-sm font-medium text-[#0b132a] bg-[#ff8906] rounded-md px-12 py-3'>
+            <button onClick={() => fileRef.current.click()} className='text-sm font-medium text-[#0b132a] bg-[#ff8906] rounded-md px-12 py-3'>
               Upload New Photo
             </button>
+            <input
+              type="file"
+              ref={fileRef}
+              style={{ display: "none" }}
+              onChange={handleUpload}
+            />
             <span className='text-[#4f5665] font-semibold text-base'>
               Since {currentUser?.createdAt
                 ? new Date(currentUser.createdAt).toLocaleDateString("id-ID", {
