@@ -24,12 +24,32 @@ function HistoryOrder() {
       return;
     }
 
-    http(`/transactions/user/${currentUser.user_id}`)
-      .then(res => res.json())
-      .then(res => {
-        setOrders(res.result || []);
-      })
-      .catch(err => console.log(err));
+    const fetchData = async () => {
+      try {
+        const res = await http(`/transactions/user/${currentUser.user_id}`);
+        const dataTrans = await res.json();
+
+        const transactions = dataTrans.result || [];
+
+        const withProducts = await Promise.all(
+          transactions.map(async (trx) => {
+            const resItems = await http(`/transaction-products/${trx.transaction_id}`);
+            const dataItems = await resItems.json();
+
+            return {
+              ...trx,
+              items: dataItems.result || []
+            };
+          })
+        );
+
+        setOrders(withProducts);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
   }, [isLogin, currentUser, selectedMonth]);
 
  
@@ -120,19 +140,29 @@ function HistoryOrder() {
               {orders.length === 0 ? (
                 <p className="text-gray-500">Belum ada order</p>
               ) : (
-                orders.map((item) => {
-                  const product = data?.products?.[0];
-
+                orders.map((order) => {
                   return (
-                    <CartHistory
-                      key={item.transaction_id}
-                      src={product?.image?.imageSatu}
-                      alt={product?.name}
-                      noOrder={item.transaction_id}
-                      date={new Date(item.tanggal).toLocaleDateString()}
-                      total={`Idr ${item.total.toLocaleString()}`}
-                      status={"On Progress"}
-                    />
+                    <div key={order.transaction_id}>
+                      {order.items?.map((item, index) => {
+                        const product = data?.products?.find(
+                          (p) => p.id === item.product_id
+                        );
+
+                        if (!product) {return null;}
+
+                        return (
+                          <CartHistory
+                            key={`${order.transaction_id}-${index}`}
+                            src={product?.image?.imageSatu || ""}
+                            alt={product?.name}
+                            noOrder={order.transaction_id}
+                            date={new Date(order.tanggal).toLocaleDateString()}
+                            total={`Idr ${order.total.toLocaleString()}`}
+                            status={"On Progress"}
+                          />
+                        );
+                      })}
+                    </div>
                   );
                 })
               )}
