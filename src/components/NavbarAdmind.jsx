@@ -1,8 +1,19 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logoutUser } from "../redux/reduces/authReducer";
+import { useSelector } from "react-redux";
 
 function NavbarAdmind() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
+
+  const { currentUser } = useSelector((state) => state.auth);
+
   return (
     <>
       <header className='flex justify-between items-center px-14'>
@@ -15,16 +26,66 @@ function NavbarAdmind() {
             Coffee Shop
           </span>
         </div>
-        <div></div>
+        <div className="relative">
+          <div
+            onClick={() => setOpen(!open)}
+            className="flex items-center gap-3 cursor-pointer"
+          >
+            <span className="text-sm">{currentUser?.fullName}</span>
+            <img
+              src={
+                currentUser?.profile_pic
+                  ? `http://localhost:8888/${currentUser.profile_pic}`
+                  : "src/assets/img/poto.jpg"
+              }
+              alt="profile"
+              className="w-10 h-10 rounded-full object-cover"
+            />
+          </div>
+
+          {open && (
+            <div className="absolute right-0 mt-2 bg-white border rounded shadow w-40">
+              <div
+                onClick={() => navigate("/profile")}
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+        Profile
+              </div>
+
+              {currentUser?.role === "admin" && (
+                <div
+                  onClick={() => navigate("/admind/dashboard")}
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                >
+          Admin
+                </div>
+              )}
+
+              <div
+                onClick={() => {
+                  dispatch(logoutUser());
+                  navigate("/signin");
+                }}
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-500"
+              >
+        Logout
+              </div>
+            </div>
+          )}
+        </div>
       </header>
       <section className='grid grid-cols-[256px_1fr] min-h-screen'>
         <div className='pl-10 pt-6 pr-3 bg-white border-r'>
           <nav>
             <ul>
               <li>
-                <Link
+                <NavLink
                   to='dashboard'
-                  className='flex items-center gap-3 px-3 py-2  bg-[#FF8906] text-black rounded-lg'
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-3 py-2 rounded-lg ${
+                      isActive ? "bg-[#FF8906] text-black" : "text-gray-600"
+                    }`
+                  }
                 >
                   <img
                     src='src/assets/img/icon/dashboard.svg'
@@ -32,12 +93,16 @@ function NavbarAdmind() {
                   />
 
                   <span>Dashboard</span>
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink
                   to='product'
-                  className='flex items-center gap-3 px-3 py-2 text-gray-600 rounded'
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-3 py-2 rounded-lg ${
+                      isActive ? "bg-[#FF8906] text-black" : "text-gray-600"
+                    }`
+                  }
                 >
                   <img
                     src='src/assets/img/icon/product.svg'
@@ -45,30 +110,41 @@ function NavbarAdmind() {
                   />
 
                   <span>Product</span>
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink
                   to='order'
-                  className='flex items-center rounded-2xl gap-3 px-3 py-2 text-gray-600'
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-3 py-2 rounded-lg ${
+                      isActive ? "bg-[#FF8906] text-black" : "text-gray-600"
+                    }`
+                  }
                 >
                   <img src='src/assets/img/icon/bag.svg' alt='icon bag' />
 
                   <span>Order</span>
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink
                   to='user'
-                  className='flex items-center gap-3 px-3 py-2 text-gray-600'
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-3 py-2 rounded-lg ${
+                      isActive ? "bg-[#FF8906] text-black" : "text-gray-600"
+                    }`
+                  }
                 >
                   <img src='src/assets/img/icon/usertwo.svg' alt='icon user' />
 
                   <span>User</span>
-                </Link>
+                </NavLink>
               </li>
               <li
-                href='#'
+                onClick={() => {
+                  dispatch(logoutUser());
+                  navigate("/signin");
+                }}
                 className='flex items-center gap-3 px-3 py-2 text-gray-600'
               >
                 <img src='src/assets/img/icon/logout.svg' alt='' />
