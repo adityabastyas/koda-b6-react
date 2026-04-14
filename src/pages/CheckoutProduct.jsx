@@ -64,6 +64,15 @@ function CheckoutProduct() {
 
     const formValues = getValues();
 
+    await http("/users/profile", JSON.stringify({
+      full_name: formValues.fullName,
+      email: formValues.email,
+      phone: currentUser?.phone || null,
+      address: formValues.address
+    }), {
+      method: "PATCH"
+    });
+
     const newOrder = {
       // id:  Date.now().toString(),
       // date: new Date().toLocaleDateString(),
@@ -97,10 +106,52 @@ function CheckoutProduct() {
       }
 
       for (const item of checkoutState) {
-        await http(`/transaction-products/${transactionId}`, JSON.stringify({
+
+        const product = data?.products?.find(
+          (i) => i.id === item.productId
+        );
+
+        if (!product) {continue;}
+
+        const resSize = await http(`/product-sizes/${item.productId}`);
+        const sizeData = await resSize.json();
+
+        const resVariant = await http(`/product-variant/${item.productId}`);
+        const variantData = await resVariant.json();
+
+        const normalize = (val) =>
+          String(val).replace(/\s+/g, " ").trim().toLowerCase();
+
+        const size = sizeData.result?.find(
+          (s) => normalize(s.name) === normalize(item.size)
+        );
+
+        const variant = variantData.result?.find(
+          (v) => normalize(v.temperature) === normalize(item.temperature)
+        );
+
+        if (!size || !variant) {
+          console.log("mapping gagal:", {
+            item,
+            sizeData: sizeData.result,
+            variantData: variantData.result
+          });
+          continue;
+        }
+
+
+        const payload = {
           product_id: item.productId,
           quantity: item.quantity,
-        }), {
+          product_size_id: size.product_size_id,
+          variant_id: variant.variant_id,
+          price_at_purchase: product.discount
+        };
+
+
+        await http(`/transaction-products/${transactionId}`, JSON.stringify(
+          payload
+        ), {
           method: "POST",
         });
       }
