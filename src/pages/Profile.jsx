@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { updateProfile } from "../redux/reduces/authReducer";
+import http from "../lib/http";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -27,8 +28,36 @@ function Profile() {
     }
   }, [currentUser,reset]);
 
-  const onSubmit = (formInput) => {
-    dispatch(updateProfile(formInput));
+  const onSubmit = async (formInput) => {
+    try {
+      const res = await http(
+        "/users/profile",
+        JSON.stringify({
+          full_name: formInput.fullName,
+          email: formInput.email,
+          phone: formInput.phone,
+          address: formInput.address,
+        }),
+        { method: "PATCH" }
+      );
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        alert("update gagal");
+        return;
+      }
+
+      dispatch(updateProfile({
+        fullName: formValues.fullName,
+        email: formValues.email,
+        phone: currentUser?.phone,
+        address: formValues.address
+      }));
+
+    } catch (err) {
+      console.log(err);
+    }
   };
 
 
@@ -103,6 +132,7 @@ function Profile() {
                 src='src\assets\img\icon\Password.svg'
                 alt='icon password'
                 type='password'
+                disabled
               />
               <Input
                 label='Address'
