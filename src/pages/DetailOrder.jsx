@@ -14,6 +14,12 @@ function DetailOrder() {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
 
+  const [itemsDetail, setItemsDetail] = React.useState([]);
+
+  const { currentUser } = useSelector((state) => state.auth);
+
+  
+
   React.useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,10 +33,41 @@ function DetailOrder() {
         const resItems = await http(`/transaction-products/${id}`);
         const resultItems = await resItems.json();
 
-        setOrder({
-          ...transaction,
-          items: resultItems.result || []
-        });
+        const detailItems = await Promise.all(
+          (resultItems.result || []).map(async (item) => {
+
+            const product = data?.products?.find(
+              (p) => p.id === item.product_id
+            );
+
+            if (!product) {return null;}
+
+            const resSize = await http(`/product-sizes/${item.product_id}`);
+            const sizeData = await resSize.json();
+
+            const size = sizeData.result?.find(
+              (s) => s.product_size_id === item.product_size_id
+            );
+
+            const resVariant = await http(`/product-variant/${item.product_id}`);
+            const variantData = await resVariant.json();
+
+            const variant = variantData.result?.find(
+              (v) => v.variant_id === item.variant_id
+            );
+
+            return {
+              ...item,
+              product,
+              sizeName: size?.name,
+              temperature: variant?.temperature
+            };
+          })
+        );
+
+        setItemsDetail(detailItems.filter(Boolean));
+
+        setOrder(transaction);
 
       } catch (err) {
         console.log(err);
@@ -40,7 +77,8 @@ function DetailOrder() {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, data]);
+
 
   // if (loading) {return <p className="p-10">Loading...</p>;}
   if (!order) {
@@ -164,25 +202,20 @@ function DetailOrder() {
               Your Order
             </h3>
             <div className=''>
-              {order.items?.map((item, index) => {
-                const product = data?.products?.find(
-                  (i) => i.id === item.product_id
-                );
-
-                if (!product) {return null;}
+              {itemsDetail.map((item, index) => {
 
                 return (
                   <CartOrder
                     key={`${item.product_id}-${index}`}
-                    src={product.image.imageSatu || product.image_url}
-                    alt={product.name}
-                    title={product.name}
+                    src={item.product?.image?.imageSatu || ""}
+                    alt={item.product?.name}
+                    title={item.product?.name}
                     quantity={`${item.quantity} pcs`}
-                    size={item.size}
+                    size={item.sizeName}
                     temperature={item.temperature}
                     dineOption={order.delivery_type || "Dine In"}
-                    originalPrice={product.price}
-                    discountPrice={product.discount}
+                    originalPrice={item.product?.price}
+                    discountPrice={item.product?.discount}
                     isFlashSale={true}
                   />
                 );
