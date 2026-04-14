@@ -121,8 +121,8 @@ function Home() {
             </div>
 
             <div className='flex mt-6'>
-              <div className='flex flex-col pr-8 border-r border-white w-[110px]'>
-                <span className='text-[#ff8906] text-5xl font-medium font-[Plus_Jakarta_Sans]'>
+              <div className='flex flex-col justify-center pr-8 border-r border-white w-[110px]'>
+                <span className='text-[#ff8906] text-5xl font-medium font-[Plus_Jakarta_Sans] mt-2'>
                   90+
                 </span>
                 <span className='text-white font-normal text-[16px] font-[Plus_Jakarta_Sans] mt-3'>
@@ -134,16 +134,16 @@ function Home() {
                 <span className='text-[#ff8906] text-[48px] font-medium font-[Plus_Jakarta_Sans]'>
                   30+
                 </span>
-                <span className='text-white font-normal text-[16px] font-[Plus_Jakarta_Sans] mt-[12px]'>
+                <span className='text-white font-normal text-[16px] font-[Plus_Jakarta_Sans] '>
                   Stores
                 </span>
               </div>
 
-              <div className='flex flex-col ml-8'>
+              <div className='flex flex-col ml-8 mt-4'>
                 <span className='text-[#ff8906] text-5xl font-medium font-[Plus_Jakarta_Sans]'>
                   800+
                 </span>
-                <span className='text-white font-normal text-base font-[Plus_Jakarta_Sans] mt-3'>
+                <span className='text-white font-normal text-base font-[Plus_Jakarta_Sans] mt-2'>
                   Customer
                 </span>
               </div>
