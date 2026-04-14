@@ -1,6 +1,37 @@
 import React from "react";
+import {
+  Chart as ChartJS,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+} from "chart.js";
+
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
 function AdmindDashboard() {
+
+  const dataChart = {
+    labels: ["16 Jan", "17 Jan", "18 Jan", "19 Jan", "20 Jan", "21 Jan", "22 Jan"],
+    datasets: [
+      {
+        label: "Penjualan",
+        data: [100, 120, 90, 150, 130, 170, 200],
+        borderColor: "green",
+        backgroundColor: "rgba(0,255,0,0.1)",
+        tension: 0.4,
+      },
+    ],
+  };
+
+  const options = {
+    plugins: {
+      legend: { display: false },
+    },
+  };
+
   const dataProduk = [
     {
       no: 1,
@@ -102,6 +133,15 @@ function AdmindDashboard() {
             </div>
           </article>
         </section>
+
+
+        <section>
+
+          <div className="bg-white border rounded-2xl p-6">
+            <Line data={dataChart} options={options} />
+          </div>
+        </section>
+
         <section className="w-full overflow-x-auto font-['Plus_Jakarta_Sans'] border border-[#E8E8E8] rounded-2xl p-6">
           <table className='w-full border-collapse'>
             <thead>
