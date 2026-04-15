@@ -109,9 +109,11 @@ function Profile() {
             <div className=' w-[110px] h-[110px] md:w-[170px] md:-[170px]'>
               <img
                 className='rounded-full w-full h-full object-cover'
-                src={currentUser?.profilePic
-                  ? import.meta.env.VITE_BASE_URL + currentUser.profilePic.replace("./", "/")
-                  : PotoProfile}
+                src={
+                  currentUser?.profilePic
+                    ? `${import.meta.env.VITE_BASE_URL}/${currentUser.profilePic.replace("./", "")}`
+                    : PotoProfile
+                }
                 alt='profile image'
               />
             </div>
